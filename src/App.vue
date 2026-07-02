@@ -10,19 +10,23 @@
     <div class="pg-body">
       <!-- ========== 左侧组件列表 ========== -->
       <aside class="pg-sidebar">
-        <div class="sidebar-title">组件列表</div>
+        <div class="sidebar-search">
+          <el-input
+            v-model="searchText"
+            placeholder="搜索组件..."
+            clearable
+            :prefix-icon="Search"
+            size="small"
+          />
+        </div>
         <nav class="sidebar-nav">
           <button
-            v-for="comp in components"
+            v-for="comp in filteredComponents"
             :key="comp.key"
             :class="['sidebar-item', { active: activeKey === comp.key }]"
             @click="activeKey = comp.key"
           >
-            <span class="sidebar-icon">{{ comp.icon }}</span>
-            <div class="sidebar-text">
-              <span class="sidebar-name">{{ comp.name }}</span>
-              <span class="sidebar-tag">{{ comp.tag }}</span>
-            </div>
+            {{ comp.name }}
           </button>
         </nav>
       </aside>
@@ -37,9 +41,18 @@
 
 <script setup lang="ts">
 import { ref, computed } from 'vue'
+import { Search } from '@element-plus/icons-vue'
 import { components } from './config/playground'
 
 const activeKey = ref('button')
+const searchText = ref('')
+
+const filteredComponents = computed(() => {
+  const q = searchText.value.trim().toLowerCase()
+  if (!q) return components
+  return components.filter(c => c.name.toLowerCase().includes(q) || c.key.toLowerCase().includes(q))
+})
+
 const activeDemo = computed(() => components.find(c => c.key === activeKey.value)?.component)
 </script>
 
@@ -97,8 +110,8 @@ body {
 
 /* ====== 左侧组件列表 ====== */
 .pg-sidebar {
-  width: 200px;
-  min-width: 200px;
+  width: 180px;
+  min-width: 180px;
   background: #fff;
   border-right: 1px solid #ebeef5;
   padding: 16px 0;
@@ -106,60 +119,44 @@ body {
   top: 49px;
   height: calc(100vh - 49px);
   overflow-y: auto;
+  display: flex;
+  flex-direction: column;
 }
-.sidebar-title {
-  padding: 0 16px 12px;
-  font-size: 11px;
-  font-weight: 600;
-  color: #aaa;
-  text-transform: uppercase;
-  letter-spacing: 1px;
+
+/* 搜索 */
+.sidebar-search {
+  padding: 0 12px 12px;
 }
+
+/* 组件列表 */
 .sidebar-nav {
   display: flex;
   flex-direction: column;
-  gap: 4px;
+  gap: 2px;
   padding: 0 8px;
+  flex: 1;
+  overflow-y: auto;
 }
 .sidebar-item {
-  display: flex;
-  align-items: center;
-  gap: 10px;
   width: 100%;
-  padding: 10px 12px;
+  padding: 9px 12px;
   border: none;
   border-radius: 6px;
   background: transparent;
   cursor: pointer;
   text-align: left;
+  font-size: 14px;
+  font-weight: 500;
+  color: #555;
   transition: background 0.15s, color 0.15s;
 }
 .sidebar-item:hover {
   background: #f5f6f8;
+  color: #333;
 }
 .sidebar-item.active {
   background: var(--el-color-primary-light-9, #e8edff);
   color: var(--el-color-primary, #2f6bff);
-}
-.sidebar-icon {
-  font-size: 16px;
-  flex-shrink: 0;
-}
-.sidebar-text {
-  display: flex;
-  flex-direction: column;
-  min-width: 0;
-}
-.sidebar-name {
-  font-size: 14px;
-  font-weight: 500;
-}
-.sidebar-tag {
-  font-size: 10px;
-  color: #aaa;
-}
-.sidebar-item.active .sidebar-tag {
-  color: var(--el-color-primary-light-5, #89a9ff);
 }
 
 /* ====== 右侧主区 ====== */
