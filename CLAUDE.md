@@ -45,7 +45,6 @@ docs/                    ← VitePress 文档站
 
 自定义 props（通过 `interface ZqButtonProps extends Partial<ButtonProps>`）：
 - `variant?: 'gradient' | 'soft'` — 对应 CSS class `zq-btn--{variant}`
-- `debounce?: number`（默认 `0`）— 大于 0 时启用 click 防抖，冷却期内重复点击被忽略
 
 ### 主题体系（按顺序加载）
 

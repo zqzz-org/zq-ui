@@ -76,45 +76,6 @@
             </div>
           </section>
 
-          <!-- 防抖交互 -->
-          <section v-show="activeButtonTab === 'debounce'" class="pg-content">
-            <h2>防抖（Debounce）</h2>
-            <p class="desc">
-              设置 <code>debounce</code>（毫秒），冷却时间内忽略重复点击。
-              事件对象完整透传。
-            </p>
-            <div class="demo-block">
-              <h3>800ms 防抖</h3>
-              <div class="demo-row">
-                <zq-button type="primary" :debounce="800" @click="debounceCount++">
-                  点击次数：{{ debounceCount }}
-                </zq-button>
-                <zq-button size="small" @click="debounceCount = 0">重置</zq-button>
-              </div>
-              <p class="hint">快速连击 → 每 800ms 最多 +1</p>
-            </div>
-            <div class="demo-block">
-              <h3>300ms 防抖</h3>
-              <div class="demo-row">
-                <zq-button type="success" :debounce="300" @click="debounceFastCount++">
-                  点击次数：{{ debounceFastCount }}
-                </zq-button>
-                <zq-button size="small" @click="debounceFastCount = 0">重置</zq-button>
-              </div>
-              <p class="hint">快速连击 → 每 300ms 最多 +1</p>
-            </div>
-            <div class="demo-block">
-              <h3>无防抖（对照）</h3>
-              <div class="demo-row">
-                <zq-button type="warning" @click="normalCount++">
-                  点击次数：{{ normalCount }}
-                </zq-button>
-                <zq-button size="small" @click="normalCount = 0">重置</zq-button>
-              </div>
-              <p class="hint">每次点击都触发</p>
-            </div>
-          </section>
-
           <!-- 尺寸形状 -->
           <section v-show="activeButtonTab === 'size'" class="pg-content">
             <h2>尺寸 & 形状</h2>
@@ -254,7 +215,6 @@ const activeComponent = ref('button')
 // ==================== Button 子标签 ====================
 const buttonTabs = [
   { key: 'variant', label: '🎨 变体样式' },
-  { key: 'debounce', label: '⏱ 防抖交互' },
   { key: 'size', label: '📐 尺寸形状' },
   { key: 'passthrough', label: '🔗 透传测试' },
   { key: 'matrix', label: '📊 全量矩阵' },
@@ -268,9 +228,6 @@ const variants = [
 ]
 const types = ['default', 'primary', 'success', 'warning', 'danger', 'info'] as const
 
-const debounceCount = ref(0)
-const debounceFastCount = ref(0)
-const normalCount = ref(0)
 const eventLog = ref('')
 </script>
 

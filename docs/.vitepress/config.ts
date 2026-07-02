@@ -88,6 +88,6 @@ export default defineConfig({
       light: 'github-light',
       dark: 'github-dark',
     },
-    lineNumbers: true,
+    lineNumbers: false,
   },
 })

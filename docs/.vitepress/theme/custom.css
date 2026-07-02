@@ -77,7 +77,6 @@
 }
 
 .VPDocAsideOutline .outline-link.active {
-  border-left-color: var(--vp-c-brand-1);
   color: var(--vp-c-brand-1);
 }
 
@@ -126,6 +125,59 @@
   color: var(--vp-c-brand-1);
   border-radius: 4px;
   font-size: 0.875em;
+}
+
+/* -------- 折叠代码块 -------- */
+.vp-doc details {
+  margin: 0;
+  border: 1px solid var(--vp-c-divider);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.vp-doc summary {
+  margin: 0;
+  cursor: pointer;
+  padding: 10px 16px;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--vp-c-text-2);
+  background: var(--vp-c-bg-soft);
+  user-select: none;
+  transition: background 0.15s;
+}
+
+.vp-doc summary:hover,
+.vp-doc details[open] > summary {
+  background: var(--vp-c-bg-mute);
+}
+
+.vp-doc details div[class*='language-'] {
+  margin: 0;
+  border-radius: 0;
+}
+
+/* -------- 类型提示 popover 触发器 -------- */
+.type-info {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 18px;
+  height: 18px;
+  margin-left: 4px;
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--vp-c-brand-1);
+  background: var(--vp-c-brand-soft);
+  border-radius: 50%;
+  cursor: pointer;
+  vertical-align: middle;
+  transition: opacity 0.15s;
+  user-select: none;
+}
+
+.type-info:hover {
+  opacity: 0.7;
 }
 
 /* -------- 页脚 -------- */
