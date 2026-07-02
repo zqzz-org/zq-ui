@@ -6,7 +6,7 @@ import '../../../src/utils/rem'
 import type { Theme } from 'vitepress'
 import DefaultTheme from 'vitepress/theme'
 import ElementPlus from 'element-plus'
-import ZqUI from '../../../packages/zq-ui'
+import ZQUI from '../../../packages/zq-ui'
 
 import 'element-plus/dist/index.css'
 import '../../../packages/zq-ui/styles'
@@ -17,6 +17,6 @@ export default {
 
   enhanceApp({ app }) {
     app.use(ElementPlus)
-    app.use(ZqUI)
+    app.use(ZQUI)
   },
 } satisfies Theme

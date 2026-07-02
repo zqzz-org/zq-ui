@@ -177,11 +177,34 @@
         </template>
 
         <!-- ==================== 未来组件占位示例 ==================== -->
-        <template v-if="activeComponent === 'input'">
-          <div class="pg-empty">
-            <div class="empty-icon">📝</div>
-            <h2>Input 输入框</h2>
-            <p>待开发。在 <code>packages/zq-ui/components/input/</code> 下创建组件后，在此处添加测试用例。</p>
+        <!-- ==================== 自动代理测试 ==================== -->
+        <template v-if="activeComponent === 'proxy'">
+          <div class="pg-content">
+            <h2>自动代理验证</h2>
+            <p class="desc">以下组件没有单独的 <code>.vue</code> 文件，通过 <code>index.ts</code> 自动代理到 Element Plus。</p>
+
+            <div class="demo-block">
+              <h3>zq-scrollbar（el-scrollbar 代理）</h3>
+              <zq-scrollbar style="height:120px;border:1px solid #ebeef5;border-radius:6px;padding:8px;">
+                <p v-for="i in 20" :key="i" style="margin:4px 0;font-size:13px;color:#999;">第 {{ i }} 行 —— 自动代理透传测试</p>
+              </zq-scrollbar>
+            </div>
+
+            <div class="demo-block">
+              <h3>zq-tag（el-tag 代理）</h3>
+              <div class="demo-row">
+                <zq-tag>默认标签</zq-tag>
+                <zq-tag type="success">Success</zq-tag>
+                <zq-tag type="warning">Warning</zq-tag>
+                <zq-tag type="danger">Danger</zq-tag>
+                <zq-tag type="info" closable @close="() => {}">可关闭</zq-tag>
+              </div>
+            </div>
+
+            <div class="demo-block">
+              <h3>zq-divider（el-divider 代理）</h3>
+              <zq-divider content-position="left">左侧文字</zq-divider>
+            </div>
           </div>
         </template>
       </main>
@@ -203,8 +226,8 @@ interface ComponentEntry {
 
 const components: ComponentEntry[] = [
   { key: 'button', name: 'Button', icon: '🔘', tag: '已就绪' },
-  { key: 'input', name: 'Input', icon: '📝', tag: '待开发' },
-  // 后续组件在此追加：
+  { key: 'proxy', name: '自动代理', icon: '🔗', tag: '透传验证' },
+  // 后续自定义组件在此追加：
   // { key: 'select',   name: 'Select',   icon: '📋', tag: '待开发' },
   // { key: 'table',    name: 'Table',    icon: '📊', tag: '待开发' },
   // { key: 'dialog',   name: 'Dialog',   icon: '💬', tag: '待开发' },
