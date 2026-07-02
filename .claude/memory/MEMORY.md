@@ -1,0 +1,7 @@
+- [commands](commands.md) — pnpm 命令参考：dev / build / test / lint / typecheck / docs
+- [project-architecture](project-architecture.md) — 三层结构：组件库 / Playground / 文档站，无构建步骤源码分发
+- [component-pattern](component-pattern.md) — 组件封装模式：attrs/slots 透传 + 扩展 props + forwardedBindings
+- [theme-system](theme-system.md) — 主题体系：CSS 变量覆盖 EP + 品牌变量 + 加载顺序
+- [vue-ts-constraints](vue-ts-constraints.md) — TS 约束：禁 any / 少用断言 / 改后必须 vue-tsc + vitest
+- [no-emoji](no-emoji.md) — 代码中不使用 emoji，保持正式风格
+- [playground](playground.md) — Playground 结构：App.vue Shell + config 注册表 + demos/ 动态加载
