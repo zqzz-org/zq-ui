@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest'
-import { mount } from '@vue/test-utils'
+import { mount } from '../../../__tests__/test-utils'
 import ZqButton from '../zq-button.vue'
 
 describe('zq-button', () => {

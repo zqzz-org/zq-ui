@@ -11,7 +11,9 @@ pnpm docs:dev       # 启动 VitePress 文档开发服务器
 pnpm docs:build     # 构建 VitePress 文档
 pnpm lint           # ESLint 检查（自动修复）
 pnpm format         # Prettier 格式化
-pnpm test           # Vitest（暂无测试用例）
+pnpm test           # Vitest
+pnpm test:run       # Vitest（单次运行）
+pnpm typecheck      # vue-tsc --noEmit 类型检查
 ```
 
 ## 架构
@@ -70,3 +72,5 @@ docs/                    ← VitePress 文档站
 - Variant 颜色统一跟随主色系，不随 `type` 变化
 - rem 布局：设计稿 1920px 下 `1rem = 16px`，全尺寸等比缩放。`postcss-pxtorem` 自动转 px→rem（rootValue: 16, minPixelValue: 4, 排除 node_modules）。rem 脚本 `src/utils/rem.ts` 已做 SSR 兼容
 - 三方消费项目自行配置 rem 方案，组件库不强加 rem 策略
+- 每次修改代码后**必须**做 TS 类型校验（`vue-tsc --noEmit`）+ 跑测试（`vitest run`）
+- 禁止使用 `any`，尽量不写类型断言（`as`），优先靠泛型和类型推导

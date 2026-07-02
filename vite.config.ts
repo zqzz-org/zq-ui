@@ -17,6 +17,5 @@ export default defineConfig({
   test: {
     environment: 'jsdom',
     globals: true,
-    setupFiles: ['./packages/zq-ui/test-setup.ts'],
   },
 })
