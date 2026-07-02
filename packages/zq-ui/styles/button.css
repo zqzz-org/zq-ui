@@ -1,0 +1,77 @@
+/* ============================================================
+ * ZQ Button 变体样式
+ * 全局样式，引入 vars.css 后生效
+ *
+ * 交互状态：
+ * - :hover          → 悬浮反馈
+ * - :focus-visible  → 键盘导航轮廓
+ * - :active         → 点击反馈
+ * ============================================================ */
+
+/* -------- Gradient：渐变背景按钮 -------- */
+.zq-btn--gradient.el-button {
+  background: var(--zq-gradient-primary, linear-gradient(135deg, #667eea, #764ba2)) !important;
+  color: #ffffff !important;
+  border: none !important;
+  transition: opacity var(--zq-transition-fast, 0.15s ease),
+              box-shadow var(--zq-transition-fast, 0.15s ease);
+}
+
+.zq-btn--gradient.el-button:hover {
+  opacity: 0.88;
+  box-shadow: var(--zq-shadow-soft, 0 2px 12px 0 rgba(0, 0, 0, 0.06));
+}
+
+.zq-btn--gradient.el-button:focus-visible {
+  outline: 2px solid var(--el-color-primary);
+  outline-offset: 2px;
+}
+
+.zq-btn--gradient.el-button:active {
+  opacity: 0.78;
+}
+
+/* 禁用态 */
+.zq-btn--gradient.el-button.is-disabled,
+.zq-btn--gradient.el-button.is-disabled:hover,
+.zq-btn--gradient.el-button.is-disabled:focus-visible,
+.zq-btn--gradient.el-button.is-disabled:active {
+  background: var(--el-fill-color-light) !important;
+  color: var(--el-text-color-placeholder) !important;
+  opacity: 1;
+  cursor: not-allowed;
+  box-shadow: none;
+  outline: none;
+}
+
+/* -------- Soft：浅色背景按钮 -------- */
+.zq-btn--soft.el-button {
+  background: var(--el-color-primary-light-9) !important;
+  color: var(--el-color-primary) !important;
+  border: none !important;
+  transition: background var(--zq-transition-fast, 0.15s ease);
+}
+
+.zq-btn--soft.el-button:hover {
+  background: var(--el-color-primary-light-8) !important;
+}
+
+.zq-btn--soft.el-button:focus-visible {
+  outline: 2px solid var(--el-color-primary);
+  outline-offset: 2px;
+}
+
+.zq-btn--soft.el-button:active {
+  background: var(--el-color-primary-light-7) !important;
+}
+
+/* 禁用态 */
+.zq-btn--soft.el-button.is-disabled,
+.zq-btn--soft.el-button.is-disabled:hover,
+.zq-btn--soft.el-button.is-disabled:focus-visible,
+.zq-btn--soft.el-button.is-disabled:active {
+  background: var(--el-fill-color-light) !important;
+  color: var(--el-text-color-placeholder) !important;
+  cursor: not-allowed;
+  outline: none;
+}

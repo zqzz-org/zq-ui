@@ -1,0 +1,151 @@
+/* ============================================================
+ * VitePress 自定义样式
+ * 对齐 Element Plus 文档风格：清爽、层次分明
+ * ============================================================ */
+
+/* -------- CSS 变量覆盖 -------- */
+:root {
+  --vp-c-brand-1: #2f6bff;
+  --vp-c-brand-2: #5c8aff;
+  --vp-c-brand-3: #2556cc;
+  --vp-c-brand-soft: rgba(47, 107, 255, 0.08);
+
+  /* 侧边栏宽度 */
+  --vp-sidebar-width: 260px;
+
+  /* 正文字号略微放大 */
+  --vp-font-size-base: 15px;
+}
+
+/* -------- 首页 Hero 区域 -------- */
+.VPHero .name {
+  font-size: 48px;
+  letter-spacing: -0.5px;
+}
+
+.VPHero .text {
+  font-size: 24px;
+  color: var(--vp-c-text-2);
+  font-weight: 400;
+}
+
+.VPHero .tagline {
+  font-size: 17px;
+  color: var(--vp-c-text-2);
+  max-width: 480px;
+  line-height: 1.6;
+}
+
+/* -------- 顶部导航栏 -------- */
+.VPNavBar {
+  border-bottom: 1px solid var(--vp-c-divider);
+}
+
+.VPNavBarTitle .title {
+  font-size: 18px;
+  font-weight: 600;
+}
+
+/* -------- 侧边栏 -------- */
+.VPSidebar {
+  border-right: 1px solid var(--vp-c-divider);
+}
+
+/* 侧边栏分组标题 */
+.VPSidebarItem .text {
+  font-weight: 600;
+  font-size: 14px;
+}
+
+/* 侧边栏链接 hover 效果 */
+.VPSidebarItem .item .link:hover {
+  color: var(--vp-c-brand-1);
+}
+
+/* 侧边栏活跃项高亮 */
+.VPSidebarItem .item .link.active {
+  color: var(--vp-c-brand-1);
+  background: var(--vp-c-brand-soft);
+  border-radius: 6px;
+}
+
+/* -------- 右侧大纲 -------- */
+.VPDocAsideOutline .outline-link {
+  font-size: 13px;
+  border-left: 2px solid transparent;
+  transition: border-color 0.15s, color 0.15s;
+}
+
+.VPDocAsideOutline .outline-link.active {
+  border-left-color: var(--vp-c-brand-1);
+  color: var(--vp-c-brand-1);
+}
+
+/* -------- 正文排版 -------- */
+.vp-doc h2 {
+  margin-top: 36px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--vp-c-divider);
+  letter-spacing: -0.2px;
+}
+
+.vp-doc h3 {
+  margin-top: 28px;
+}
+
+/* 代码块 */
+.vp-doc div[class*='language-'] {
+  border-radius: 8px;
+  margin: 16px 0;
+}
+
+/* 表格风格 —— 对齐 Element Plus */
+.vp-doc table {
+  display: table;
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+}
+
+.vp-doc table thead th {
+  background: var(--vp-c-bg-soft);
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.vp-doc table td,
+.vp-doc table th {
+  padding: 10px 16px;
+  border: 1px solid var(--vp-c-divider);
+}
+
+/* 行内代码 */
+.vp-doc :not(pre) > code {
+  padding: 2px 6px;
+  background: var(--vp-c-brand-soft);
+  color: var(--vp-c-brand-1);
+  border-radius: 4px;
+  font-size: 0.875em;
+}
+
+/* -------- 页脚 -------- */
+.VPDocFooter {
+  margin-top: 48px;
+  padding-top: 24px;
+  border-top: 1px solid var(--vp-c-divider);
+}
+
+/* -------- 宽屏适配 -------- */
+:root {
+  --vp-layout-max-width: 100%;
+}
+
+.VPDoc.has-aside {
+  grid-template-columns: var(--vp-sidebar-width) minmax(0, 1fr) auto;
+}
+
+.VPDoc .content-container,
+.VPDoc.has-aside .content-container,
+.vp-doc {
+  max-width: none !important;
+}
