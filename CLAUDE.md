@@ -69,6 +69,6 @@ docs/                    ← VitePress 文档站
 - Vue：`^3.5.0`
 - Element Plus：`^2.13.7`
 - `variant` 只有 `gradient` 和 `soft`，EP 原生的 `dashed` 不做二次封装
-- Variant 颜色统一跟随主色系，不随 `type` 变化
+- Variant 颜色跟随 `type` 变化：variant 控制渲染方式（渐变/浅色），type 控制颜色系别（primary/success/warning/danger/info）
 - 每次修改代码后**必须**做 TS 类型校验（`vue-tsc --noEmit`）+ 跑测试（`vitest run`）
 - 禁止使用 `any`，尽量不写类型断言（`as`），优先靠泛型和类型推导

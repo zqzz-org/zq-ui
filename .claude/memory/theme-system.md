@@ -14,9 +14,10 @@ metadata:
 
 ### 品牌专属变量
 - `--zq-shadow-*`、`--zq-spacing-*`、`--zq-gradient-*`、`--zq-font-size-*`
-- 渐变按钮用 `--zq-gradient-primary` 控制颜色，用户可在 `:root` 覆盖或单按钮 style 覆盖
+- 渐变按钮用 `--zq-gradient-{type}` 控制各 type 颜色（primary/success/warning/danger/info），用户可在 `:root` 覆盖或单按钮 style 覆盖
 
 ### 组件样式
+- button.css 按 `.el-button--{type}` 组合选择器分配对应渐变 / 浅色值，`:hover` / `:active` 按 type 使用对应色阶
 - 组件样式用 `!important` 确保覆盖 Element Plus 默认值
 - 三态分离：`:hover`、`:focus-visible`（仅显示轮廓线）、`:active`
 - `:focus` 捆绑 `:hover` 会导致点击后状态残留

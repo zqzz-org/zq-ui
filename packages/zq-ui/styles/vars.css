@@ -80,8 +80,10 @@
   --zq-transition-base: 0.3s ease;
   --zq-transition-slow: 0.5s ease;
 
-  /* 品牌渐变 */
+  /* 品牌渐变（按 type 映射：primary / success / warning / danger） */
   --zq-gradient-primary: linear-gradient(135deg, #667eea, #764ba2);
   --zq-gradient-success: linear-gradient(135deg, #11998e, #38ef7d);
-  --zq-gradient-warm: linear-gradient(135deg, #f093fb, #f5576c);
+  --zq-gradient-warning: linear-gradient(135deg, #f093fb, #f5576c);
+  --zq-gradient-danger: linear-gradient(135deg, #ed4014, #f5576c);
+  --zq-gradient-info: linear-gradient(135deg, #909399, #b0b3b8);
 }

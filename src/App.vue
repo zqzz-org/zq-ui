@@ -4,7 +4,7 @@
     <header class="pg-header">
       <span class="pg-logo">ZQ-UI</span>
       <span class="pg-badge">Playground</span>
-      <span class="pg-hint">组件开发调试 —— 改完源码切过来即时验证</span>
+      <span class="pg-hint">组件开发调试工具</span>
     </header>
 
     <div class="pg-body">

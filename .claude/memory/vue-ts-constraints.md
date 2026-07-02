@@ -24,7 +24,8 @@ metadata:
 
 ### Variant 规则
 - `variant` 只有 `gradient` 和 `soft`，EP 原生的 `dashed` 不做二次封装
-- Variant 颜色统一跟随主色系，不随 `type` 变化
+- Variant 颜色跟随 `type` 变化：variant 控制渲染方式（渐变/浅色），type 控制颜色系别（primary/success/warning/danger/info）
+- 不传 `type` 时默认走 primary 色系
 
 **Why:** 类型安全是组件库的基础要求，任何类型漏洞都可能传导到消费方。修改后验证是最后一道防线。
 
