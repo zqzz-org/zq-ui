@@ -70,6 +70,5 @@ docs/                    ← VitePress 文档站
 - Element Plus：`^2.13.7`
 - `variant` 只有 `gradient` 和 `soft`，EP 原生的 `dashed` 不做二次封装
 - Variant 颜色统一跟随主色系，不随 `type` 变化
-- rem 布局：组件库以 `px` 发布，不强加 rem 策略。消费方自行按设计稿配置
 - 每次修改代码后**必须**做 TS 类型校验（`vue-tsc --noEmit`）+ 跑测试（`vitest run`）
 - 禁止使用 `any`，尽量不写类型断言（`as`），优先靠泛型和类型推导
