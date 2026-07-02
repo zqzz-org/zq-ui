@@ -1,6 +1,5 @@
 import { defineConfig } from 'vitepress'
 
-// https://vitepress.dev/reference/site-config
 export default defineConfig({
   title: 'ZQ UI',
   description: '基于 Element Plus 的团队自定义组件库',

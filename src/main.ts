@@ -1,7 +1,6 @@
 /**
  * ZQ-UI 开发预览入口
  */
-import './utils/rem'
 import { createApp } from 'vue'
 import ElementPlus from 'element-plus'
 import 'element-plus/dist/index.css'
