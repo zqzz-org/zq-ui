@@ -1,5 +1,17 @@
 # Button 按钮
 
+<script setup lang="ts">
+import { ElMessage } from 'element-plus'
+
+function handleDebounceDemoClick() {
+  ElMessage.success('防抖点击触发')
+}
+
+function handleThrottleDemoClick() {
+  ElMessage.success('节流点击触发')
+}
+</script>
+
 ## 基础用法
 
 ### 渐变按钮
@@ -60,6 +72,49 @@
 
 </details>
 
+### 防抖与节流
+
+<ClientOnly>
+  <div style="display:flex;flex-wrap:wrap;gap:10px;align-items:center;padding:16px 0;">
+    <zq-button type="primary" :debounce="600" @click="handleDebounceDemoClick">
+      600ms 防抖
+    </zq-button>
+    <zq-button variant="soft" type="success" :throttle="1000" @click="handleThrottleDemoClick">
+      1000ms 节流
+    </zq-button>
+  </div>
+</ClientOnly>
+
+<details>
+<summary>查看代码</summary>
+
+```vue
+<script setup lang="ts">
+import { ElMessage } from 'element-plus'
+
+function submit() {
+  ElMessage.success('防抖点击触发')
+}
+
+function save() {
+  ElMessage.success('节流点击触发')
+}
+</script>
+
+<template>
+  <div style="display:flex;flex-wrap:wrap;gap:10px;align-items:center;">
+    <zq-button type="primary" :debounce="600" @click="submit">
+      600ms 防抖
+    </zq-button>
+    <zq-button variant="soft" type="success" :throttle="1000" @click="save">
+      1000ms 节流
+    </zq-button>
+  </div>
+</template>
+```
+
+</details>
+
 ## Button API
 
 ### Button Attributes
@@ -90,9 +145,22 @@
       </td>
       <td>—</td>
     </tr>
+    <tr>
+      <td>debounce</td>
+      <td>防抖延迟时间，单位 ms；最后一次点击后触发，不传或小于等于 0 时不启用</td>
+      <td><code>number</code></td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <td>throttle</td>
+      <td>节流间隔时间，单位 ms；首次点击立即触发，间隔内忽略重复点击；与 debounce 同时传入时优先</td>
+      <td><code>number</code></td>
+      <td>0</td>
+    </tr>
   </tbody>
 </table>
 
+<!--
 ### Button Slots
 
 | 插槽名 | 说明 |
@@ -109,3 +177,4 @@
 | size | 按钮尺寸 | `Ref<string>` |
 | type | 按钮类型 | `Ref<string>` |
 | disabled | 按钮禁用状态 | `Ref<boolean>` |
+-->

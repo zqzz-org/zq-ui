@@ -83,7 +83,6 @@ Element Plus 会自动基于主色生成浅色变体（`light-3`、`light-5`、`
 | ------------------------- | ---------------------------------------------- | -------- |
 | `--zq-gradient-primary`     | `linear-gradient(135deg, #667eea, #764ba2)`    | 主色渐变 |
 | `--zq-gradient-success`     | `linear-gradient(135deg, #11998e, #38ef7d)`    | 成功渐变 |
-| `--zq-gradient-warm`        | `linear-gradient(135deg, #f093fb, #f5576c)`    | 暖色渐变 |
 
 ## 自定义覆盖
 

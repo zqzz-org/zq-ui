@@ -1,8 +1,12 @@
-import { describe, it, expect } from 'vitest'
+import { afterEach, describe, it, expect, vi } from 'vitest'
 import { mount } from '../../../__tests__/test-utils'
 import ZqButton from '../zq-button.vue'
 
 describe('zq-button', () => {
+  afterEach(() => {
+    vi.useRealTimers()
+  })
+
   // ==================== 基础渲染 ====================
 
   it('渲染一个 el-button', () => {
@@ -134,7 +138,7 @@ describe('zq-button', () => {
 
   it('透传 icon 插槽', () => {
     const wrapper = mount(ZqButton, {
-      slots: { icon: '<span class="custom-icon">⭐</span>' },
+      slots: { icon: '<span class="custom-icon">icon</span>' },
     })
     expect(wrapper.find('.custom-icon').exists()).toBe(true)
   })
@@ -157,6 +161,117 @@ describe('zq-button', () => {
     })
     await wrapper.find('.el-button').trigger('dblclick')
     expect(dblClicked).toBe(true)
+  })
+
+  it('debounce 大于 0 时延迟触发 click 事件', async () => {
+    vi.useFakeTimers()
+    const clickSpy = vi.fn()
+    const wrapper = mount(ZqButton, {
+      props: { debounce: 200 },
+      attrs: { onClick: clickSpy },
+    })
+
+    await wrapper.find('.el-button').trigger('click')
+
+    expect(clickSpy).not.toHaveBeenCalled()
+    vi.advanceTimersByTime(199)
+    expect(clickSpy).not.toHaveBeenCalled()
+    vi.advanceTimersByTime(1)
+    expect(clickSpy).toHaveBeenCalledTimes(1)
+  })
+
+  it('debounce 期间多次点击只触发最后一次 click 事件', async () => {
+    vi.useFakeTimers()
+    const clickSpy = vi.fn()
+    const wrapper = mount(ZqButton, {
+      props: { debounce: 200 },
+      attrs: { onClick: clickSpy },
+    })
+
+    await wrapper.find('.el-button').trigger('click')
+    vi.advanceTimersByTime(100)
+    await wrapper.find('.el-button').trigger('click')
+    vi.advanceTimersByTime(100)
+    await wrapper.find('.el-button').trigger('click')
+
+    vi.advanceTimersByTime(199)
+    expect(clickSpy).not.toHaveBeenCalled()
+    vi.advanceTimersByTime(1)
+    expect(clickSpy).toHaveBeenCalledTimes(1)
+  })
+
+  it('debounce 小于等于 0 时 click 事件保持即时触发', async () => {
+    const clickSpy = vi.fn()
+    const wrapper = mount(ZqButton, {
+      props: { debounce: 0 },
+      attrs: { onClick: clickSpy },
+    })
+
+    await wrapper.find('.el-button').trigger('click')
+
+    expect(clickSpy).toHaveBeenCalledTimes(1)
+  })
+
+  it('throttle 大于 0 时首次 click 立即触发', async () => {
+    vi.useFakeTimers()
+    const clickSpy = vi.fn()
+    const wrapper = mount(ZqButton, {
+      props: { throttle: 200 },
+      attrs: { onClick: clickSpy },
+    })
+
+    await wrapper.find('.el-button').trigger('click')
+
+    expect(clickSpy).toHaveBeenCalledTimes(1)
+  })
+
+  it('throttle 间隔内多次点击只触发第一次 click 事件', async () => {
+    vi.useFakeTimers()
+    const clickSpy = vi.fn()
+    const wrapper = mount(ZqButton, {
+      props: { throttle: 200 },
+      attrs: { onClick: clickSpy },
+    })
+
+    await wrapper.find('.el-button').trigger('click')
+    vi.advanceTimersByTime(100)
+    await wrapper.find('.el-button').trigger('click')
+    vi.advanceTimersByTime(99)
+    await wrapper.find('.el-button').trigger('click')
+
+    expect(clickSpy).toHaveBeenCalledTimes(1)
+  })
+
+  it('throttle 间隔结束后允许再次触发 click 事件', async () => {
+    vi.useFakeTimers()
+    const clickSpy = vi.fn()
+    const wrapper = mount(ZqButton, {
+      props: { throttle: 200 },
+      attrs: { onClick: clickSpy },
+    })
+
+    await wrapper.find('.el-button').trigger('click')
+    vi.advanceTimersByTime(200)
+    await wrapper.find('.el-button').trigger('click')
+
+    expect(clickSpy).toHaveBeenCalledTimes(2)
+  })
+
+  it('同时传入 debounce 和 throttle 时 throttle 优先', async () => {
+    vi.useFakeTimers()
+    const clickSpy = vi.fn()
+    const wrapper = mount(ZqButton, {
+      props: { debounce: 200, throttle: 500 },
+      attrs: { onClick: clickSpy },
+    })
+
+    await wrapper.find('.el-button').trigger('click')
+    vi.advanceTimersByTime(200)
+    await wrapper.find('.el-button').trigger('click')
+    vi.advanceTimersByTime(300)
+    await wrapper.find('.el-button').trigger('click')
+
+    expect(clickSpy).toHaveBeenCalledTimes(2)
   })
 
   // ==================== 原生 HTML 属性透传 ====================

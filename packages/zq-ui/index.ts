@@ -3,7 +3,7 @@
  * - 有自定义逻辑的组件（如 zq-button）→ 显式封装
  * - 其余组件 → 自动代理到 Element Plus，完整透传 attrs/slots
  */
-import type { App, Plugin } from 'vue'
+import type { App, Component, Plugin } from 'vue'
 import { defineComponent, h } from 'vue'
 import {
   ElScrollbar,
@@ -76,12 +76,12 @@ import {
 // 自定义封装组件（有额外 props / 逻辑）
 import ZqButton from './components/button/zq-button.vue'
 
-const customComponents: Record<string, unknown> = {
+const customComponents: Record<string, Component> = {
   ZqButton,
 }
 
 // Element Plus 组件名 → 组件引用映射
-const elComponentMap: Record<string, unknown> = {
+const elComponentMap: Record<string, Component> = {
   ElScrollbar,
   ElInput,
   ElSelect,
@@ -149,7 +149,7 @@ const elComponentMap: Record<string, unknown> = {
   ElConfigProvider,
 }
 
-const proxyCache = new Map<string, unknown>()
+const proxyCache = new Map<string, Component>()
 
 /** kebab → PascalCase: scrollbar → Scrollbar, input-number → InputNumber */
 function toPascal(name: string): string {
@@ -160,11 +160,11 @@ function toPascal(name: string): string {
 }
 
 /** 生成透明代理组件，完整透传 attrs 和 slots 到对应的 el-xxx */
-function createProxy(elName: string, elComponent: unknown) {
+function createProxy(elName: string, elComponent: Component) {
   return defineComponent({
     name: `Zq${toPascal(elName)}`,
     setup(_props, { slots, attrs }) {
-      return () => h(elComponent as any, attrs, slots)
+      return () => h(elComponent, attrs, slots)
     },
   })
 }

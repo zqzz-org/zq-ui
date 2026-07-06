@@ -59,7 +59,7 @@ app.mount('#app')
 
 | 组件   | 标签          | 扩展内容           |
 | ------ | ------------- | ------------------ |
-| Button | `<zq-button>` | `variant` 变体样式 |
+| Button | `<zq-button>` | `variant` 变体样式、`debounce` 防抖、`throttle` 节流 |
 
 这类组件有专属的 `.vue` 源文件，后续会持续扩展。
 
