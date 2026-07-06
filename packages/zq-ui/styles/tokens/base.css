@@ -1,0 +1,50 @@
+/* ============================================================
+ * ZQ-UI 基础 token
+ * 放置不随主题切换变化的尺寸、圆角、阴影、间距、过渡与语义映射。
+ * ============================================================ */
+
+:root {
+  /* Element Plus 基础视觉变量 */
+  --el-border-radius-base: 6px;
+  --el-border-radius-small: 4px;
+  --el-border-radius-round: 20px;
+  --el-border-color-base: #dcdfe6;
+  --el-border-color-light: #e4e7ed;
+
+  /* 字号 */
+  --zq-font-size-xs: 12px;
+  --zq-font-size-sm: 13px;
+  --zq-font-size-base: 14px;
+  --zq-font-size-lg: 16px;
+  --zq-font-size-xl: 20px;
+  --zq-font-size-xxl: 24px;
+
+  /* 阴影 */
+  --zq-shadow-soft: 0 2px 12px 0 rgba(0, 0, 0, 0.06);
+  --zq-shadow-base: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
+  --zq-shadow-strong: 0 4px 16px 0 rgba(0, 0, 0, 0.14);
+
+  /* 间距 */
+  --zq-spacing-xs: 4px;
+  --zq-spacing-sm: 8px;
+  --zq-spacing-base: 12px;
+  --zq-spacing-md: 16px;
+  --zq-spacing-lg: 24px;
+  --zq-spacing-xl: 32px;
+
+  /* 过渡 */
+  --zq-transition-fast: 0.15s ease;
+  --zq-transition-base: 0.3s ease;
+  --zq-transition-slow: 0.5s ease;
+
+  /* 业务语义色：默认跟随 Element Plus 颜色变量 */
+  --zq-color-primary: var(--el-color-primary);
+  --zq-color-success: var(--el-color-success);
+  --zq-color-warning: var(--el-color-warning);
+  --zq-color-danger: var(--el-color-danger);
+  --zq-color-info: var(--el-color-info);
+  --zq-color-brand: var(--el-color-primary);
+  --zq-color-brand-soft: var(--el-color-primary-light-9);
+  --zq-color-brand-muted: var(--el-color-primary-light-7);
+  --zq-color-brand-strong: var(--el-color-primary-dark-2);
+}

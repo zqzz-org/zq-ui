@@ -1,98 +1,100 @@
-# 主题定制
+# 主题
 
-ZQ-UI 使用 CSS 变量（CSS Custom Properties）实现主题定制。所有变量定义在 `:root` 下，全局生效。
+ZQ-UI 使用 CSS 变量实现主题定制。默认入口 `zq-ui/styles` 会引入基础 token、默认主题和组件样式。
 
-## 覆盖 Element Plus 变量
+## 默认引入
 
-ZQ-UI 覆盖了以下 Element Plus 核心 CSS 变量，你可以通过重新声明来进一步定制：
-
-### 品牌色
-
-```css
-:root {
-  --el-color-primary: #2f6bff;
-  --el-color-success: #19be6b;
-  --el-color-warning: #ff9900;
-  --el-color-danger: #ed4014;
-  --el-color-info: #909399;
-}
+```ts
+import 'element-plus/dist/index.css'
+import 'zq-ui/styles'
 ```
 
-Element Plus 会自动基于主色生成浅色变体（`light-3`、`light-5`、`light-7`、`light-8`、`light-9`）和深色变体（`dark-2`）。
+## 内置主题
 
-### 圆角
+需要运行时切换主题时，引入内置主题包：
 
-| 变量                     | 默认值 | 说明     |
-| ------------------------ | ------ | -------- |
-| `--el-border-radius-base`  | `6px`  | 默认圆角 |
-| `--el-border-radius-small` | `4px`  | 小圆角   |
-| `--el-border-radius-round` | `20px` | 胶囊圆角 |
+```ts
+import 'zq-ui/styles/themes'
+```
 
-### 边框
+`app.use(ZQUI)` 会默认按 UI 库内置域名规则自动应用主题。
 
-| 变量                    | 默认值   | 说明       |
-| ----------------------- | -------- | ---------- |
-| `--el-border-color-base`  | `#dcdfe6` | 默认边框色 |
-| `--el-border-color-light` | `#e4e7ed` | 浅色边框   |
+新增内置主题时，需要同步维护 `packages/zq-ui/theme.ts` 的 `ZqThemeName`、`zqThemeOptions` 和 `defaultZqThemeHostRules`，并在 `packages/zq-ui/styles/themes/index.ts` 中引入对应主题样式。
 
-## ZQ-UI 专属变量
+可在特殊项目中强制指定主题：
 
-以下是 ZQ-UI 额外定义的品牌变量，可在自定义组件或业务代码中使用。
+```ts
+app.use(ZQUI, {
+  theme: 'finance',
+})
+```
 
-### 字号
+也可以关闭自动主题：
 
-| 变量                | 默认值 | 说明       |
-| ------------------- | ------ | ---------- |
-| `--zq-font-size-xs`   | `12px` | 超小字号   |
-| `--zq-font-size-sm`   | `13px` | 小字号     |
-| `--zq-font-size-base` | `14px` | 默认字号   |
-| `--zq-font-size-lg`   | `16px` | 大字号     |
-| `--zq-font-size-xl`   | `20px` | 超大字号   |
-| `--zq-font-size-xxl`  | `24px` | 特大字号   |
+```ts
+app.use(ZQUI, {
+  theme: false,
+})
+```
 
-### 阴影
+如果项目需要临时覆盖域名规则：
 
-| 变量                | 默认值                                  | 说明     |
-| ------------------- | --------------------------------------- | -------- |
-| `--zq-shadow-soft`    | `0 2px 12px 0 rgba(0, 0, 0, 0.06)`     | 柔和阴影 |
-| `--zq-shadow-base`    | `0 2px 12px 0 rgba(0, 0, 0, 0.1)`      | 默认阴影 |
-| `--zq-shadow-strong`  | `0 4px 16px 0 rgba(0, 0, 0, 0.14)`     | 强烈阴影 |
+```ts
+app.use(ZQUI, {
+  theme: {
+    rules: [
+      { theme: 'finance', hosts: ['finance.example.com'] },
+      { theme: 'admin', includes: ['admin'] },
+    ],
+  },
+})
+```
 
-### 间距
+局部固定某套主题时，不需要通过域名判断：
 
-| 变量                  | 默认值 | 说明     |
-| --------------------- | ------ | -------- |
-| `--zq-spacing-xs`       | `4px`  | 超小间距 |
-| `--zq-spacing-sm`       | `8px`  | 小间距   |
-| `--zq-spacing-base`     | `12px` | 默认间距 |
-| `--zq-spacing-md`       | `16px` | 中等间距 |
-| `--zq-spacing-lg`       | `24px` | 大间距   |
-| `--zq-spacing-xl`       | `32px` | 超大间距 |
+```vue
+<template>
+  <zq-button class="zq-theme-admin" type="primary" variant="gradient"> 固定后台主题 </zq-button>
+</template>
+```
 
-### 过渡
+## 常用变量
 
-| 变量                   | 默认值        | 说明       |
-| ---------------------- | ------------- | ---------- |
-| `--zq-transition-fast`   | `0.15s ease`  | 快速过渡   |
-| `--zq-transition-base`   | `0.3s ease`   | 默认过渡   |
-| `--zq-transition-slow`   | `0.5s ease`   | 慢速过渡   |
+业务样式建议优先使用 ZQ-UI 语义变量：
 
-### 品牌渐变
+| 变量                      | 说明             |
+| ------------------------- | ---------------- |
+| `--zq-color-brand`        | 当前主题品牌主色 |
+| `--zq-color-brand-soft`   | 品牌浅色背景     |
+| `--zq-color-brand-muted`  | 品牌弱强调色     |
+| `--zq-color-brand-strong` | 品牌深色         |
+| `--zq-gradient-primary`   | 主色渐变         |
+| `--zq-font-size-base`     | 默认字号         |
+| `--zq-shadow-soft`        | 柔和阴影         |
+| `--zq-spacing-md`         | 中等间距         |
+| `--zq-transition-fast`    | 快速过渡         |
 
-| 变量                      | 默认值                                         | 说明     |
-| ------------------------- | ---------------------------------------------- | -------- |
-| `--zq-gradient-primary`     | `linear-gradient(135deg, #667eea, #764ba2)`    | 主色渐变 |
-| `--zq-gradient-success`     | `linear-gradient(135deg, #11998e, #38ef7d)`    | 成功渐变 |
-
-## 自定义覆盖
-
-只需在你的全局 CSS 中重新声明变量即可覆盖默认值：
+Element Plus 变量仍然可以直接覆盖：
 
 ```css
 :root {
   --el-color-primary: #ff6b35;
-  --zq-shadow-soft: 0 4px 20px rgba(0, 0, 0, 0.1);
+  --el-color-primary-light-9: #fff0eb;
+  --el-color-primary-dark-2: #cc562a;
 }
 ```
 
-> **注意**：确保自定义变量的引入顺序在 `zq-ui/styles` **之后**，否则会被默认值覆盖。
+## 文件组织
+
+样式按职责拆分：
+
+| 路径                                 | 说明            |
+| ------------------------------------ | --------------- |
+| `styles/tokens/base.css`             | 基础 token      |
+| `styles/themes/default.css`          | 默认主题        |
+| `styles/themes/*.css`                | 内置主题        |
+| `styles/components/button/index.css` | Button 组件样式 |
+
+`styles/vars.css` 和 `styles/button.css` 会继续保留为兼容入口。
+
+> 自定义变量的引入顺序需要在 `zq-ui/styles` 之后。

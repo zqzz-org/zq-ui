@@ -1,0 +1,64 @@
+/* ============================================================
+ * ZQ-UI 默认主题
+ * 可作用于全局 :root，也可通过 .zq-theme-default / data-zq-theme 局部生效。
+ * ============================================================ */
+
+:root,
+[data-zq-theme='default'],
+.zq-theme-default {
+  --el-color-primary: #2f6bff;
+  --el-color-primary-light-3: #5c8aff;
+  --el-color-primary-light-5: #89a9ff;
+  --el-color-primary-light-7: #b7c8ff;
+  --el-color-primary-light-8: #cfdbff;
+  --el-color-primary-light-9: #e8edff;
+  --el-color-primary-dark-2: #2656cc;
+
+  --el-color-success: #19be6b;
+  --el-color-success-light-3: #5ed197;
+  --el-color-success-light-5: #8cdfb5;
+  --el-color-success-light-7: #baeccf;
+  --el-color-success-light-8: #d1f2e1;
+  --el-color-success-light-9: #e8f8f0;
+  --el-color-success-dark-2: #149856;
+
+  --el-color-warning: #ff9900;
+  --el-color-warning-light-3: #ffb84d;
+  --el-color-warning-light-5: #ffcc80;
+  --el-color-warning-light-7: #ffe0b3;
+  --el-color-warning-light-8: #ffebcc;
+  --el-color-warning-light-9: #fff5e6;
+  --el-color-warning-dark-2: #cc7a00;
+
+  --el-color-danger: #ed4014;
+  --el-color-danger-light-3: #f2795b;
+  --el-color-danger-light-5: #f6a08a;
+  --el-color-danger-light-7: #fac6b9;
+  --el-color-danger-light-8: #fbd9d0;
+  --el-color-danger-light-9: #fdece8;
+  --el-color-danger-dark-2: #be3310;
+
+  --el-color-info: #909399;
+  --el-color-info-light-3: #b1b3b8;
+  --el-color-info-light-5: #c8c9cc;
+  --el-color-info-light-7: #dedfe0;
+  --el-color-info-light-8: #e9e9eb;
+  --el-color-info-light-9: #f4f4f5;
+  --el-color-info-dark-2: #73767a;
+
+  --zq-color-primary: var(--el-color-primary);
+  --zq-color-success: var(--el-color-success);
+  --zq-color-warning: var(--el-color-warning);
+  --zq-color-danger: var(--el-color-danger);
+  --zq-color-info: var(--el-color-info);
+  --zq-color-brand: var(--el-color-primary);
+  --zq-color-brand-soft: var(--el-color-primary-light-9);
+  --zq-color-brand-muted: var(--el-color-primary-light-7);
+  --zq-color-brand-strong: var(--el-color-primary-dark-2);
+
+  --zq-gradient-primary: linear-gradient(135deg, #667eea, #764ba2);
+  --zq-gradient-success: linear-gradient(135deg, #11998e, #38ef7d);
+  --zq-gradient-warning: linear-gradient(135deg, #f093fb, #f5576c);
+  --zq-gradient-danger: linear-gradient(135deg, #ed4014, #f5576c);
+  --zq-gradient-info: linear-gradient(135deg, #909399, #b0b3b8);
+}

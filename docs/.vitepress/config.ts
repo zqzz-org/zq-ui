@@ -21,7 +21,7 @@ export default defineConfig({
     // 顶部导航栏
     nav: [
       { text: '指南', link: '/guide/getting-started', activeMatch: '^/guide/' },
-      { text: '组件', link: '/components/button', activeMatch: '^/components/' },
+      { text: '组件', link: '/components/color', activeMatch: '^/components/' },
     ],
 
     // 侧边栏 —— 按路径分组，支持折叠
@@ -41,6 +41,7 @@ export default defineConfig({
           text: '基础组件',
           collapsed: false,
           items: [
+            { text: 'Color 色彩', link: '/components/color' },
             { text: 'Button 按钮', link: '/components/button' },
           ],
         },
@@ -55,9 +56,7 @@ export default defineConfig({
     },
 
     // 社交链接
-    socialLinks: [
-      { icon: 'github', link: 'https://github.com' },
-    ],
+    socialLinks: [{ icon: 'github', link: 'https://github.com' }],
 
     // 文档页脚
     docFooter: {

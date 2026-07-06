@@ -75,6 +75,26 @@ import {
 
 // 自定义封装组件（有额外 props / 逻辑）
 import ZqButton from './components/button/zq-button.vue'
+import {
+  applyZqTheme,
+  applyZqThemeByHost,
+  defaultZqTheme,
+  defaultZqThemeHostRules,
+  resolveZqThemeByHost,
+} from './theme'
+import type { ApplyZqThemeByHostOptions, ZqThemeName } from './theme'
+
+export type ZqUiThemeOption = false | ZqThemeName | ApplyZqThemeByHostOptions
+
+export interface ZqUiOptions {
+  /**
+   * 默认自动按 UI 库内置域名规则切换主题。
+   * - false：关闭自动主题
+   * - 'admin'：强制指定主题
+   * - { rules: [...] }：覆盖域名规则
+   */
+  theme?: ZqUiThemeOption
+}
 
 const customComponents: Record<string, Component> = {
   ZqButton,
@@ -171,9 +191,37 @@ function createProxy(elName: string, elComponent: Component) {
 
 // 导出有自定义逻辑的组件
 export { ZqButton }
+export {
+  applyZqTheme,
+  applyZqThemeByHost,
+  defaultZqTheme,
+  defaultZqThemeHostRules,
+  resolveZqThemeByHost,
+  zqThemeOptions,
+} from './theme'
+export type {
+  ApplyZqThemeByHostOptions,
+  ResolveZqThemeOptions,
+  ZqThemeHostRule,
+  ZqThemeName,
+  ZqThemeOption,
+} from './theme'
+
+function applyInstallTheme(theme: ZqUiThemeOption = {}) {
+  if (theme === false) return
+
+  if (typeof theme === 'string') {
+    applyZqTheme(theme)
+    return
+  }
+
+  applyZqThemeByHost(theme)
+}
 
 const install: Plugin = {
-  install(app: App) {
+  install(app: App, options?: ZqUiOptions) {
+    applyInstallTheme(options?.theme)
+
     // 注册所有自定义组件
     Object.entries(customComponents).forEach(([name, component]) => {
       app.component(name, component as never)

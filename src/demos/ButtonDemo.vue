@@ -20,7 +20,32 @@ function increaseThrottledClickCount() {
 
 <template>
   <section class="pg-content">
-    <h2>变体样式</h2>
+    <h2>主题验证</h2>
+    <div class="demo-block">
+      <div class="demo-row">
+        <zq-button type="primary">Primary</zq-button>
+        <zq-button variant="gradient" type="primary">Gradient</zq-button>
+        <zq-button variant="soft" type="primary">Soft</zq-button>
+        <zq-button type="primary" disabled>Disabled</zq-button>
+      </div>
+    </div>
+
+    <h2 style="margin-top:32px">局部主题</h2>
+    <div class="demo-block">
+      <div class="demo-row">
+        <zq-button class="zq-theme-default" variant="gradient" type="primary">
+          Default
+        </zq-button>
+        <zq-button class="zq-theme-finance" variant="gradient" type="primary">
+          Finance
+        </zq-button>
+        <zq-button class="zq-theme-admin" variant="gradient" type="primary">
+          Admin
+        </zq-button>
+      </div>
+    </div>
+
+    <h2 style="margin-top:32px">变体样式</h2>
     <div class="demo-block">
       <div class="demo-row">
         <zq-button variant="gradient" type="primary">Primary</zq-button>
