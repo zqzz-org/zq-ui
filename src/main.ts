@@ -16,6 +16,6 @@ import App from './App.vue'
 const app = createApp(App)
 
 app.use(ElementPlus)
-app.use(ZQUI)
+app.use(ZQUI, { theme: 'finance' })
 
 app.mount('#app')

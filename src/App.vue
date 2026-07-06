@@ -44,23 +44,27 @@ import { ref, computed } from 'vue'
 import { Search } from '@element-plus/icons-vue'
 import { components } from './config/playground'
 
-const activeKey = ref('button')
+const activeKey = ref('theme')
 const searchText = ref('')
 
 const filteredComponents = computed(() => {
   const q = searchText.value.trim().toLowerCase()
   if (!q) return components
-  return components.filter(c => c.name.toLowerCase().includes(q) || c.key.toLowerCase().includes(q))
+  return components.filter(
+    (c) => c.name.toLowerCase().includes(q) || c.key.toLowerCase().includes(q),
+  )
 })
 
-const activeDemo = computed(() => components.find(c => c.key === activeKey.value)?.component)
+const activeDemo = computed(() => components.find((c) => c.key === activeKey.value)?.component)
 </script>
 
 <style>
 /* ====== 全局 ====== */
 *,
 *::before,
-*::after { box-sizing: border-box; }
+*::after {
+  box-sizing: border-box;
+}
 
 body {
   margin: 0;
@@ -148,7 +152,9 @@ body {
   font-size: 14px;
   font-weight: 500;
   color: #555;
-  transition: background 0.15s, color 0.15s;
+  transition:
+    background 0.15s,
+    color 0.15s;
 }
 .sidebar-item:hover {
   background: #f5f6f8;
@@ -189,9 +195,13 @@ body {
   color: #888;
   cursor: pointer;
   white-space: nowrap;
-  transition: color 0.2s, border-color 0.2s;
+  transition:
+    color 0.2s,
+    border-color 0.2s;
 }
-.pg-subtab:hover { color: var(--el-color-primary, #2f6bff); }
+.pg-subtab:hover {
+  color: var(--el-color-primary, #2f6bff);
+}
 .pg-subtab.active {
   color: var(--el-color-primary, #2f6bff);
   border-bottom-color: var(--el-color-primary, #2f6bff);
@@ -254,7 +264,9 @@ body {
 }
 
 /* ====== 全量矩阵（多个 Demo 复用） ====== */
-.matrix-wrap { overflow-x: auto; }
+.matrix-wrap {
+  overflow-x: auto;
+}
 .matrix-table {
   width: 100%;
   border-collapse: collapse;
@@ -292,9 +304,18 @@ body {
   text-align: center;
   padding: 60px 20px;
 }
-.pg-empty .empty-icon { font-size: 48px; margin-bottom: 16px; }
-.pg-empty h2 { margin: 0 0 8px; color: #999; }
-.pg-empty p { margin: 0; font-size: 13px; }
+.pg-empty .empty-icon {
+  font-size: 48px;
+  margin-bottom: 16px;
+}
+.pg-empty h2 {
+  margin: 0 0 8px;
+  color: #999;
+}
+.pg-empty p {
+  margin: 0;
+  font-size: 13px;
+}
 .pg-empty code {
   padding: 1px 6px;
   background: #f0f0f0;

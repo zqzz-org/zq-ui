@@ -20,3 +20,22 @@
   --zq-color-brand-strong: var(--el-color-primary-dark-2);
   --zq-gradient-primary: linear-gradient(135deg, #7c3aed, #2563eb);
 }
+
+html.dark[data-zq-theme='admin'],
+html.dark.zq-theme-admin,
+html.dark [data-zq-theme='admin'],
+html.dark .zq-theme-admin {
+  --el-color-primary: #7c3aed;
+  --el-color-primary-light-3: #632eba;
+  --el-color-primary-light-5: #4d278b;
+  --el-color-primary-light-7: #38225f;
+  --el-color-primary-light-8: #2e1d4d;
+  --el-color-primary-light-9: #24183a;
+  --el-color-primary-dark-2: #9666f1;
+
+  --zq-color-primary: var(--el-color-primary);
+  --zq-color-brand: var(--el-color-primary);
+  --zq-color-brand-soft: var(--el-color-primary-light-9);
+  --zq-color-brand-muted: var(--el-color-primary-light-7);
+  --zq-color-brand-strong: var(--el-color-primary-dark-2);
+}

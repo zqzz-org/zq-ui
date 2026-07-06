@@ -7,6 +7,7 @@
 import type { Component } from 'vue'
 import ButtonDemo from '../demos/ButtonDemo.vue'
 import ProxyDemo from '../demos/ProxyDemo.vue'
+import ThemeDemo from '../demos/ThemeDemo.vue'
 
 export interface ComponentEntry {
   key: string
@@ -17,6 +18,7 @@ export interface ComponentEntry {
 }
 
 export const components: ComponentEntry[] = [
+  { key: 'theme', name: 'Theme', icon: 'T', tag: 'Finance', component: ThemeDemo },
   { key: 'button', name: 'Button', icon: 'B', tag: '已就绪', component: ButtonDemo },
   { key: 'proxy', name: '自动代理', icon: 'P', tag: '透传验证', component: ProxyDemo },
   // 后续组件在此追加：

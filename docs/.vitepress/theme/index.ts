@@ -8,6 +8,7 @@ import ElementPlus from 'element-plus'
 import ZQUI from '../../../packages/zq-ui'
 
 import 'element-plus/dist/index.css'
+import 'element-plus/theme-chalk/dark/css-vars.css'
 import '../../../packages/zq-ui/styles'
 import '../../../packages/zq-ui/styles/themes'
 import './custom.css'

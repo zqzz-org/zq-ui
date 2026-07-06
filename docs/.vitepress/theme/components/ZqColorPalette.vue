@@ -374,6 +374,23 @@ watch([activeTheme, activeColorSection], () => {
   margin-top: 16px;
 }
 
+.zq-color-doc :deep(.el-tabs__item) {
+  color: var(--vp-c-text-2);
+}
+
+.zq-color-doc :deep(.el-tabs__item:hover),
+.zq-color-doc :deep(.el-tabs__item.is-active) {
+  color: var(--el-color-primary);
+}
+
+.zq-color-doc :deep(.el-tabs__active-bar) {
+  background-color: var(--el-color-primary);
+}
+
+.zq-color-doc :deep(.el-tabs__nav-wrap::after) {
+  background-color: var(--vp-c-divider);
+}
+
 .zq-color-preview {
   padding: 14px 0 8px;
 }
@@ -418,6 +435,7 @@ watch([activeTheme, activeColorSection], () => {
 
 .zq-color-table {
   overflow: hidden;
+  background: var(--vp-c-bg);
   border: 1px solid var(--vp-c-divider);
   border-radius: 8px;
 }
@@ -458,7 +476,7 @@ watch([activeTheme, activeColorSection], () => {
 }
 
 .zq-color-row:hover {
-  background: var(--el-fill-color-light);
+  background: var(--vp-c-bg-soft);
 }
 
 .zq-color-row strong {
@@ -472,6 +490,8 @@ watch([activeTheme, activeColorSection], () => {
 
 .zq-color-row code {
   width: fit-content;
+  color: var(--vp-c-brand-1);
+  background: var(--vp-c-brand-soft);
   font-size: 12px;
 }
 

@@ -20,3 +20,22 @@
   --zq-color-brand-strong: var(--el-color-primary-dark-2);
   --zq-gradient-primary: linear-gradient(135deg, #0f766e, #14b8a6);
 }
+
+html.dark[data-zq-theme='finance'],
+html.dark.zq-theme-finance,
+html.dark [data-zq-theme='finance'],
+html.dark .zq-theme-finance {
+  --el-color-primary: #0f766e;
+  --el-color-primary-light-3: #0c5f58;
+  --el-color-primary-light-5: #124943;
+  --el-color-primary-light-7: #123833;
+  --el-color-primary-light-8: #112d2a;
+  --el-color-primary-light-9: #102523;
+  --el-color-primary-dark-2: #3b938c;
+
+  --zq-color-primary: var(--el-color-primary);
+  --zq-color-brand: var(--el-color-primary);
+  --zq-color-brand-soft: var(--el-color-primary-light-9);
+  --zq-color-brand-muted: var(--el-color-primary-light-7);
+  --zq-color-brand-strong: var(--el-color-primary-dark-2);
+}

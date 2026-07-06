@@ -17,6 +17,10 @@
   --vp-font-size-base: 15px;
 }
 
+html.dark {
+  --vp-c-brand-soft: rgba(92, 138, 255, 0.16);
+}
+
 /* -------- 首页 Hero 区域 -------- */
 .VPHero .name {
   font-size: 48px;
@@ -73,7 +77,9 @@
 .VPDocAsideOutline .outline-link {
   font-size: 13px;
   border-left: 2px solid transparent;
-  transition: border-color 0.15s, color 0.15s;
+  transition:
+    border-color 0.15s,
+    color 0.15s;
 }
 
 .VPDocAsideOutline .outline-link.active {

@@ -62,3 +62,59 @@
   --zq-gradient-danger: linear-gradient(135deg, #ed4014, #f5576c);
   --zq-gradient-info: linear-gradient(135deg, #909399, #b0b3b8);
 }
+
+html.dark,
+html.dark[data-zq-theme='default'],
+html.dark.zq-theme-default,
+html.dark [data-zq-theme='default'],
+html.dark .zq-theme-default {
+  --el-color-primary: #2f6bff;
+  --el-color-primary-light-3: #2b5fcc;
+  --el-color-primary-light-5: #254fb0;
+  --el-color-primary-light-7: #1e3f88;
+  --el-color-primary-light-8: #1a3470;
+  --el-color-primary-light-9: #14285a;
+  --el-color-primary-dark-2: #5988ff;
+
+  --el-color-success: #19be6b;
+  --el-color-success-light-3: #159856;
+  --el-color-success-light-5: #176d43;
+  --el-color-success-light-7: #174b32;
+  --el-color-success-light-8: #153927;
+  --el-color-success-light-9: #12291f;
+  --el-color-success-dark-2: #47cb89;
+
+  --el-color-warning: #ff9900;
+  --el-color-warning-light-3: #cc7a00;
+  --el-color-warning-light-5: #8f5c12;
+  --el-color-warning-light-7: #5f4217;
+  --el-color-warning-light-8: #463318;
+  --el-color-warning-light-9: #302515;
+  --el-color-warning-dark-2: #ffad33;
+
+  --el-color-danger: #ed4014;
+  --el-color-danger-light-3: #be3310;
+  --el-color-danger-light-5: #862b18;
+  --el-color-danger-light-7: #5b2419;
+  --el-color-danger-light-8: #431d17;
+  --el-color-danger-light-9: #2f1814;
+  --el-color-danger-dark-2: #f16643;
+
+  --el-color-info: #909399;
+  --el-color-info-light-3: #74767a;
+  --el-color-info-light-5: #56585c;
+  --el-color-info-light-7: #393b40;
+  --el-color-info-light-8: #2d2f33;
+  --el-color-info-light-9: #202226;
+  --el-color-info-dark-2: #a6a9ad;
+
+  --zq-color-primary: var(--el-color-primary);
+  --zq-color-success: var(--el-color-success);
+  --zq-color-warning: var(--el-color-warning);
+  --zq-color-danger: var(--el-color-danger);
+  --zq-color-info: var(--el-color-info);
+  --zq-color-brand: var(--el-color-primary);
+  --zq-color-brand-soft: var(--el-color-primary-light-9);
+  --zq-color-brand-muted: var(--el-color-primary-light-7);
+  --zq-color-brand-strong: var(--el-color-primary-dark-2);
+}
