@@ -103,9 +103,7 @@ function save() {
 
 <template>
   <div style="display:flex;flex-wrap:wrap;gap:10px;align-items:center;">
-    <zq-button type="primary" :debounce="600" @click="submit">
-      600ms 防抖
-    </zq-button>
+    <zq-button type="primary" :debounce="600" @click="submit"> 600ms 防抖 </zq-button>
     <zq-button variant="soft" type="success" :throttle="1000" @click="save">
       1000ms 节流
     </zq-button>

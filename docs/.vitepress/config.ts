@@ -33,6 +33,7 @@ export default defineConfig({
           items: [
             { text: '快速开始', link: '/guide/getting-started' },
             { text: '主题定制', link: '/guide/theme' },
+            { text: '代码规范', link: '/guide/code-style' },
           ],
         },
       ],

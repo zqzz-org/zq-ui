@@ -79,13 +79,7 @@ import {
 
 // 自定义封装组件（有额外 props / 逻辑）
 import ZqButton from './components/button/zq-button.vue'
-import {
-  applyZqTheme,
-  applyZqThemeByHost,
-  defaultZqTheme,
-  defaultZqThemeHostRules,
-  resolveZqThemeByHost,
-} from './theme'
+import { applyZqTheme, applyZqThemeByHost } from './theme'
 import type { ApplyZqThemeByHostOptions, ZqThemeName } from './theme'
 
 export type ZqUiThemeOption = false | ZqThemeName | ApplyZqThemeByHostOptions
@@ -232,7 +226,7 @@ const install: Plugin = {
 
     // 注册所有自定义组件
     Object.entries(customComponents).forEach(([name, component]) => {
-      app.component(name, component as never)
+      app.component(name, component)
     })
 
     // 自动注册已映射的 Element Plus 代理组件
@@ -250,7 +244,10 @@ const install: Plugin = {
         proxyCache.set(kebab, proxy)
       }
 
-      app.component(tag, proxyCache.get(kebab) as never)
+      const proxy = proxyCache.get(kebab)
+      if (proxy) {
+        app.component(tag, proxy)
+      }
     })
   },
 }

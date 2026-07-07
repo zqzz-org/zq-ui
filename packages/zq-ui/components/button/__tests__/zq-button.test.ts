@@ -148,7 +148,11 @@ describe('zq-button', () => {
   it('透传 click 事件', async () => {
     let clicked = false
     const wrapper = mount(ZqButton, {
-      attrs: { onClick: () => { clicked = true } },
+      attrs: {
+        onClick: () => {
+          clicked = true
+        },
+      },
     })
     await wrapper.find('.el-button').trigger('click')
     expect(clicked).toBe(true)
@@ -157,7 +161,11 @@ describe('zq-button', () => {
   it('透传 dblclick 事件', async () => {
     let dblClicked = false
     const wrapper = mount(ZqButton, {
-      attrs: { onDblclick: () => { dblClicked = true } },
+      attrs: {
+        onDblclick: () => {
+          dblClicked = true
+        },
+      },
     })
     await wrapper.find('.el-button').trigger('dblclick')
     expect(dblClicked).toBe(true)

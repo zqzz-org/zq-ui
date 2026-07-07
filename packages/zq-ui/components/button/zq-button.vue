@@ -54,10 +54,7 @@ function isClickHandler(value: unknown): value is ClickHandler {
 }
 
 function isClickBinding(value: unknown): value is ClickBinding {
-  return (
-    isClickHandler(value) ||
-    (Array.isArray(value) && value.every(isClickHandler))
-  )
+  return isClickHandler(value) || (Array.isArray(value) && value.every(isClickHandler))
 }
 
 function callClickBinding(binding: ClickBinding, event: MouseEvent) {
@@ -122,7 +119,7 @@ onBeforeUnmount(() => {
  * 排除自定义 props（variant、debounce、throttle），其余全部透传
  */
 const forwardedBindings = computed(() => {
-  const { variant, debounce, throttle, ...elButtonProps } = props
+  const { variant: _variant, debounce, throttle, ...elButtonProps } = props
   const { onClick, ...restAttrs } = attrs
 
   if (throttle > 0 && isClickBinding(onClick)) {
