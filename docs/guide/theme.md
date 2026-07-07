@@ -1,6 +1,6 @@
 # 主题
 
-ZQ-UI 使用 CSS 变量实现主题定制。默认入口 `zq-ui/styles` 会引入基础 token、默认主题和组件样式。
+ZQ-UI 使用 CSS 变量实现主题定制。默认入口 `zq-ui/styles` 会引入基础 token 和组件样式，不覆盖 Element Plus 默认主题色。
 
 ## 默认引入
 
@@ -21,11 +21,13 @@ import 'zq-ui/styles/themes'
 
 新增内置主题时，需要同步维护 `packages/zq-ui/theme.ts` 的 `ZqThemeName`、`zqThemeOptions` 和 `defaultZqThemeHostRules`，并在 `packages/zq-ui/styles/themes/index.ts` 中引入对应主题样式。
 
+未命中内置域名规则时，不写入 `data-zq-theme`，直接使用 Element Plus 默认主题。
+
 可在特殊项目中强制指定主题：
 
 ```ts
 app.use(ZQUI, {
-  theme: 'finance',
+  theme: 'aiedu',
 })
 ```
 
@@ -43,6 +45,7 @@ app.use(ZQUI, {
 app.use(ZQUI, {
   theme: {
     rules: [
+      { theme: 'aiedu', hosts: ['aiedu.example.com'] },
       { theme: 'finance', hosts: ['finance.example.com'] },
       { theme: 'admin', includes: ['admin'] },
     ],
@@ -91,7 +94,6 @@ Element Plus 变量仍然可以直接覆盖：
 | 路径                                 | 说明            |
 | ------------------------------------ | --------------- |
 | `styles/tokens/base.css`             | 基础 token      |
-| `styles/themes/default.css`          | 默认主题        |
 | `styles/themes/*.css`                | 内置主题        |
 | `styles/components/button/index.css` | Button 组件样式 |
 

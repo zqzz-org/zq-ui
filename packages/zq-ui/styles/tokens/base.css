@@ -4,13 +4,6 @@
  * ============================================================ */
 
 :root {
-  /* Element Plus 基础视觉变量 */
-  --el-border-radius-base: 6px;
-  --el-border-radius-small: 4px;
-  --el-border-radius-round: 20px;
-  --el-border-color-base: #dcdfe6;
-  --el-border-color-light: #e4e7ed;
-
   /* 字号 */
   --zq-font-size-xs: 12px;
   --zq-font-size-sm: 13px;
@@ -37,6 +30,24 @@
   --zq-transition-base: 0.3s ease;
   --zq-transition-slow: 0.5s ease;
 
+  /* Element Plus 中性色覆盖 */
+  --el-text-color-primary: #333333;
+  --el-text-color-regular: #666666;
+  --el-text-color-secondary: #999999;
+  --el-border-color-darker: #eeeeee;
+  --el-border-color-dark: #eeeeee;
+  --el-border-color: #eeeeee;
+  --el-border-color-light: #eeeeee;
+  --el-border-color-lighter: #eeeeee;
+  --el-border-color-extra-light: #eeeeee;
+  --el-fill-color-darker: #f1f1f1;
+  --el-fill-color-dark: #f3f3f3;
+  --el-fill-color: #f5f5f5;
+  --el-fill-color-light: #fafafa;
+  --el-fill-color-lighter: #fafafa;
+  --el-fill-color-extra-light: #ffffff;
+  --el-fill-color-blank: #ffffff;
+
   /* 业务语义色：默认跟随 Element Plus 颜色变量 */
   --zq-color-primary: var(--el-color-primary);
   --zq-color-success: var(--el-color-success);
@@ -47,4 +58,25 @@
   --zq-color-brand-soft: var(--el-color-primary-light-9);
   --zq-color-brand-muted: var(--el-color-primary-light-7);
   --zq-color-brand-strong: var(--el-color-primary-dark-2);
+  --zq-gradient-primary: linear-gradient(
+    135deg,
+    var(--el-color-primary),
+    var(--el-color-primary-light-3)
+  );
+  --zq-gradient-success: linear-gradient(
+    135deg,
+    var(--el-color-success),
+    var(--el-color-success-light-3)
+  );
+  --zq-gradient-warning: linear-gradient(
+    135deg,
+    var(--el-color-warning),
+    var(--el-color-warning-light-3)
+  );
+  --zq-gradient-danger: linear-gradient(
+    135deg,
+    var(--el-color-danger),
+    var(--el-color-danger-light-3)
+  );
+  --zq-gradient-info: linear-gradient(135deg, var(--el-color-info), var(--el-color-info-light-3));
 }

@@ -1,9 +1,8 @@
 <script setup lang="ts">
+import { CollectionTag, CopyDocument } from '@element-plus/icons-vue'
 import { ElMessage } from 'element-plus'
 import { computed, nextTick, onMounted, shallowRef, useTemplateRef, watch } from 'vue'
 import { zqThemeOptions, type ZqThemeName } from '../../../../packages/zq-ui/theme'
-
-type ColorSection = 'primary' | 'state' | 'neutral' | 'semantic'
 
 interface ColorToken {
   label: string
@@ -13,12 +12,15 @@ interface ColorToken {
 
 interface ColorTokenGroup {
   title: string
-  description: string
   tokens: readonly ColorToken[]
 }
 
+interface ColorTokenSection {
+  title: string
+  groups: readonly ColorTokenGroup[]
+}
+
 const activeTheme = shallowRef<ZqThemeName>('default')
-const activeColorSection = shallowRef<ColorSection>('primary')
 const previewRef = useTemplateRef<HTMLElement>('preview')
 const colorValues = shallowRef<Record<string, string>>({})
 
@@ -34,8 +36,7 @@ const primaryTokens: readonly ColorToken[] = [
 
 const stateGroups: readonly ColorTokenGroup[] = [
   {
-    title: 'Success 成功',
-    description: '用于成功、完成、正向反馈。',
+    title: 'Success',
     tokens: [
       { label: 'Base', token: '--el-color-success', usage: '成功主色' },
       { label: 'Light 3', token: '--el-color-success-light-3', usage: '悬浮、弱强调' },
@@ -47,8 +48,7 @@ const stateGroups: readonly ColorTokenGroup[] = [
     ],
   },
   {
-    title: 'Warning 警告',
-    description: '用于提醒、待确认、有潜在风险的状态。',
+    title: 'Warning',
     tokens: [
       { label: 'Base', token: '--el-color-warning', usage: '警告主色' },
       { label: 'Light 3', token: '--el-color-warning-light-3', usage: '悬浮、弱强调' },
@@ -60,8 +60,7 @@ const stateGroups: readonly ColorTokenGroup[] = [
     ],
   },
   {
-    title: 'Danger 危险',
-    description: '用于错误、失败、危险操作。',
+    title: 'Danger',
     tokens: [
       { label: 'Base', token: '--el-color-danger', usage: '危险主色' },
       { label: 'Light 3', token: '--el-color-danger-light-3', usage: '悬浮、弱强调' },
@@ -73,8 +72,7 @@ const stateGroups: readonly ColorTokenGroup[] = [
     ],
   },
   {
-    title: 'Info 信息',
-    description: '用于普通信息、辅助说明、中性提示。',
+    title: 'Info',
     tokens: [
       { label: 'Base', token: '--el-color-info', usage: '信息主色' },
       { label: 'Light 3', token: '--el-color-info-light-3', usage: '悬浮、弱强调' },
@@ -90,7 +88,6 @@ const stateGroups: readonly ColorTokenGroup[] = [
 const neutralGroups: readonly ColorTokenGroup[] = [
   {
     title: '基础色',
-    description: '黑白基础变量，常用于纯色文字、反白文字和基础背景。',
     tokens: [
       { label: 'White', token: '--el-color-white', usage: '白色' },
       { label: 'Black', token: '--el-color-black', usage: '黑色' },
@@ -98,7 +95,6 @@ const neutralGroups: readonly ColorTokenGroup[] = [
   },
   {
     title: '文本颜色',
-    description: '用于标题、正文、辅助说明、占位和禁用文本。',
     tokens: [
       { label: 'Primary', token: '--el-text-color-primary', usage: '标题、正文重点' },
       { label: 'Regular', token: '--el-text-color-regular', usage: '正文内容' },
@@ -109,7 +105,6 @@ const neutralGroups: readonly ColorTokenGroup[] = [
   },
   {
     title: '边框颜色',
-    description: '用于分割线、表单边框、卡片边界和弱层级结构。',
     tokens: [
       { label: 'Darker', token: '--el-border-color-darker', usage: '更强边框' },
       { label: 'Dark', token: '--el-border-color-dark', usage: '强边框' },
@@ -121,7 +116,6 @@ const neutralGroups: readonly ColorTokenGroup[] = [
   },
   {
     title: '填充色',
-    description: '用于禁用背景、浅色面板、表格底色和 hover 填充。',
     tokens: [
       { label: 'Darker', token: '--el-fill-color-darker', usage: '更强填充' },
       { label: 'Dark', token: '--el-fill-color-dark', usage: '强填充' },
@@ -134,7 +128,6 @@ const neutralGroups: readonly ColorTokenGroup[] = [
   },
   {
     title: '背景色',
-    description: '用于页面背景、基础容器和浮层容器。',
     tokens: [
       { label: 'Page', token: '--el-bg-color-page', usage: '页面背景' },
       { label: 'Base', token: '--el-bg-color', usage: '基础背景' },
@@ -150,17 +143,9 @@ const semanticTokens: readonly ColorToken[] = [
   { label: 'Brand Strong', token: '--zq-color-brand-strong', usage: '品牌深色' },
 ]
 
-const colorSections: readonly { label: string; name: ColorSection }[] = [
-  { label: '主色', name: 'primary' },
-  { label: '辅助色', name: 'state' },
-  { label: '中性色', name: 'neutral' },
-  { label: 'ZQ 语义色', name: 'semantic' },
-]
-
 const primaryGroups: readonly ColorTokenGroup[] = [
   {
-    title: '主色',
-    description: '用于品牌识别、关键操作和当前状态强调。',
+    title: 'Brand Color',
     tokens: primaryTokens,
   },
 ]
@@ -168,24 +153,71 @@ const primaryGroups: readonly ColorTokenGroup[] = [
 const semanticGroups: readonly ColorTokenGroup[] = [
   {
     title: 'ZQ 语义色',
-    description: '业务样式可以优先使用这一组语义变量，随当前主题自动变化。',
     tokens: semanticTokens,
   },
 ]
 
 const themes = zqThemeOptions
-const activeThemeMeta = computed(() => themes.find((theme) => theme.name === activeTheme.value))
 const activeThemeClass = computed(() => `zq-theme-${activeTheme.value}`)
-const activeColorGroups = computed(() => {
-  if (activeColorSection.value === 'primary') return primaryGroups
-  if (activeColorSection.value === 'state') return stateGroups
-  if (activeColorSection.value === 'neutral') return neutralGroups
-  return semanticGroups
-})
-const activeTokens = computed(() => activeColorGroups.value.flatMap((group) => group.tokens))
+const colorGroupSections: readonly ColorTokenSection[] = [
+  { title: 'ZQ 语义色', groups: semanticGroups },
+  { title: '主色', groups: primaryGroups },
+  { title: '辅助色', groups: stateGroups },
+  { title: '中性色', groups: neutralGroups },
+]
+const allTokens = colorGroupSections.flatMap((section) =>
+  section.groups.flatMap((group) => group.tokens),
+)
 
 function tokenStyle(token: string) {
   return { background: `var(${token})` }
+}
+
+function tokenLabel(item: ColorToken) {
+  return item.label
+}
+
+function tokenValue(token: string) {
+  return colorValues.value[token] || token
+}
+
+function getBaseToken(tokens: readonly ColorToken[]) {
+  return tokens.find((item) => item.label === 'Primary' || item.label === 'Base') || tokens[0]
+}
+
+function getShadeTokens(tokens: readonly ColorToken[]) {
+  const baseToken = getBaseToken(tokens)
+  return tokens.filter((item) => item.token !== baseToken?.token)
+}
+
+function isLightColor(value: string) {
+  const hex = value.replace('#', '')
+  if (hex.length !== 6) return false
+
+  const red = Number.parseInt(hex.slice(0, 2), 16)
+  const green = Number.parseInt(hex.slice(2, 4), 16)
+  const blue = Number.parseInt(hex.slice(4, 6), 16)
+  const brightness = (red * 299 + green * 587 + blue * 114) / 1000
+
+  return brightness > 180
+}
+
+function tokenTextStyle(token: string) {
+  const value = tokenValue(token)
+  return { color: isLightColor(value) ? 'var(--el-text-color-primary)' : 'var(--el-color-white)' }
+}
+
+function groupClass(sectionTitle: string) {
+  if (isFlatSection(sectionTitle)) return 'zq-color-neutral-grid'
+  return isRampSection(sectionTitle) ? 'zq-color-card-grid' : 'zq-color-neutral-grid'
+}
+
+function isRampSection(sectionTitle: string) {
+  return sectionTitle === '辅助色'
+}
+
+function isFlatSection(sectionTitle: string) {
+  return sectionTitle === '主色' || sectionTitle === 'ZQ 语义色'
 }
 
 function rgbToHex(value: string) {
@@ -222,33 +254,37 @@ async function updateColorValues() {
   if (!target) return
 
   const nextValues: Record<string, string> = {}
-  activeTokens.value.forEach((item) => {
+  allTokens.forEach((item) => {
     nextValues[item.token] = resolveColorValue(target, item.token)
   })
   colorValues.value = nextValues
 }
 
-async function copyToken(token: string) {
+async function copyColor(token: string) {
+  await copyText(tokenValue(token))
+}
+
+async function copyText(value: string) {
   try {
     if (navigator.clipboard) {
-      await navigator.clipboard.writeText(token)
+      await navigator.clipboard.writeText(value)
     } else {
-      copyTokenWithTextarea(token)
+      copyColorWithTextarea(value)
     }
-    ElMessage.success(`已复制 ${token}`)
+    ElMessage.success(`已复制 ${value}`)
   } catch {
     try {
-      copyTokenWithTextarea(token)
-      ElMessage.success(`已复制 ${token}`)
+      copyColorWithTextarea(value)
+      ElMessage.success(`已复制 ${value}`)
     } catch {
       ElMessage.error('复制失败')
     }
   }
 }
 
-function copyTokenWithTextarea(token: string) {
+function copyColorWithTextarea(value: string) {
   const textarea = document.createElement('textarea')
-  textarea.value = token
+  textarea.value = value
   textarea.setAttribute('readonly', 'true')
   textarea.style.position = 'fixed'
   textarea.style.top = '0'
@@ -268,7 +304,7 @@ onMounted(() => {
   void updateColorValues()
 })
 
-watch([activeTheme, activeColorSection], () => {
+watch(activeTheme, () => {
   void updateColorValues()
 })
 </script>
@@ -285,82 +321,97 @@ watch([activeTheme, activeColorSection], () => {
     </el-tabs>
 
     <div ref="preview" :class="['zq-color-preview', activeThemeClass]">
-      <div class="zq-color-hero">
-        <div>
-          <h2>{{ activeThemeMeta?.label }}</h2>
-          <p>{{ activeThemeMeta?.description }}</p>
-        </div>
-      </div>
-
-      <el-tabs v-model="activeColorSection" class="zq-color-section-tabs">
-        <el-tab-pane
-          v-for="section in colorSections"
-          :key="section.name"
-          :label="section.label"
-          :name="section.name"
-        />
-      </el-tabs>
-
-      <section v-for="group in activeColorGroups" :key="group.title" class="zq-color-token-section">
-        <h3>{{ group.title }}</h3>
-        <p class="zq-color-subdesc">{{ group.description }}</p>
-        <div class="zq-color-table">
-          <div class="zq-color-table-head">
-            <span>色值</span>
-            <span>名称</span>
-            <span>值</span>
-            <span>变量</span>
-            <span>说明</span>
-          </div>
-          <button
-            v-for="item in group.tokens"
-            :key="item.token"
-            class="zq-color-row"
-            type="button"
-            @click="copyToken(item.token)"
+      <section v-for="section in colorGroupSections" :key="section.title" class="zq-color-section">
+        <h2 class="zq-color-section-title">{{ section.title }}</h2>
+        <div :class="groupClass(section.title)">
+          <section
+            v-for="group in section.groups"
+            :key="group.title"
+            :class="[
+              'zq-color-token-section',
+              { 'zq-color-token-section--flat': isFlatSection(section.title) },
+            ]"
           >
-            <div class="zq-color-chip" :style="tokenStyle(item.token)" />
-            <strong>{{ item.label }}</strong>
-            <span class="zq-color-value">{{ colorValues[item.token] }}</span>
-            <code>{{ item.token }}</code>
-            <span>{{ item.usage }}</span>
-          </button>
+            <button
+              v-if="isRampSection(section.title) && getBaseToken(group.tokens)"
+              class="zq-color-card zq-color-card--main"
+              type="button"
+              :style="tokenStyle(getBaseToken(group.tokens).token)"
+              :title="getBaseToken(group.tokens).token"
+              @click="copyColor(getBaseToken(group.tokens).token)"
+            >
+              <span :style="tokenTextStyle(getBaseToken(group.tokens).token)">
+                {{ group.title }}
+              </span>
+              <strong :style="tokenTextStyle(getBaseToken(group.tokens).token)">
+                {{ tokenValue(getBaseToken(group.tokens).token) }}
+              </strong>
+            </button>
+            <div
+              v-if="isRampSection(section.title) && getShadeTokens(group.tokens).length > 0"
+              class="zq-color-shades"
+            >
+              <button
+                v-for="item in getShadeTokens(group.tokens)"
+                :key="item.token"
+                class="zq-color-shade"
+                type="button"
+                :style="tokenStyle(item.token)"
+                :title="`${item.token} ${tokenValue(item.token)}`"
+                @click="copyColor(item.token)"
+              />
+            </div>
+            <template v-if="isFlatSection(section.title)">
+              <article
+                v-for="item in group.tokens"
+                :key="item.token"
+                class="zq-color-card zq-color-card--flat"
+                :style="tokenStyle(item.token)"
+                :title="item.token"
+              >
+                <span class="zq-color-card-content">
+                  <span :style="tokenTextStyle(item.token)">{{ tokenLabel(item) }}</span>
+                  <strong :style="tokenTextStyle(item.token)">{{ tokenValue(item.token) }}</strong>
+                </span>
+                <span class="zq-color-copy-actions">
+                  <button
+                    class="zq-color-copy-action"
+                    type="button"
+                    :aria-label="`Copy ${item.token}`"
+                    :title="`Copy ${item.token}`"
+                    @click="copyText(item.token)"
+                  >
+                    <CollectionTag />
+                  </button>
+                  <button
+                    class="zq-color-copy-action"
+                    type="button"
+                    :aria-label="`Copy ${tokenValue(item.token)}`"
+                    :title="`Copy ${tokenValue(item.token)}`"
+                    @click="copyColor(item.token)"
+                  >
+                    <CopyDocument />
+                  </button>
+                </span>
+              </article>
+            </template>
+            <template v-else-if="!isRampSection(section.title)">
+              <button
+                v-for="item in group.tokens"
+                :key="item.token"
+                class="zq-color-card zq-color-card--neutral"
+                type="button"
+                :style="tokenStyle(item.token)"
+                :title="item.token"
+                @click="copyColor(item.token)"
+              >
+                <span :style="tokenTextStyle(item.token)">{{ tokenLabel(item) }}</span>
+                <strong :style="tokenTextStyle(item.token)">{{ tokenValue(item.token) }}</strong>
+              </button>
+            </template>
+          </section>
         </div>
       </section>
-
-      <p v-if="activeColorSection === 'neutral'" class="zq-color-note">
-        ZQ-UI 未覆盖的中性色变量继承 Element Plus 默认值。
-      </p>
-
-      <details class="zq-color-all">
-        <summary>完整变量索引</summary>
-        <div class="zq-color-all-content">
-          <section class="zq-color-token-section">
-            <h3>主色</h3>
-            <div class="zq-color-mini-list">
-              <code v-for="item in primaryTokens" :key="item.token">{{ item.token }}</code>
-            </div>
-          </section>
-          <section v-for="group in stateGroups" :key="group.title" class="zq-color-token-section">
-            <h3>{{ group.title }}</h3>
-            <div class="zq-color-mini-list">
-              <code v-for="item in group.tokens" :key="item.token">{{ item.token }}</code>
-            </div>
-          </section>
-          <section v-for="group in neutralGroups" :key="group.title" class="zq-color-token-section">
-            <h3>{{ group.title }}</h3>
-            <div class="zq-color-mini-list">
-              <code v-for="item in group.tokens" :key="item.token">{{ item.token }}</code>
-            </div>
-          </section>
-          <section class="zq-color-token-section">
-            <h3>ZQ 语义色</h3>
-            <div class="zq-color-mini-list">
-              <code v-for="item in semanticTokens" :key="item.token">{{ item.token }}</code>
-            </div>
-          </section>
-        </div>
-      </details>
     </div>
   </section>
 </template>
@@ -395,160 +446,159 @@ watch([activeTheme, activeColorSection], () => {
   padding: 14px 0 8px;
 }
 
-.zq-color-hero {
-  padding: 2px 0 2px 14px;
-  margin: 8px 0 18px;
-  border-left: 3px solid var(--el-color-primary);
+.zq-color-section {
+  margin-top: 24px;
 }
 
-.zq-color-hero h2 {
-  margin: 0;
-  padding: 0;
-  font-size: 22px;
-  border: 0;
+.zq-color-section:first-child {
+  margin-top: 4px;
 }
 
-.zq-color-hero p {
-  max-width: 620px;
-  margin: 6px 0 0;
-  color: var(--vp-c-text-2);
-}
-
-.zq-color-section-tabs {
-  margin-bottom: 14px;
+.zq-color-section-title {
+  margin: 0 0 14px;
+  padding-top: 0;
+  border-top: 0;
+  border-bottom: 0;
+  font-size: 20px;
 }
 
 .zq-color-token-section {
-  margin-top: 16px;
-}
-
-.zq-color-token-section h3 {
-  margin: 0 0 6px;
-  font-size: 18px;
-}
-
-.zq-color-subdesc {
-  margin: 0 0 10px;
-  color: var(--vp-c-text-2);
-  font-size: 14px;
-}
-
-.zq-color-table {
   overflow: hidden;
-  background: var(--vp-c-bg);
   border: 1px solid var(--vp-c-divider);
-  border-radius: 8px;
+  border-radius: 6px;
 }
 
-.zq-color-table-head,
-.zq-color-row {
+.zq-color-card-grid,
+.zq-color-neutral-grid {
   display: grid;
-  grid-template-columns: 48px minmax(92px, 0.6fr) minmax(92px, 0.6fr) minmax(220px, 1.4fr) minmax(
-      150px,
-      1fr
-    );
-  align-items: center;
   gap: 12px;
 }
 
-.zq-color-table-head {
-  padding: 9px 12px;
-  background: var(--vp-c-bg-soft);
-  color: var(--vp-c-text-2);
-  font-size: 13px;
-  font-weight: 600;
+.zq-color-card-grid {
+  grid-template-columns: repeat(auto-fill, minmax(190px, 220px));
+  justify-content: start;
 }
 
-.zq-color-row {
+.zq-color-neutral-grid {
+  grid-template-columns: repeat(auto-fill, minmax(180px, 220px));
+  justify-content: start;
+}
+
+.zq-color-neutral-grid .zq-color-token-section {
+  display: grid;
+  gap: 8px;
+  overflow: visible;
+  border: 0;
+  border-radius: 0;
+}
+
+.zq-color-card {
+  display: grid;
+  align-content: center;
+  gap: 4px;
   width: 100%;
-  min-height: 48px;
-  padding: 8px 12px;
-  background: var(--vp-c-bg);
-  border-top: 1px solid var(--vp-c-divider);
-  border-right: 0;
-  border-bottom: 0;
-  border-left: 0;
-  color: inherit;
+  min-height: 72px;
+  padding: 16px 20px;
+  border: 0;
   cursor: copy;
   font: inherit;
   text-align: left;
-  transition: background var(--zq-transition-fast, 0.15s ease);
 }
 
-.zq-color-row:hover {
-  background: var(--vp-c-bg-soft);
+.zq-color-card--flat {
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: center;
+  min-height: 84px;
+  cursor: default;
 }
 
-.zq-color-row strong {
+.zq-color-card span,
+.zq-color-card strong {
+  position: relative;
+  z-index: 1;
+}
+
+.zq-color-card span,
+.zq-color-card-content {
+  min-width: 0;
+}
+
+.zq-color-card > span:not(.zq-color-copy-actions),
+.zq-color-card-content {
+  display: grid;
+  gap: 4px;
+}
+
+.zq-color-card span:not(.zq-color-copy-actions) {
   font-size: 14px;
+  line-height: 1.35;
 }
 
-.zq-color-row span {
-  color: var(--vp-c-text-2);
-  font-size: 13px;
-}
-
-.zq-color-row code {
-  width: fit-content;
-  color: var(--vp-c-brand-1);
-  background: var(--vp-c-brand-soft);
-  font-size: 12px;
-}
-
-.zq-color-value {
+.zq-color-card strong {
   font-family: var(--vp-font-family-mono);
-  color: var(--vp-c-text-1);
+  font-size: 13px;
+  font-weight: 500;
+  line-height: 1.35;
+  text-transform: uppercase;
 }
 
-.zq-color-chip {
+.zq-color-copy-actions {
+  display: grid;
+  gap: 6px;
+}
+
+.zq-color-copy-action {
+  display: grid;
+  place-items: center;
   width: 28px;
   height: 28px;
+  padding: 0;
+  color: var(--el-text-color-primary);
+  background: rgb(255 255 255 / 42%);
+  border: 1px solid rgb(255 255 255 / 46%);
+  border-radius: 4px;
+  cursor: copy;
+}
+
+.zq-color-copy-action svg {
+  width: 15px;
+  height: 15px;
+}
+
+.zq-color-card--neutral {
+  min-height: 96px;
   border: 1px solid var(--vp-c-divider);
-  border-radius: 6px;
-  box-shadow: inset 0 0 0 1px var(--vp-c-divider);
 }
 
-.zq-color-note {
-  margin: 12px 0 0;
-  color: var(--vp-c-text-2);
-  font-size: 13px;
-}
-
-.zq-color-all {
-  margin-top: 18px;
-}
-
-.zq-color-all-content {
+.zq-color-shades {
   display: grid;
-  gap: 12px;
-  padding: 12px;
+  grid-template-columns: repeat(auto-fit, minmax(28px, 1fr));
 }
 
-.zq-color-mini-list {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
+.zq-color-shade {
+  min-height: 40px;
+  border: 0;
+  cursor: copy;
+}
+
+.zq-color-neutral-grid .zq-color-token-section--flat {
+  grid-column: 1 / -1;
+  grid-template-columns: repeat(auto-fill, minmax(136px, 160px));
+  justify-content: start;
 }
 
 @media (max-width: 720px) {
-  .zq-color-hero {
-    align-items: flex-start;
-    flex-direction: column;
+  .zq-color-card-grid,
+  .zq-color-neutral-grid {
+    grid-template-columns: 1fr;
   }
 
-  .zq-color-table-head {
-    display: none;
+  .zq-color-card {
+    min-height: 68px;
   }
 
-  .zq-color-row {
-    grid-template-columns: 36px 1fr;
-    gap: 6px 10px;
-  }
-
-  .zq-color-value,
-  .zq-color-row code,
-  .zq-color-row span {
-    grid-column: 2;
+  .zq-color-card--neutral {
+    min-height: 84px;
   }
 }
 </style>

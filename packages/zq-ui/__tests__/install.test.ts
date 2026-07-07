@@ -15,10 +15,18 @@ describe('zq-ui install', () => {
 
   it('默认按 UI 库内置域名规则应用主题', () => {
     createTestApp().use(ZQUI, {
+      theme: { hostname: 'aiedu.example.com' },
+    })
+
+    expect(document.documentElement.dataset.zqTheme).toBe('aiedu')
+  })
+
+  it('未命中域名规则时保持 Element Plus 默认主题', () => {
+    createTestApp().use(ZQUI, {
       theme: { hostname: 'localhost' },
     })
 
-    expect(document.documentElement.dataset.zqTheme).toBe('admin')
+    expect(document.documentElement.dataset.zqTheme).toBeUndefined()
   })
 
   it('支持关闭自动主题', () => {
@@ -31,9 +39,19 @@ describe('zq-ui install', () => {
 
   it('支持强制指定主题', () => {
     createTestApp().use(ZQUI, {
-      theme: 'finance',
+      theme: 'aiedu',
     })
 
-    expect(document.documentElement.dataset.zqTheme).toBe('finance')
+    expect(document.documentElement.dataset.zqTheme).toBe('aiedu')
+  })
+
+  it('强制指定 default 时使用 Element Plus 默认主题', () => {
+    document.documentElement.dataset.zqTheme = 'finance'
+
+    createTestApp().use(ZQUI, {
+      theme: 'default',
+    })
+
+    expect(document.documentElement.dataset.zqTheme).toBeUndefined()
   })
 })

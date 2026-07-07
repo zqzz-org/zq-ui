@@ -1,0 +1,22 @@
+/* ============================================================
+ * ZQ-UI 通识平台主题
+ * 主要覆盖 primary 色系，其他状态色继承 Element Plus 默认变量。
+ * ============================================================ */
+
+[data-zq-theme='aiedu'],
+.zq-theme-aiedu {
+  --el-color-primary: #50b5a6;
+  --el-color-primary-dark-2: #239d8b;
+  --el-color-primary-light-3: #73c4b8;
+  --el-color-primary-light-5: #96d2c9;
+  --el-color-primary-light-7: #b9e2dc;
+  --el-color-primary-light-8: #dcf0ed;
+  --el-color-primary-light-9: #eef8f7;
+
+  --zq-color-primary: var(--el-color-primary);
+  --zq-color-brand: var(--el-color-primary);
+  --zq-color-brand-soft: var(--el-color-primary-light-9);
+  --zq-color-brand-muted: var(--el-color-primary-light-7);
+  --zq-color-brand-strong: var(--el-color-primary-dark-2);
+  --zq-gradient-primary: linear-gradient(135deg, #50b5a6, #239d8b);
+}

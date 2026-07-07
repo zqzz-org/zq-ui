@@ -1,9 +1,8 @@
-export type ZqThemeName = 'default' | 'finance' | 'admin'
+export type ZqThemeName = 'default' | 'aiedu' | 'finance' | 'admin'
 
 export interface ZqThemeOption {
   label: string
   name: ZqThemeName
-  description: string
 }
 
 export interface ZqThemeHostRule {
@@ -28,22 +27,23 @@ export const zqThemeOptions: readonly ZqThemeOption[] = [
   {
     label: 'Default 默认',
     name: 'default',
-    description: '通用产品默认主题，适合大部分后台与业务系统。',
+  },
+  {
+    label: 'AIEDU 通识平台',
+    name: 'aiedu',
   },
   {
     label: 'Finance 金融',
     name: 'finance',
-    description: '更偏稳重、可信赖的绿色系主题。',
   },
   {
     label: 'Admin 管理',
     name: 'admin',
-    description: '更强调识别度和操作聚焦的紫色系主题。',
   },
 ]
 
 export const defaultZqThemeHostRules: readonly ZqThemeHostRule[] = [
-  { theme: 'admin', hosts: ['localhost', '127.0.0.1'] },
+  { theme: 'aiedu', includes: ['aiedu'] },
   { theme: 'finance', includes: ['finance'] },
   { theme: 'admin', includes: ['admin'] },
 ]
@@ -84,7 +84,11 @@ export function applyZqTheme(
   target: HTMLElement | undefined = getDefaultTarget(),
 ): ZqThemeName {
   if (target) {
-    target.dataset.zqTheme = theme
+    if (theme === defaultZqTheme) {
+      delete target.dataset.zqTheme
+    } else {
+      target.dataset.zqTheme = theme
+    }
   }
 
   return theme

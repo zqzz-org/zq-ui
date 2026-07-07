@@ -9,18 +9,18 @@ interface TradeRow {
 }
 
 const switchValue = shallowRef(true)
-const radioValue = shallowRef('finance')
+const radioValue = shallowRef('aiedu')
 const checkboxValue = shallowRef(['button', 'form'])
 const sliderValue = shallowRef(68)
 const progressValue = shallowRef(72)
-const inputValue = shallowRef('Finance')
+const inputValue = shallowRef('AIEDU')
 const selectValue = shallowRef('cash')
 const amountValue = shallowRef(128)
 const dateValue = shallowRef('2026-07-06')
 const tabValue = shallowRef('overview')
 const collapseValue = shallowRef(['risk'])
 const rateValue = shallowRef(4)
-const colorValue = shallowRef('#0f766e')
+const colorValue = shallowRef('#50b5a6')
 
 const tradeRows: readonly TradeRow[] = [
   { name: '现金管理', type: '低风险', value: '128.40 万', status: '稳健' },
@@ -31,18 +31,18 @@ const tradeRows: readonly TradeRow[] = [
 
 <template>
   <section class="pg-content">
-    <h2>Finance 主题</h2>
+    <h2>通识平台主题</h2>
     <p class="desc">
-      Playground 通过 <code>app.use(ZQUI, { theme: 'finance' })</code> 使用 Finance 主题。
+      Playground 通过 <code>app.use(ZQUI, { theme: 'aiedu' })</code> 使用通识平台主题。
     </p>
 
-    <div class="theme-demo zq-theme-finance">
+    <div class="theme-demo zq-theme-aiedu">
       <div class="theme-demo__header">
         <div>
-          <h3>Finance Scope</h3>
+          <h3>AIEDU Scope</h3>
           <p>局部主题容器内的主色变量为 <code>--el-color-primary</code>。</p>
         </div>
-        <zq-tag type="primary" effect="dark">Finance</zq-tag>
+        <zq-tag type="primary" effect="dark">AIEDU</zq-tag>
       </div>
 
       <div class="theme-demo__grid">
@@ -79,6 +79,7 @@ const tradeRows: readonly TradeRow[] = [
             <div class="theme-inline">
               <zq-radio-group v-model="radioValue">
                 <zq-radio-button label="default">Default</zq-radio-button>
+                <zq-radio-button label="aiedu">AIEDU</zq-radio-button>
                 <zq-radio-button label="finance">Finance</zq-radio-button>
               </zq-radio-group>
               <zq-checkbox-group v-model="checkboxValue">
@@ -133,8 +134,8 @@ const tradeRows: readonly TradeRow[] = [
         <section class="theme-panel theme-panel--wide">
           <h3>信息层级</h3>
           <zq-descriptions :column="3" border>
-            <zq-descriptions-item label="主题">Finance</zq-descriptions-item>
-            <zq-descriptions-item label="主色">#0f766e</zq-descriptions-item>
+            <zq-descriptions-item label="主题">AIEDU</zq-descriptions-item>
+            <zq-descriptions-item label="主色">#50B5A6</zq-descriptions-item>
             <zq-descriptions-item label="作用域">全局安装</zq-descriptions-item>
           </zq-descriptions>
           <zq-collapse v-model="collapseValue" class="theme-collapse">

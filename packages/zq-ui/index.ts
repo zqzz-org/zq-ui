@@ -88,7 +88,7 @@ export interface ZqUiOptions {
   /**
    * 默认自动按 UI 库内置域名规则切换主题。
    * - false：关闭自动主题
-   * - 'admin'：强制指定主题
+   * - 'aiedu' / 'finance' / 'admin'：强制指定主题
    * - { rules: [...] }：覆盖域名规则
    */
   theme?: ZqUiThemeOption
