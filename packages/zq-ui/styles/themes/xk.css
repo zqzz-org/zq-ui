@@ -6,11 +6,11 @@
 [data-zq-theme='xk'],
 .zq-theme-xk {
   --el-color-primary: #007f92;
-  --el-color-primary-dark-2: #3398a8;
-  --el-color-primary-light-3: #66b2bd;
-  --el-color-primary-light-5: #99ccd4;
-  --el-color-primary-light-7: #cce5e9;
-  --el-color-primary-light-8: #e6f2f4;
+  --el-color-primary-dark-2: #066e7d;
+  --el-color-primary-light-3: #3398a8;
+  --el-color-primary-light-5: #66b2bd;
+  --el-color-primary-light-7: #99ccd4;
+  --el-color-primary-light-8: #cce5e9;
   --el-color-primary-light-9: #e6f2f4;
 
   --zq-color-primary: var(--el-color-primary);

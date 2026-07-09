@@ -17,9 +17,9 @@ interface ZqButtonProps extends Partial<ButtonProps> {
   /**
    * 按钮样式变体，不传则使用 Element Plus 原生样式
    * - `gradient`：渐变背景，白色文字，无边框
-   * - `soft`：浅色背景，文字色为主色，无边框
+   * - `primary-outline`：白底主色描边，跟随主题主色
    */
-  variant?: 'gradient' | 'soft'
+  variant?: 'gradient' | 'primary-outline'
   /**
    * 防抖延迟时间，单位 ms；不传或小于等于 0 时不启用
    */

@@ -6,11 +6,11 @@
 [data-zq-theme='aistudy'],
 .zq-theme-aistudy {
   --el-color-primary: #022b9a;
-  --el-color-primary-dark-2: #3455ae;
-  --el-color-primary-light-3: #6780c3;
-  --el-color-primary-light-5: #9aaad6;
-  --el-color-primary-light-7: #ccd4ea;
-  --el-color-primary-light-8: #e5e9f4;
+  --el-color-primary-dark-2: #05257d;
+  --el-color-primary-light-3: #3455ae;
+  --el-color-primary-light-5: #6780c3;
+  --el-color-primary-light-7: #9aaad6;
+  --el-color-primary-light-8: #ccd4ea;
   --el-color-primary-light-9: #e5e9f4;
 
   --zq-color-primary: var(--el-color-primary);

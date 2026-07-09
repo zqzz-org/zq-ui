@@ -2,7 +2,7 @@
  * ZQ Button 变体样式
  * 全局样式，引入 zq-ui/styles 后生效
  *
- * variant 控制"怎么画"（渐变 / 浅色），type 控制"什么色"
+ * variant 控制"怎么画"（渐变 / 主色描边），type 控制"什么色"
  * - .el-button          → 未传 type，默认走 primary 色系
  * - .el-button--primary → 蓝色系
  * - .el-button--success → 绿色系
@@ -119,118 +119,67 @@
 }
 
 /* ============================================================
- * Soft：浅色背景按钮
+ * Primary Outline：主色描边按钮
  *
- * 背景用 light-9，文字用主色，hover → light-8，active → light-7
+ * 固定组合样式，用于业务高频主色描边按钮。
  * ============================================================ */
 
-/* --- 各 type：背景 + 文字色 --- */
-.zq-btn--soft.el-button,
-.zq-btn--soft.el-button--primary {
-  background: var(--el-color-primary-light-9) !important;
+.zq-btn--primary-outline.el-button {
+  background: var(--el-color-white) !important;
+  border: 1px solid var(--el-color-primary) !important;
   color: var(--el-color-primary) !important;
-  border: none !important;
-  transition: background var(--zq-transition-fast, 0.15s ease);
-}
-.zq-btn--soft.el-button--success {
-  background: var(--el-color-success-light-9) !important;
-  color: var(--el-color-success) !important;
-  border: none !important;
-  transition: background var(--zq-transition-fast, 0.15s ease);
-}
-.zq-btn--soft.el-button--warning {
-  background: var(--el-color-warning-light-9) !important;
-  color: var(--el-color-warning) !important;
-  border: none !important;
-  transition: background var(--zq-transition-fast, 0.15s ease);
-}
-.zq-btn--soft.el-button--danger {
-  background: var(--el-color-danger-light-9) !important;
-  color: var(--el-color-danger) !important;
-  border: none !important;
-  transition: background var(--zq-transition-fast, 0.15s ease);
-}
-.zq-btn--soft.el-button--info {
-  background: var(--el-color-info-light-9, #e9e9eb) !important;
-  color: var(--el-color-info) !important;
-  border: none !important;
-  transition: background var(--zq-transition-fast, 0.15s ease);
+  transition:
+    background var(--zq-transition-fast, 0.15s ease),
+    border-color var(--zq-transition-fast, 0.15s ease),
+    color var(--zq-transition-fast, 0.15s ease);
 }
 
-/* --- 各 type：hover --- */
-.zq-btn--soft.el-button:hover,
-.zq-btn--soft.el-button--primary:hover {
+.zq-btn--primary-outline.el-button:hover {
+  background: var(--el-color-primary-light-9) !important;
+  border: 1px solid var(--el-color-primary) !important;
+  color: var(--el-color-primary) !important;
+}
+
+.zq-btn--primary-outline.el-button:active {
   background: var(--el-color-primary-light-8) !important;
-}
-.zq-btn--soft.el-button--success:hover {
-  background: var(--el-color-success-light-8) !important;
-}
-.zq-btn--soft.el-button--warning:hover {
-  background: var(--el-color-warning-light-8) !important;
-}
-.zq-btn--soft.el-button--danger:hover {
-  background: var(--el-color-danger-light-8) !important;
-}
-.zq-btn--soft.el-button--info:hover {
-  background: var(--el-color-info-light-8, #e0e0e2) !important;
+  border: 1px solid var(--el-color-primary) !important;
+  color: var(--el-color-primary) !important;
 }
 
-/* --- 各 type：active --- */
-.zq-btn--soft.el-button:active,
-.zq-btn--soft.el-button--primary:active {
-  background: var(--el-color-primary-light-7) !important;
-}
-.zq-btn--soft.el-button--success:active {
-  background: var(--el-color-success-light-7) !important;
-}
-.zq-btn--soft.el-button--warning:active {
-  background: var(--el-color-warning-light-7) !important;
-}
-.zq-btn--soft.el-button--danger:active {
-  background: var(--el-color-danger-light-7) !important;
-}
-.zq-btn--soft.el-button--info:active {
-  background: var(--el-color-info-light-7, #d0d0d3) !important;
-}
-
-/* --- 键盘焦点（所有 type 统一） --- */
-.zq-btn--soft.el-button:focus-visible,
-.zq-btn--soft.el-button--primary:focus-visible,
-.zq-btn--soft.el-button--success:focus-visible,
-.zq-btn--soft.el-button--warning:focus-visible,
-.zq-btn--soft.el-button--danger:focus-visible,
-.zq-btn--soft.el-button--info:focus-visible {
-  outline: 2px solid var(--el-color-primary);
-  outline-offset: 2px;
-}
-
-/* --- 禁用态（所有 type 统一置灰） --- */
-.zq-btn--soft.el-button.is-disabled,
-.zq-btn--soft.el-button.is-disabled:hover,
-.zq-btn--soft.el-button.is-disabled:focus-visible,
-.zq-btn--soft.el-button.is-disabled:active,
-.zq-btn--soft.el-button--primary.is-disabled,
-.zq-btn--soft.el-button--primary.is-disabled:hover,
-.zq-btn--soft.el-button--primary.is-disabled:focus-visible,
-.zq-btn--soft.el-button--primary.is-disabled:active,
-.zq-btn--soft.el-button--success.is-disabled,
-.zq-btn--soft.el-button--success.is-disabled:hover,
-.zq-btn--soft.el-button--success.is-disabled:focus-visible,
-.zq-btn--soft.el-button--success.is-disabled:active,
-.zq-btn--soft.el-button--warning.is-disabled,
-.zq-btn--soft.el-button--warning.is-disabled:hover,
-.zq-btn--soft.el-button--warning.is-disabled:focus-visible,
-.zq-btn--soft.el-button--warning.is-disabled:active,
-.zq-btn--soft.el-button--danger.is-disabled,
-.zq-btn--soft.el-button--danger.is-disabled:hover,
-.zq-btn--soft.el-button--danger.is-disabled:focus-visible,
-.zq-btn--soft.el-button--danger.is-disabled:active,
-.zq-btn--soft.el-button--info.is-disabled,
-.zq-btn--soft.el-button--info.is-disabled:hover,
-.zq-btn--soft.el-button--info.is-disabled:focus-visible,
-.zq-btn--soft.el-button--info.is-disabled:active {
-  background: var(--el-fill-color-light) !important;
-  color: var(--el-text-color-placeholder) !important;
+.zq-btn--primary-outline.el-button.is-disabled,
+.zq-btn--primary-outline.el-button.is-disabled:hover,
+.zq-btn--primary-outline.el-button.is-disabled:focus-visible,
+.zq-btn--primary-outline.el-button.is-disabled:active {
+  background: var(--el-border-color-light) !important;
+  border: 1px solid var(--el-border-color-light) !important;
+  color: var(--el-text-color-secondary) !important;
   cursor: not-allowed;
   outline: none;
+}
+
+.zq-btn--primary-outline.el-button.is-dashed,
+.zq-btn--primary-outline.el-button.is-dashed:hover,
+.zq-btn--primary-outline.el-button.is-dashed:active,
+.zq-btn--primary-outline.el-button.is-dashed.is-disabled,
+.zq-btn--primary-outline.el-button.is-dashed.is-disabled:hover,
+.zq-btn--primary-outline.el-button.is-dashed.is-disabled:focus-visible,
+.zq-btn--primary-outline.el-button.is-dashed.is-disabled:active {
+  border-style: dashed !important;
+}
+
+.zq-btn--primary-outline.el-button.is-link,
+.zq-btn--primary-outline.el-button.is-link:hover,
+.zq-btn--primary-outline.el-button.is-link:active {
+  background: transparent !important;
+  border-color: transparent !important;
+  color: var(--el-color-primary) !important;
+}
+
+.zq-btn--primary-outline.el-button.is-link.is-disabled,
+.zq-btn--primary-outline.el-button.is-link.is-disabled:hover,
+.zq-btn--primary-outline.el-button.is-link.is-disabled:focus-visible,
+.zq-btn--primary-outline.el-button.is-link.is-disabled:active {
+  background: transparent !important;
+  border-color: transparent !important;
+  color: var(--el-text-color-secondary) !important;
 }

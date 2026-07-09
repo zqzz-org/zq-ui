@@ -43,17 +43,15 @@ function handleThrottleDemoClick() {
 
 </details>
 
-### 浅色按钮
+### 主色描边按钮
 
 <ClientOnly>
   <div style="display:flex;flex-wrap:wrap;gap:10px;align-items:center;padding:16px 0;">
-    <zq-button variant="soft">默认</zq-button>
-    <zq-button variant="soft" type="primary">Primary</zq-button>
-    <zq-button variant="soft" type="success">Success</zq-button>
-    <zq-button variant="soft" type="warning">Warning</zq-button>
-    <zq-button variant="soft" type="danger">Danger</zq-button>
-    <zq-button variant="soft" type="info">Info</zq-button>
-    <zq-button variant="soft" disabled>Disabled</zq-button>
+    <zq-button variant="primary-outline">默认</zq-button>
+    <zq-button variant="primary-outline" round>Round</zq-button>
+    <zq-button variant="primary-outline" link>Link</zq-button>
+    <zq-button variant="primary-outline" dashed>Dashed</zq-button>
+    <zq-button variant="primary-outline" disabled>Disabled</zq-button>
   </div>
 </ClientOnly>
 
@@ -61,13 +59,11 @@ function handleThrottleDemoClick() {
 <summary>查看代码</summary>
 
 ```vue
-<zq-button variant="soft">默认</zq-button>
-<zq-button variant="soft" type="primary">Primary</zq-button>
-<zq-button variant="soft" type="success">Success</zq-button>
-<zq-button variant="soft" type="warning">Warning</zq-button>
-<zq-button variant="soft" type="danger">Danger</zq-button>
-<zq-button variant="soft" type="info">Info</zq-button>
-<zq-button variant="soft" disabled>Disabled</zq-button>
+<zq-button variant="primary-outline">默认</zq-button>
+<zq-button variant="primary-outline" round>Round</zq-button>
+<zq-button variant="primary-outline" link>Link</zq-button>
+<zq-button variant="primary-outline" dashed>Dashed</zq-button>
+<zq-button variant="primary-outline" disabled>Disabled</zq-button>
 ```
 
 </details>
@@ -79,7 +75,7 @@ function handleThrottleDemoClick() {
     <zq-button type="primary" :debounce="600" @click="handleDebounceDemoClick">
       600ms 防抖
     </zq-button>
-    <zq-button variant="soft" type="success" :throttle="1000" @click="handleThrottleDemoClick">
+    <zq-button variant="primary-outline" :throttle="1000" @click="handleThrottleDemoClick">
       1000ms 节流
     </zq-button>
   </div>
@@ -104,9 +100,7 @@ function save() {
 <template>
   <div style="display:flex;flex-wrap:wrap;gap:10px;align-items:center;">
     <zq-button type="primary" :debounce="600" @click="submit"> 600ms 防抖 </zq-button>
-    <zq-button variant="soft" type="success" :throttle="1000" @click="save">
-      1000ms 节流
-    </zq-button>
+    <zq-button variant="primary-outline" :throttle="1000" @click="save"> 1000ms 节流 </zq-button>
   </div>
 </template>
 ```
@@ -137,7 +131,7 @@ function save() {
             <template #reference>
               <span class="type-info">?</span>
             </template>
-            <code style="font-size:13px">'gradient' | 'soft'</code>
+            <code style="font-size:13px">'gradient' | 'primary-outline'</code>
           </el-popover>
         </ClientOnly>
       </td>
