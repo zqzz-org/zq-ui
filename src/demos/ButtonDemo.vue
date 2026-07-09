@@ -35,8 +35,6 @@ function increaseThrottledClickCount() {
       <div class="demo-row">
         <zq-button variant="gradient" type="primary"> Default </zq-button>
         <zq-button class="zq-theme-aiedu" variant="gradient" type="primary"> AIEDU </zq-button>
-        <zq-button class="zq-theme-finance" variant="gradient" type="primary"> Finance </zq-button>
-        <zq-button class="zq-theme-admin" variant="gradient" type="primary"> Admin </zq-button>
       </div>
     </div>
 

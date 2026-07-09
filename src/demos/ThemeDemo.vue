@@ -80,7 +80,6 @@ const tradeRows: readonly TradeRow[] = [
               <zq-radio-group v-model="radioValue">
                 <zq-radio-button label="default">Default</zq-radio-button>
                 <zq-radio-button label="aiedu">AIEDU</zq-radio-button>
-                <zq-radio-button label="finance">Finance</zq-radio-button>
               </zq-radio-group>
               <zq-checkbox-group v-model="checkboxValue">
                 <zq-checkbox-button label="button">Button</zq-checkbox-button>

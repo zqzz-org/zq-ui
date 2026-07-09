@@ -475,12 +475,12 @@ watch(activeTheme, () => {
 }
 
 .zq-color-card-grid {
-  grid-template-columns: repeat(auto-fill, minmax(190px, 220px));
+  grid-template-columns: repeat(auto-fill, minmax(190px, 4fr));
   justify-content: start;
 }
 
 .zq-color-neutral-grid {
-  grid-template-columns: repeat(auto-fill, minmax(180px, 220px));
+  grid-template-columns: repeat(auto-fill, minmax(180px, 5fr));
   justify-content: start;
 }
 

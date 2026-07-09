@@ -46,8 +46,7 @@ app.use(ZQUI, {
   theme: {
     rules: [
       { theme: 'aiedu', hosts: ['aiedu.example.com'] },
-      { theme: 'finance', hosts: ['finance.example.com'] },
-      { theme: 'admin', includes: ['admin'] },
+      { theme: 'aiedu', includes: ['aiedu'] },
     ],
   },
 })
@@ -57,7 +56,7 @@ app.use(ZQUI, {
 
 ```vue
 <template>
-  <zq-button class="zq-theme-admin" type="primary" variant="gradient"> 固定后台主题 </zq-button>
+  <zq-button class="zq-theme-aiedu" type="primary" variant="gradient"> 固定后台主题 </zq-button>
 </template>
 ```
 

@@ -3,5 +3,3 @@
  * 需要运行时切换主题时，在 zq-ui/styles 之后引入。
  */
 import './aiedu.css'
-import './finance.css'
-import './admin.css'

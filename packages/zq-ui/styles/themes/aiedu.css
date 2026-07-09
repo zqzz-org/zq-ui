@@ -18,5 +18,19 @@
   --zq-color-brand-soft: var(--el-color-primary-light-9);
   --zq-color-brand-muted: var(--el-color-primary-light-7);
   --zq-color-brand-strong: var(--el-color-primary-dark-2);
-  --zq-gradient-primary: linear-gradient(135deg, #50b5a6, #239d8b);
+  --zq-gradient-primary: linear-gradient(
+    45deg,
+    var(--el-color-primary-light-3),
+    var(--el-color-primary-dark-2)
+  );
+
+  --el-menu-active-color: var(--el-color-primary);
+  --el-menu-hover-text-color: var(--el-color-primary);
+  --el-menu-hover-bg-color: var(--el-color-primary-light-9);
+  --el-menu-item-hover-fill: var(--el-color-primary-light-9);
+  --el-anchor-active-color: var(--el-color-primary);
+  --el-anchor-marker-bg-color: var(--el-color-primary);
+  --el-backtop-text-color: var(--el-color-primary);
+  --el-segmented-item-selected-bg-color: var(--el-color-primary);
+  --el-segmented-item-selected-disabled-bg-color: var(--el-color-primary-light-5);
 }

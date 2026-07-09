@@ -46,7 +46,7 @@ describe('zq-ui install', () => {
   })
 
   it('强制指定 default 时使用 Element Plus 默认主题', () => {
-    document.documentElement.dataset.zqTheme = 'finance'
+    document.documentElement.dataset.zqTheme = 'aiedu'
 
     createTestApp().use(ZQUI, {
       theme: 'default',
