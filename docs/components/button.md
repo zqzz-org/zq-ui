@@ -158,21 +158,19 @@ function save() {
   </tbody>
 </table>
 
-<!--
 ### Button Slots
 
-| 插槽名 | 说明 |
-| --- | --- |
-| default | 按钮文本内容 |
+| 插槽名  | 说明           |
+| ------- | -------------- |
+| default | 按钮文本内容   |
 | loading | 自定义加载图标 |
-| icon | 自定义图标 |
+| icon    | 自定义图标     |
 
 ### Button Exposes
 
-| 名称 | 说明 | 类型 |
-| --- | --- | --- |
-| ref | 按钮 HTML 元素 | `Ref<HTMLButtonElement>` |
-| size | 按钮尺寸 | `Ref<string>` |
-| type | 按钮类型 | `Ref<string>` |
-| disabled | 按钮禁用状态 | `Ref<boolean>` |
--->
+| 名称     | 说明           | 类型                     |
+| -------- | -------------- | ------------------------ |
+| ref      | 按钮 HTML 元素 | `Ref<HTMLButtonElement>` |
+| size     | 按钮尺寸       | `Ref<string>`            |
+| type     | 按钮类型       | `Ref<string>`            |
+| disabled | 按钮禁用状态   | `Ref<boolean>`           |

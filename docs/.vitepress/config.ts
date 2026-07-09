@@ -21,32 +21,63 @@ export default defineConfig({
     // 顶部导航栏
     nav: [
       { text: '指南', link: '/guide/getting-started', activeMatch: '^/guide/' },
-      { text: '组件', link: '/components/color', activeMatch: '^/components/' },
+      { text: '组件', link: '/components/button', activeMatch: '^/components/' },
     ],
 
     // 侧边栏 —— 按路径分组，支持折叠
     sidebar: {
       '/guide/': [
         {
-          text: '基础',
+          text: '快速入门',
           collapsed: false,
           items: [
             { text: '快速开始', link: '/guide/getting-started' },
+            { text: '代理组件列表', link: '/guide/proxy-components' },
             { text: '主题定制', link: '/guide/theme' },
+            { text: '更新日志', link: '/guide/changelog' },
+          ],
+        },
+        {
+          text: '开发规范',
+          collapsed: false,
+          items: [
             { text: '代码规范', link: '/guide/code-style' },
+            { text: '贡献指南', link: '/guide/contribution' },
           ],
         },
       ],
       '/components/': [
         {
-          text: '基础组件',
+          text: '通用',
           collapsed: false,
           items: [
             { text: 'Color 色彩', link: '/components/color' },
             { text: 'Button 按钮', link: '/components/button' },
           ],
         },
-        // 后续新增组件分类在此追加
+        {
+          text: '表单',
+          collapsed: true,
+          items: [
+            { text: 'Input 输入框', link: '/components/form/input' },
+            { text: 'Select 选择器', link: '/components/form/select' },
+          ],
+        },
+        {
+          text: '数据展示',
+          collapsed: true,
+          items: [{ text: 'Table 表格', link: '/components/data/table' }],
+        },
+        {
+          text: '导航',
+          collapsed: true,
+          items: [{ text: 'Menu 菜单', link: '/components/navigation/menu' }],
+        },
+        {
+          text: '反馈',
+          collapsed: true,
+          items: [{ text: 'Alert 提示', link: '/components/feedback/alert' }],
+        },
       ],
     },
 

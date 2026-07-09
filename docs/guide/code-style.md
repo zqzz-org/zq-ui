@@ -53,72 +53,10 @@ pnpm quality:check # 格式、ESLint、类型、单元测试
 - 主题变量放在 `packages/zq-ui/styles/themes/`。
 - 公共 token 放在 `packages/zq-ui/styles/tokens/`。
 - 新增能力需要同步补充 Playground、文档和测试。
+- 每次修改代码后**必须**执行完整验证链：`pnpm typecheck && pnpm test:run && pnpm build && pnpm docs:build`。
 
-## 提交前检查
+## 提交流程
 
-项目使用 Husky 和 lint-staged 做本地提交前检查。
+开发主分支通过 Pull Request 进入 main 分支。提交信息遵循 [Conventional Commits](https://www.conventionalcommits.org/) 规范（如 `feat:`、`fix:`、`chore:`）。
 
-- `pre-commit`：执行 `pnpm lint-staged`，只处理本次暂存文件。
-- `pre-push`：执行 `pnpm typecheck` 和 `pnpm test:run`。
-
-本地 hook 可以提前暴露问题，但不能作为唯一质量门禁。开发者仍可通过 `--no-verify` 跳过 hook，因此主分支质量必须由 Jenkins 兜底。
-
-常规代码改动至少运行：
-
-```bash
-pnpm typecheck
-pnpm test:run
-```
-
-涉及 Playground、样式或文档时额外运行：
-
-```bash
-pnpm build
-pnpm docs:build
-```
-
-发布前运行：
-
-```bash
-pnpm lint:check
-pnpm format:check
-pnpm typecheck
-pnpm test:run
-pnpm build
-pnpm docs:build
-npm pack --dry-run
-```
-
-## VSCode
-
-项目提供 `.vscode/extensions.json` 与 `.vscode/settings.json`。
-
-推荐安装：
-
-- Vue Official
-- ESLint
-- Prettier
-- EditorConfig
-- Vitest
-
-保存文件时会自动执行 Prettier 格式化，并触发 ESLint 可自动修复项。
-
-## Jenkins
-
-项目根目录提供 `Jenkinsfile`，用于服务端质量门禁。
-
-推荐 Jenkins 配置：
-
-- 使用 Multibranch Pipeline 或普通 Pipeline 指向仓库根目录的 `Jenkinsfile`。
-- Jenkins Agent 需要安装 Node.js，并支持 Corepack。
-- PR / MR 与主分支构建都执行 Jenkinsfile。
-- Git 服务端保护主分支，禁止直接 push，必须通过 PR / MR 合并。
-- 合并前要求 Jenkins 构建通过。
-
-Jenkins 阶段：
-
-- Install：启用 Corepack，安装 pnpm 依赖。
-- Quality：并行执行格式检查、ESLint、类型检查。
-- Test：执行单元测试。
-- Build：并行构建 Playground 与文档。
-- Package Dry Run：执行包发布预检查。
+详细的贡献流程、质量门禁和 CI 配置见 [贡献指南](./contribution)。
