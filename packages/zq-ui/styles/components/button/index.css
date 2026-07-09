@@ -16,6 +16,38 @@
  * - :active         → 点击反馈
  * ============================================================ */
 
+/* --- 默认/主色按钮禁用态：各主题默认跟随 Element Plus 中性色变量 --- */
+.el-button:not(
+  :where(.el-button--success, .el-button--warning, .el-button--danger, .el-button--info)
+) {
+  --el-button-disabled-bg-color: var(--el-border-color-light);
+  --el-button-disabled-border-color: var(--el-border-color-light);
+  --el-button-disabled-text-color: var(--el-text-color-secondary);
+}
+
+.el-button.is-disabled:not(
+    :where(.el-button--success, .el-button--warning, .el-button--danger, .el-button--info)
+  ):not(.is-link):not(.is-text),
+.el-button.is-disabled:not(
+    :where(.el-button--success, .el-button--warning, .el-button--danger, .el-button--info)
+  ):not(.is-link):not(.is-text):hover,
+.el-button.is-disabled:not(
+    :where(.el-button--success, .el-button--warning, .el-button--danger, .el-button--info)
+  ):not(.is-link):not(.is-text):focus-visible,
+.el-button.is-disabled:not(
+    :where(.el-button--success, .el-button--warning, .el-button--danger, .el-button--info)
+  ):not(.is-link):not(.is-text):active {
+  background: var(--el-button-disabled-bg-color) !important;
+  border: 1px solid var(--el-button-disabled-border-color) !important;
+  color: var(--el-button-disabled-text-color) !important;
+  cursor: not-allowed;
+  outline: none;
+}
+
+.el-button.is-disabled.is-dashed {
+  border-style: dashed !important;
+}
+
 /* ============================================================
  * Gradient：渐变背景按钮
  *
@@ -85,7 +117,7 @@
   opacity: 0.78;
 }
 
-/* --- 禁用态（所有 type 统一置灰） --- */
+/* --- 禁用态（主色走全局中性色，辅助色保留 EP type disabled 变量） --- */
 .zq-btn--gradient.el-button.is-disabled,
 .zq-btn--gradient.el-button.is-disabled:hover,
 .zq-btn--gradient.el-button.is-disabled:focus-visible,
@@ -110,8 +142,9 @@
 .zq-btn--gradient.el-button--info.is-disabled:hover,
 .zq-btn--gradient.el-button--info.is-disabled:focus-visible,
 .zq-btn--gradient.el-button--info.is-disabled:active {
-  background: var(--el-fill-color-light) !important;
-  color: var(--el-text-color-placeholder) !important;
+  background: var(--el-button-disabled-bg-color) !important;
+  border: 1px solid var(--el-button-disabled-border-color) !important;
+  color: var(--el-button-disabled-text-color) !important;
   opacity: 1;
   cursor: not-allowed;
   box-shadow: none;
@@ -144,17 +177,6 @@
   background: var(--el-color-primary-light-8) !important;
   border: 1px solid var(--el-color-primary) !important;
   color: var(--el-color-primary) !important;
-}
-
-.zq-btn--primary-outline.el-button.is-disabled,
-.zq-btn--primary-outline.el-button.is-disabled:hover,
-.zq-btn--primary-outline.el-button.is-disabled:focus-visible,
-.zq-btn--primary-outline.el-button.is-disabled:active {
-  background: var(--el-border-color-light) !important;
-  border: 1px solid var(--el-border-color-light) !important;
-  color: var(--el-text-color-secondary) !important;
-  cursor: not-allowed;
-  outline: none;
 }
 
 .zq-btn--primary-outline.el-button.is-dashed,
