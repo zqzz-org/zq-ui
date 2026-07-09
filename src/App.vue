@@ -210,7 +210,6 @@ body {
 /* ====== 内容区（多个 Demo 复用） ====== */
 .pg-content {
   padding: 28px 32px 60px;
-  max-width: 1100px;
 }
 .pg-content h2 {
   margin: 0 0 6px;

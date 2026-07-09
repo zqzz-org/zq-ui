@@ -1,0 +1,177 @@
+<script setup lang="ts">
+import { Edit } from '@element-plus/icons-vue'
+
+interface ThemeInfo {
+  key: string
+  label: string
+  color: string
+}
+
+const themes: readonly ThemeInfo[] = [
+  { key: 'aiedu', label: 'AIEDU 通识平台', color: '#50b5a6' },
+  { key: 'xk', label: 'XK 信息科技', color: '#007F92' },
+  { key: 'qedu', label: 'QEDU 素养', color: '#229065' },
+  { key: 'aistudy', label: 'AIStudy 学习平台', color: '#022B9A' },
+]
+
+function themeClass(key: string): string {
+  return `zq-theme-${key}`
+}
+</script>
+
+<template>
+  <section class="pg-content">
+    <h2>主题 × 按钮矩阵</h2>
+    <p class="desc">
+      每个区域通过局部 <code>class="zq-theme-xxx"</code> 渲染对应主题下的
+      <code>type="primary"</code> 按钮，展示各主题主色在透传 EP 属性上的表现。
+    </p>
+
+    <div v-for="theme in themes" :key="theme.key" :class="['theme-matrix', themeClass(theme.key)]">
+      <div class="theme-matrix__header">
+        <span class="theme-matrix__dot" :style="{ background: theme.color }" />
+        <h3>{{ theme.label }}</h3>
+        <code>zq-theme-{{ theme.key }}</code>
+      </div>
+
+      <table class="matrix-table">
+        <thead>
+          <tr>
+            <th>状态</th>
+            <th>Default</th>
+            <th>Gradient</th>
+            <th>Soft</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>基础变体</td>
+            <td><zq-button type="primary">Default</zq-button></td>
+            <td><zq-button variant="gradient" type="primary">Gradient</zq-button></td>
+            <td><zq-button variant="soft" type="primary">Soft</zq-button></td>
+          </tr>
+          <tr>
+            <td>Plain</td>
+            <td><zq-button type="primary" plain>Plain</zq-button></td>
+            <td><zq-button variant="gradient" type="primary" plain>Gradient</zq-button></td>
+            <td><zq-button variant="soft" type="primary" plain>Soft</zq-button></td>
+          </tr>
+          <tr>
+            <td>Round</td>
+            <td><zq-button type="primary" round>Default</zq-button></td>
+            <td><zq-button variant="gradient" type="primary" round>Gradient</zq-button></td>
+            <td><zq-button variant="soft" type="primary" round>Soft</zq-button></td>
+          </tr>
+          <tr>
+            <td>Circle</td>
+            <td><zq-button type="primary" :icon="Edit" circle /></td>
+            <td><zq-button variant="gradient" type="primary" :icon="Edit" circle /></td>
+            <td><zq-button variant="soft" type="primary" :icon="Edit" circle /></td>
+          </tr>
+          <tr>
+            <td>Disabled</td>
+            <td><zq-button type="primary" disabled>Default</zq-button></td>
+            <td><zq-button variant="gradient" type="primary" disabled>Gradient</zq-button></td>
+            <td><zq-button variant="soft" type="primary" disabled>Soft</zq-button></td>
+          </tr>
+          <tr>
+            <td>Link</td>
+            <td><zq-button type="primary" link>Link</zq-button></td>
+            <td><zq-button type="primary" link disabled>Disabled</zq-button></td>
+            <td>—</td>
+          </tr>
+          <tr>
+            <td>Dashed</td>
+            <td><zq-button type="primary" dashed>Dashed</zq-button></td>
+            <td><zq-button type="primary" dashed disabled>Disabled</zq-button></td>
+            <td>—</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+</template>
+
+<style scoped>
+.desc {
+  color: var(--el-text-color-secondary);
+  margin-bottom: 20px;
+  font-size: 13px;
+}
+
+.desc code {
+  font-size: 12px;
+}
+
+.theme-matrix {
+  padding: 16px 20px;
+  border-radius: 8px;
+  border: 1px solid var(--el-color-primary-light-7);
+  background: var(--el-color-primary-light-9);
+  margin-bottom: 16px;
+}
+
+.theme-matrix__header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+.theme-matrix__header h3 {
+  margin: 0;
+  font-size: 15px;
+  color: var(--el-color-primary);
+}
+
+.theme-matrix__header code {
+  font-size: 11px;
+  color: var(--el-text-color-secondary);
+  background: var(--el-fill-color);
+  padding: 1px 6px;
+  border-radius: 4px;
+}
+
+.theme-matrix__dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 3px;
+  flex-shrink: 0;
+}
+
+.matrix-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+}
+
+.matrix-table th,
+.matrix-table td {
+  padding: 10px 12px;
+  text-align: center;
+  vertical-align: middle;
+  border: 1px solid var(--el-color-primary-light-8);
+}
+
+.matrix-table th {
+  background: var(--el-color-primary-light-9);
+  color: var(--el-color-primary);
+  font-weight: 600;
+  font-size: 12px;
+}
+
+.matrix-table tbody tr:hover {
+  background: var(--el-fill-color-light);
+}
+
+.matrix-table td:first-child {
+  color: var(--el-text-color-secondary);
+  font-size: 12px;
+  white-space: nowrap;
+  width: 80px;
+}
+
+.matrix-table td:not(:first-child) {
+  min-width: 90px;
+}
+</style>
