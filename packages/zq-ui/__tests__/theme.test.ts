@@ -15,7 +15,13 @@ describe('theme helpers', () => {
   })
 
   it('提供内置主题展示配置', () => {
-    expect(zqThemeOptions.map((theme) => theme.name)).toEqual(['default', 'aiedu'])
+    expect(zqThemeOptions.map((theme) => theme.name)).toEqual([
+      'default',
+      'aiedu',
+      'xk',
+      'qedu',
+      'aistudy',
+    ])
   })
 
   it('支持业务项目传入自定义域名规则', () => {

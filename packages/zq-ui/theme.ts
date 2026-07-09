@@ -1,4 +1,4 @@
-export type ZqThemeName = 'default' | 'aiedu'
+export type ZqThemeName = 'default' | 'aiedu' | 'xk' | 'qedu' | 'aistudy'
 
 export interface ZqThemeOption {
   label: string
@@ -32,10 +32,25 @@ export const zqThemeOptions: readonly ZqThemeOption[] = [
     label: 'AIEDU 通识平台',
     name: 'aiedu',
   },
+  {
+    label: 'XK 信息科技',
+    name: 'xk',
+  },
+  {
+    label: 'QEDU 素养',
+    name: 'qedu',
+  },
+  {
+    label: 'AIStudy 学习平台',
+    name: 'aistudy',
+  },
 ]
 
 export const defaultZqThemeHostRules: readonly ZqThemeHostRule[] = [
   { theme: 'aiedu', includes: ['aiedu'] },
+  { theme: 'xk', includes: ['xk'] },
+  { theme: 'qedu', includes: ['qedu'] },
+  { theme: 'aistudy', includes: ['aistudy'] },
 ]
 
 function getCurrentHostname(): string {

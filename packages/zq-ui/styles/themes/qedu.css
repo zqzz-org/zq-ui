@@ -1,0 +1,36 @@
+/* ============================================================
+ * ZQ-UI 素养主题
+ * 主要覆盖 primary 色系，其他状态色继承 Element Plus 默认变量。
+ * ============================================================ */
+
+[data-zq-theme='qedu'],
+.zq-theme-qedu {
+  --el-color-primary: #229065;
+  --el-color-primary-dark-2: #1b835a;
+  --el-color-primary-light-3: #4ea684;
+  --el-color-primary-light-5: #7abca3;
+  --el-color-primary-light-7: #a7d3c2;
+  --el-color-primary-light-8: #d3e9e1;
+  --el-color-primary-light-9: #e9f4f0;
+
+  --zq-color-primary: var(--el-color-primary);
+  --zq-color-brand: var(--el-color-primary);
+  --zq-color-brand-soft: var(--el-color-primary-light-9);
+  --zq-color-brand-muted: var(--el-color-primary-light-7);
+  --zq-color-brand-strong: var(--el-color-primary-dark-2);
+  --zq-gradient-primary: linear-gradient(
+    45deg,
+    var(--el-color-primary-light-3),
+    var(--el-color-primary-dark-2)
+  );
+
+  --el-menu-active-color: var(--el-color-primary);
+  --el-menu-hover-text-color: var(--el-color-primary);
+  --el-menu-hover-bg-color: var(--el-color-primary-light-9);
+  --el-menu-item-hover-fill: var(--el-color-primary-light-9);
+  --el-anchor-active-color: var(--el-color-primary);
+  --el-anchor-marker-bg-color: var(--el-color-primary);
+  --el-backtop-text-color: var(--el-color-primary);
+  --el-segmented-item-selected-bg-color: var(--el-color-primary);
+  --el-segmented-item-selected-disabled-bg-color: var(--el-color-primary-light-5);
+}

@@ -16,13 +16,21 @@ pnpm test:run       # Vitest（单次运行）
 pnpm typecheck      # vue-tsc --noEmit 类型检查
 ```
 
+## 验证流程
+
+每次修改代码后**必须**执行完整验证链，全部通过才能宣称"完成"：
+
+```bash
+pnpm typecheck && pnpm test:run && pnpm build && pnpm docs:build
+```
+
 ## 架构
 
 ZQ-UI 是基于 Element Plus（`^2.13.7`）二次封装的 Vue 3 组件库，在完全透传 EP 所有属性、事件、插槽的基础上扩展团队定制主题和交互能力。
 
 三层结构：
 
-```
+```text
 packages/zq-ui/          ← 组件库（源码分发，无构建步骤）
 src/                     ← Vite Playground，开发时调试组件
 docs/                    ← VitePress 文档站
@@ -46,18 +54,59 @@ docs/                    ← VitePress 文档站
    - 其他事件（`onDblclick`、`onMouseenter` 等）和 HTML 属性直接透传
 
 自定义 props（通过 `interface ZqButtonProps extends Partial<ButtonProps>`）：
+
 - `variant?: 'gradient' | 'soft'` — 对应 CSS class `zq-btn--{variant}`
 
-### 主题体系（按顺序加载）
+### 主题体系
 
-1. `vars.css` — `:root` CSS 变量，覆盖 EP 品牌色（`--el-color-primary: #2f6bff` 等）+ 品牌专属变量（`--zq-shadow-*`、`--zq-gradient-*`、`--zq-spacing-*`）
-2. `button.css` — `.zq-btn--gradient` / `.zq-btn--soft` 样式，`!important` 确保覆盖 EP 默认值；三态分离：`:hover`、`:focus-visible`（仅显示轮廓线）、`:active`
+**文件结构：**
 
-消费方必须把 `element-plus/dist/index.css` 放在 `zq-ui/styles` **之前**引入。
+```text
+styles/
+├── tokens/base.css              ← :root 基础 token（字号、阴影、间距、过渡、中性色、语义别名）
+├── themes/
+│   ├── index.ts                 ← CSS 导入聚合
+│   ├── aiedu.css                ← 通识平台 #50b5a6
+│   ├── xk.css                   ← 信息科技 #007F92
+│   ├── qedu.css                 ← 素养 #229065
+│   └── aistudy.css              ← 学习平台 #022B9A
+├── components/button/index.css  ← zq-btn--gradient / --soft 样式
+├── vars.css                     ← @import './tokens/base.css'（遗留兼容）
+├── button.css                   ← @import './components/button/index.css'（遗留兼容）
+└── index.ts                     ← 样式入口（按 tokens → components 顺序引入）
+```
+
+**设计原则：**
+
+- 每个主题文件自包含：色值（`--el-color-primary-*`）+ EP 组件变量映射（`--el-menu-*` 等）+ gradient + `--zq-*` 别名，全部在同一个选择器块内
+- CSS 变量延迟解析：EP 组件变量写成 `var(--el-color-primary)`，主题切换时自动拿到新值
+- 选择器覆盖两种场景：`[data-zq-theme='xxx']`（全页属性）+ `.zq-theme-xxx`（局部 class 作用域）
+- 消费方必须把 `element-plus/dist/index.css` 放在 `zq-ui/styles` **之前**引入
+
+**TS 层（`theme.ts`）：**
+
+- `ZqThemeName` 联合类型：`'default' | 'aiedu' | 'xk' | 'qedu' | 'aistudy'`
+- `zqThemeOptions` — 内置主题展示配置（label + name）
+- `defaultZqThemeHostRules` — 默认域名匹配规则
+- `applyZqTheme(theme, target)` — 将主题写入元素的 `data-zq-theme` 属性
+- `applyZqThemeByHost(options)` — 按域名解析 + 写入
+- `resolveZqThemeByHost(options)` — 纯逻辑：根据 hostname 匹配规则返回主题名
+
+**新增主题步骤：**
+
+1. 复制 `styles/themes/aiedu.css` → 新文件，改色值
+2. 在 `styles/themes/index.ts` 加一行 `import`
+3. 在 `theme.ts` 的 `ZqThemeName`、`zqThemeOptions`、`defaultZqThemeHostRules` 各加一条
+4. 更新 `__tests__/theme.test.ts` 的期望数组
 
 ### Playground（`src/App.vue`）
 
-左右布局：左侧组件列表 + 右侧主区域。Button 有 5 个子标签：变体样式、防抖交互、尺寸形状、透传测试、全量矩阵。新增组件的测试区：在 `components[]` 数组加一条 + 在 `<main>` 内加一个 `<template v-if>` 块。
+左右布局：左侧组件列表 + 右侧 `<component :is="activeDemo" />` 动态渲染。
+
+组件注册在 `src/config/playground.ts` 的 `components` 数组中，每个条目包含 `key` / `name` / `icon` / `tag` / `component`。新增 demo 只需：
+
+1. 在 `src/demos/` 下创建 `{Name}Demo.vue`
+2. 在 `playground.ts` 追加一条，无需修改 App.vue
 
 ### VitePress 文档
 
