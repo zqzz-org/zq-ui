@@ -27,6 +27,7 @@ function increaseThrottledClickCount() {
         <zq-button variant="gradient" type="primary">Gradient</zq-button>
         <zq-button variant="soft">Soft</zq-button>
         <zq-button variant="ring">Ring</zq-button>
+        <zq-button variant="ghost">Ghost</zq-button>
         <zq-button variant="crisp">Crisp</zq-button>
         <zq-button type="primary" disabled>Disabled</zq-button>
       </div>
@@ -46,6 +47,7 @@ function increaseThrottledClickCount() {
         <zq-button variant="gradient" type="primary">Primary</zq-button>
         <zq-button variant="soft">Soft</zq-button>
         <zq-button variant="ring">Ring</zq-button>
+        <zq-button variant="ghost">Ghost</zq-button>
         <zq-button variant="crisp">Crisp</zq-button>
         <zq-button variant="gradient" type="danger" disabled>Disabled</zq-button>
       </div>

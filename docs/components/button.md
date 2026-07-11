@@ -46,7 +46,7 @@ function handleThrottleDemoClick() {
 ### 命名变体
 
 <ClientOnly>
-  <div style="display:flex;flex-direction:column;gap:16px;padding:16px 0;">
+  <div style="display:flex;flex-direction:column;gap:16px;padding:16px;background:var(--el-fill-color-light);border-radius:8px;">
     <div>
       <p style="margin:0 0 8px;color:var(--vp-c-text-2);font-size:13px;">Default</p>
       <div style="display:flex;flex-wrap:wrap;gap:10px;align-items:center;">
@@ -77,11 +77,20 @@ function handleThrottleDemoClick() {
     </div>
     <div>
       <p style="margin:0 0 8px;color:var(--vp-c-text-2);font-size:13px;">ring</p>
-      <div style="display:flex;flex-wrap:wrap;gap:10px;align-items:center;padding:8px;background:var(--el-color-primary-light-5);border-radius:6px;">
+      <div style="display:flex;flex-wrap:wrap;gap:10px;align-items:center;">
         <zq-button variant="ring">默认</zq-button>
         <zq-button variant="ring" round>Round</zq-button>
         <zq-button variant="ring" dashed>Dashed</zq-button>
         <zq-button variant="ring" disabled>Disabled</zq-button>
+      </div>
+    </div>
+    <div>
+      <p style="margin:0 0 8px;color:var(--vp-c-text-2);font-size:13px;">ghost</p>
+      <div style="display:flex;flex-wrap:wrap;gap:10px;align-items:center;">
+        <zq-button variant="ghost">默认</zq-button>
+        <zq-button variant="ghost" round>Round</zq-button>
+        <zq-button variant="ghost" dashed>Dashed</zq-button>
+        <zq-button variant="ghost" disabled>Disabled</zq-button>
       </div>
     </div>
   </div>
@@ -106,6 +115,11 @@ function handleThrottleDemoClick() {
 <zq-button variant="ring" round>Round</zq-button>
 <zq-button variant="ring" dashed>Dashed</zq-button>
 <zq-button variant="ring" disabled>Disabled</zq-button>
+
+<zq-button variant="ghost">默认</zq-button>
+<zq-button variant="ghost" round>Round</zq-button>
+<zq-button variant="ghost" dashed>Dashed</zq-button>
+<zq-button variant="ghost" disabled>Disabled</zq-button>
 ```
 
 </details>
@@ -173,7 +187,7 @@ function save() {
             <template #reference>
               <span class="type-info">?</span>
             </template>
-            <code style="font-size:13px">'gradient' | 'soft' | 'crisp' | 'ring'</code>
+            <code style="font-size:13px">'gradient' | 'soft' | 'crisp' | 'ring' | 'ghost'</code>
           </el-popover>
         </ClientOnly>
       </td>

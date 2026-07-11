@@ -42,6 +42,7 @@ function themeClass(key: string): string {
             <th>Soft</th>
             <th>Crisp</th>
             <th>Ring</th>
+            <th>Ghost</th>
           </tr>
         </thead>
         <tbody>
@@ -52,10 +53,12 @@ function themeClass(key: string): string {
             <td><zq-button variant="soft">Soft</zq-button></td>
             <td><zq-button variant="crisp">Crisp</zq-button></td>
             <td><zq-button variant="ring">Ring</zq-button></td>
+            <td><zq-button variant="ghost">Ghost</zq-button></td>
           </tr>
           <tr>
             <td>Plain</td>
             <td><zq-button type="primary" plain>Plain</zq-button></td>
+            <td>—</td>
             <td>—</td>
             <td>—</td>
             <td>—</td>
@@ -68,6 +71,7 @@ function themeClass(key: string): string {
             <td><zq-button variant="soft" round>Soft</zq-button></td>
             <td><zq-button variant="crisp" round>Crisp</zq-button></td>
             <td><zq-button variant="ring" round>Ring</zq-button></td>
+            <td><zq-button variant="ghost" round>Ghost</zq-button></td>
           </tr>
           <tr>
             <td>Circle</td>
@@ -76,6 +80,7 @@ function themeClass(key: string): string {
             <td><zq-button variant="soft" :icon="Edit" circle /></td>
             <td><zq-button variant="crisp" :icon="Edit" circle /></td>
             <td><zq-button variant="ring" :icon="Edit" circle /></td>
+            <td><zq-button variant="ghost" :icon="Edit" circle /></td>
           </tr>
           <tr>
             <td>Disabled</td>
@@ -84,10 +89,12 @@ function themeClass(key: string): string {
             <td><zq-button variant="soft" disabled>Soft</zq-button></td>
             <td><zq-button variant="crisp" disabled>Crisp</zq-button></td>
             <td><zq-button variant="ring" disabled>Ring</zq-button></td>
+            <td><zq-button variant="ghost" disabled>Ghost</zq-button></td>
           </tr>
           <tr>
             <td>Link</td>
             <td><zq-button type="primary" link>Link</zq-button></td>
+            <td>—</td>
             <td>—</td>
             <td>—</td>
             <td>—</td>
@@ -100,6 +107,7 @@ function themeClass(key: string): string {
             <td><zq-button variant="soft" dashed>Soft</zq-button></td>
             <td><zq-button variant="crisp" dashed>Crisp</zq-button></td>
             <td><zq-button variant="ring" dashed>Ring</zq-button></td>
+            <td><zq-button variant="ghost" dashed>Ghost</zq-button></td>
           </tr>
         </tbody>
       </table>
@@ -166,6 +174,10 @@ function themeClass(key: string): string {
   text-align: center;
   vertical-align: middle;
   border: 1px solid var(--el-color-primary-light-8);
+}
+
+.matrix-table td {
+  background: var(--el-fill-color-light);
 }
 
 .matrix-table th {
