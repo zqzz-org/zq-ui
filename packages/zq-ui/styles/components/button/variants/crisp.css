@@ -4,7 +4,8 @@
  * 固定组合样式，用于业务高频主色描边按钮。
  * ============================================================ */
 
-.zq-btn--crisp.el-button {
+.zq-btn--crisp.el-button:not(.is-disabled),
+.zq-btn--crisp.el-button--primary:not(.is-disabled) {
   background: var(--el-color-white);
   border: 1px solid var(--el-color-primary);
   color: var(--el-color-primary);
@@ -14,36 +15,96 @@
     color var(--zq-transition-fast, 0.15s ease);
 }
 
-.zq-btn--crisp.el-button:hover {
+.zq-btn--crisp.el-button:not(.is-disabled):hover,
+.zq-btn--crisp.el-button--primary:not(.is-disabled):hover {
   background: var(--el-color-primary-light-9);
   border: 1px solid var(--el-color-primary);
   color: var(--el-color-primary);
 }
 
-.zq-btn--crisp.el-button:active {
+.zq-btn--crisp.el-button:not(.is-disabled):active,
+.zq-btn--crisp.el-button--primary:not(.is-disabled):active {
   background: var(--el-color-primary-light-8);
   border: 1px solid var(--el-color-primary);
   color: var(--el-color-primary);
 }
 
-.zq-btn--crisp.el-button.is-dashed,
-.zq-btn--crisp.el-button.is-dashed:hover,
-.zq-btn--crisp.el-button.is-dashed:active,
-.zq-btn--crisp.el-button.is-dashed.is-disabled,
-.zq-btn--crisp.el-button.is-dashed.is-disabled:hover,
-.zq-btn--crisp.el-button.is-dashed.is-disabled:focus-visible,
-.zq-btn--crisp.el-button.is-dashed.is-disabled:active {
-  border-style: dashed;
+/* --- success --- */
+.zq-btn--crisp.el-button--success:not(.is-disabled) {
+  background: var(--el-color-white);
+  border: 1px solid var(--el-color-success);
+  color: var(--el-color-success);
+}
+.zq-btn--crisp.el-button--success:not(.is-disabled):hover {
+  background: var(--el-color-success-light-9);
+  border: 1px solid var(--el-color-success);
+  color: var(--el-color-success);
+}
+.zq-btn--crisp.el-button--success:not(.is-disabled):active {
+  background: var(--el-color-success-light-8);
+  border: 1px solid var(--el-color-success);
+  color: var(--el-color-success);
 }
 
-.zq-btn--crisp.el-button.is-link,
-.zq-btn--crisp.el-button.is-link:hover,
-.zq-btn--crisp.el-button.is-link:active {
+/* --- warning --- */
+.zq-btn--crisp.el-button--warning:not(.is-disabled) {
+  background: var(--el-color-white);
+  border: 1px solid var(--el-color-warning);
+  color: var(--el-color-warning);
+}
+.zq-btn--crisp.el-button--warning:not(.is-disabled):hover {
+  background: var(--el-color-warning-light-9);
+  border: 1px solid var(--el-color-warning);
+  color: var(--el-color-warning);
+}
+.zq-btn--crisp.el-button--warning:not(.is-disabled):active {
+  background: var(--el-color-warning-light-8);
+  border: 1px solid var(--el-color-warning);
+  color: var(--el-color-warning);
+}
+
+/* --- danger --- */
+.zq-btn--crisp.el-button--danger:not(.is-disabled) {
+  background: var(--el-color-white);
+  border: 1px solid var(--el-color-danger);
+  color: var(--el-color-danger);
+}
+.zq-btn--crisp.el-button--danger:not(.is-disabled):hover {
+  background: var(--el-color-danger-light-9);
+  border: 1px solid var(--el-color-danger);
+  color: var(--el-color-danger);
+}
+.zq-btn--crisp.el-button--danger:not(.is-disabled):active {
+  background: var(--el-color-danger-light-8);
+  border: 1px solid var(--el-color-danger);
+  color: var(--el-color-danger);
+}
+
+/* --- info --- */
+.zq-btn--crisp.el-button--info:not(.is-disabled) {
+  background: var(--el-color-white);
+  border: 1px solid var(--el-color-info);
+  color: var(--el-color-info);
+}
+.zq-btn--crisp.el-button--info:not(.is-disabled):hover {
+  background: var(--el-color-info-light-9);
+  border: 1px solid var(--el-color-info);
+  color: var(--el-color-info);
+}
+.zq-btn--crisp.el-button--info:not(.is-disabled):active {
+  background: var(--el-color-info-light-8);
+  border: 1px solid var(--el-color-info);
+  color: var(--el-color-info);
+}
+
+/* --- link（primary 专用） --- */
+.zq-btn--crisp.el-button.is-link:not(.is-disabled),
+.zq-btn--crisp.el-button.is-link:not(.is-disabled):hover,
+.zq-btn--crisp.el-button.is-link:not(.is-disabled):active {
   background: transparent;
   border-color: transparent;
   color: var(--el-color-primary);
 }
-
 .zq-btn--crisp.el-button.is-link.is-disabled,
 .zq-btn--crisp.el-button.is-link.is-disabled:hover,
 .zq-btn--crisp.el-button.is-link.is-disabled:focus-visible,
@@ -51,4 +112,30 @@
   background: transparent;
   border-color: transparent;
   color: var(--el-text-color-secondary);
+}
+
+/* --- dashed（所有 type 共享） --- */
+.zq-btn--crisp.el-button.is-dashed:not(.is-disabled),
+.zq-btn--crisp.el-button--primary.is-dashed:not(.is-disabled),
+.zq-btn--crisp.el-button--success.is-dashed:not(.is-disabled),
+.zq-btn--crisp.el-button--warning.is-dashed:not(.is-disabled),
+.zq-btn--crisp.el-button--danger.is-dashed:not(.is-disabled),
+.zq-btn--crisp.el-button--info.is-dashed:not(.is-disabled),
+.zq-btn--crisp.el-button.is-dashed:not(.is-disabled):hover,
+.zq-btn--crisp.el-button--primary.is-dashed:not(.is-disabled):hover,
+.zq-btn--crisp.el-button--success.is-dashed:not(.is-disabled):hover,
+.zq-btn--crisp.el-button--warning.is-dashed:not(.is-disabled):hover,
+.zq-btn--crisp.el-button--danger.is-dashed:not(.is-disabled):hover,
+.zq-btn--crisp.el-button--info.is-dashed:not(.is-disabled):hover,
+.zq-btn--crisp.el-button.is-dashed:not(.is-disabled):active,
+.zq-btn--crisp.el-button--primary.is-dashed:not(.is-disabled):active,
+.zq-btn--crisp.el-button--success.is-dashed:not(.is-disabled):active,
+.zq-btn--crisp.el-button--warning.is-dashed:not(.is-disabled):active,
+.zq-btn--crisp.el-button--danger.is-dashed:not(.is-disabled):active,
+.zq-btn--crisp.el-button--info.is-dashed:not(.is-disabled):active,
+.zq-btn--crisp.el-button.is-dashed.is-disabled,
+.zq-btn--crisp.el-button.is-dashed.is-disabled:hover,
+.zq-btn--crisp.el-button.is-dashed.is-disabled:focus-visible,
+.zq-btn--crisp.el-button.is-dashed.is-disabled:active {
+  border-style: dashed;
 }

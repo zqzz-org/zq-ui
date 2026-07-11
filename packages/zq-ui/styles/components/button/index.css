@@ -22,6 +22,7 @@
  * - variants/soft.css      浅色填充
  * - variants/ring.css      实色白环
  * - variants/ghost.css     透明幽灵
+ * - variants/reveal.css    浮现按钮
  * ============================================================ */
 
 @import './base.css';
@@ -30,3 +31,4 @@
 @import './variants/soft.css';
 @import './variants/ring.css';
 @import './variants/ghost.css';
+@import './variants/reveal.css';

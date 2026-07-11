@@ -1,0 +1,120 @@
+/* ============================================================
+ * Reveal：浮现按钮
+ *
+ * 默认白底灰框，悬浮/点击时主色浮现。
+ * ============================================================ */
+
+.zq-btn--reveal.el-button:not(.is-disabled),
+.zq-btn--reveal.el-button--primary:not(.is-disabled) {
+  background: var(--el-color-white);
+  border: 1px solid var(--el-border-color-light);
+  color: var(--el-text-color-primary);
+  transition:
+    background var(--zq-transition-fast, 0.15s ease),
+    border-color var(--zq-transition-fast, 0.15s ease),
+    color var(--zq-transition-fast, 0.15s ease);
+}
+
+.zq-btn--reveal.el-button:not(.is-disabled):hover,
+.zq-btn--reveal.el-button--primary:not(.is-disabled):hover {
+  background: transparent;
+  border: 1px solid var(--el-color-primary);
+  color: var(--el-color-primary);
+}
+
+.zq-btn--reveal.el-button:not(.is-disabled):active,
+.zq-btn--reveal.el-button--primary:not(.is-disabled):active {
+  background: transparent;
+  border: 1px solid var(--el-color-primary-dark-2);
+  color: var(--el-color-primary-dark-2);
+}
+
+/* --- success --- */
+.zq-btn--reveal.el-button--success:not(.is-disabled) {
+  background: var(--el-color-white);
+  border: 1px solid var(--el-border-color-light);
+  color: var(--el-color-success);
+}
+.zq-btn--reveal.el-button--success:not(.is-disabled):hover {
+  background: transparent;
+  border: 1px solid var(--el-color-success);
+  color: var(--el-color-success);
+}
+.zq-btn--reveal.el-button--success:not(.is-disabled):active {
+  background: transparent;
+  border: 1px solid var(--el-color-success-dark-2);
+  color: var(--el-color-success-dark-2);
+}
+
+/* --- warning --- */
+.zq-btn--reveal.el-button--warning:not(.is-disabled) {
+  background: var(--el-color-white);
+  border: 1px solid var(--el-border-color-light);
+  color: var(--el-color-warning);
+}
+.zq-btn--reveal.el-button--warning:not(.is-disabled):hover {
+  background: transparent;
+  border: 1px solid var(--el-color-warning);
+  color: var(--el-color-warning);
+}
+.zq-btn--reveal.el-button--warning:not(.is-disabled):active {
+  background: transparent;
+  border: 1px solid var(--el-color-warning-dark-2);
+  color: var(--el-color-warning-dark-2);
+}
+
+/* --- danger --- */
+.zq-btn--reveal.el-button--danger:not(.is-disabled) {
+  background: var(--el-color-white);
+  border: 1px solid var(--el-border-color-light);
+  color: var(--el-color-danger);
+}
+.zq-btn--reveal.el-button--danger:not(.is-disabled):hover {
+  background: transparent;
+  border: 1px solid var(--el-color-danger);
+  color: var(--el-color-danger);
+}
+.zq-btn--reveal.el-button--danger:not(.is-disabled):active {
+  background: transparent;
+  border: 1px solid var(--el-color-danger-dark-2);
+  color: var(--el-color-danger-dark-2);
+}
+
+/* --- info --- */
+.zq-btn--reveal.el-button--info:not(.is-disabled) {
+  background: var(--el-color-white);
+  border: 1px solid var(--el-border-color-light);
+  color: var(--el-color-info);
+}
+.zq-btn--reveal.el-button--info:not(.is-disabled):hover {
+  background: transparent;
+  border: 1px solid var(--el-color-info);
+  color: var(--el-color-info);
+}
+.zq-btn--reveal.el-button--info:not(.is-disabled):active {
+  background: transparent;
+  border: 1px solid var(--el-color-info-dark-2);
+  color: var(--el-color-info-dark-2);
+}
+
+/* --- dashed（所有 type 共享） --- */
+.zq-btn--reveal.el-button.is-dashed:not(.is-disabled),
+.zq-btn--reveal.el-button--primary.is-dashed:not(.is-disabled),
+.zq-btn--reveal.el-button--success.is-dashed:not(.is-disabled),
+.zq-btn--reveal.el-button--warning.is-dashed:not(.is-disabled),
+.zq-btn--reveal.el-button--danger.is-dashed:not(.is-disabled),
+.zq-btn--reveal.el-button--info.is-dashed:not(.is-disabled),
+.zq-btn--reveal.el-button.is-dashed:not(.is-disabled):hover,
+.zq-btn--reveal.el-button--primary.is-dashed:not(.is-disabled):hover,
+.zq-btn--reveal.el-button--success.is-dashed:not(.is-disabled):hover,
+.zq-btn--reveal.el-button--warning.is-dashed:not(.is-disabled):hover,
+.zq-btn--reveal.el-button--danger.is-dashed:not(.is-disabled):hover,
+.zq-btn--reveal.el-button--info.is-dashed:not(.is-disabled):hover,
+.zq-btn--reveal.el-button.is-dashed:not(.is-disabled):active,
+.zq-btn--reveal.el-button--primary.is-dashed:not(.is-disabled):active,
+.zq-btn--reveal.el-button--success.is-dashed:not(.is-disabled):active,
+.zq-btn--reveal.el-button--warning.is-dashed:not(.is-disabled):active,
+.zq-btn--reveal.el-button--danger.is-dashed:not(.is-disabled):active,
+.zq-btn--reveal.el-button--info.is-dashed:not(.is-disabled):active {
+  border-style: dashed;
+}

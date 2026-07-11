@@ -21,8 +21,9 @@ interface ZqButtonProps extends Partial<ButtonProps> {
    * - `soft`：浅主色填充，主色文字，悬浮/点击显示主色边框
    * - `ring`：继承 EP 默认实色填充，叠加白色描边
    * - `ghost`：透明底 + 主色文字 + 主色描边，悬浮/点击显形
+   * - `reveal`：白底灰框，悬浮/点击时主色浮现
    */
-  variant?: 'gradient' | 'crisp' | 'soft' | 'ring' | 'ghost'
+  variant?: 'gradient' | 'crisp' | 'soft' | 'ring' | 'ghost' | 'reveal'
   /**
    * 防抖延迟时间，单位 ms；不传或小于等于 0 时不启用
    */

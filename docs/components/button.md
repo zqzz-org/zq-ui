@@ -46,7 +46,7 @@ function handleThrottleDemoClick() {
 ### 命名变体
 
 <ClientOnly>
-  <div style="display:flex;flex-direction:column;gap:16px;padding:16px;background:var(--el-fill-color-light);border-radius:8px;">
+  <div style="display:flex;flex-direction:column;gap:16px;padding:16px;background:var(--el-color-primary-light-9);border-radius:8px;">
     <div>
       <p style="margin:0 0 8px;color:var(--vp-c-text-2);font-size:13px;">Default</p>
       <div style="display:flex;flex-wrap:wrap;gap:10px;align-items:center;">
@@ -93,6 +93,15 @@ function handleThrottleDemoClick() {
         <zq-button variant="ghost" disabled>Disabled</zq-button>
       </div>
     </div>
+    <div>
+      <p style="margin:0 0 8px;color:var(--vp-c-text-2);font-size:13px;">reveal</p>
+      <div style="display:flex;flex-wrap:wrap;gap:10px;align-items:center;">
+        <zq-button variant="reveal">默认</zq-button>
+        <zq-button variant="reveal" round>Round</zq-button>
+        <zq-button variant="reveal" dashed>Dashed</zq-button>
+        <zq-button variant="reveal" disabled>Disabled</zq-button>
+      </div>
+    </div>
   </div>
 </ClientOnly>
 
@@ -120,6 +129,11 @@ function handleThrottleDemoClick() {
 <zq-button variant="ghost" round>Round</zq-button>
 <zq-button variant="ghost" dashed>Dashed</zq-button>
 <zq-button variant="ghost" disabled>Disabled</zq-button>
+
+<zq-button variant="reveal">默认</zq-button>
+<zq-button variant="reveal" round>Round</zq-button>
+<zq-button variant="reveal" dashed>Dashed</zq-button>
+<zq-button variant="reveal" disabled>Disabled</zq-button>
 ```
 
 </details>
@@ -187,7 +201,7 @@ function save() {
             <template #reference>
               <span class="type-info">?</span>
             </template>
-            <code style="font-size:13px">'gradient' | 'soft' | 'crisp' | 'ring' | 'ghost'</code>
+            <code style="font-size:13px">'gradient' | 'soft' | 'crisp' | 'ring' | 'ghost' | 'reveal'</code>
           </el-popover>
         </ClientOnly>
       </td>
