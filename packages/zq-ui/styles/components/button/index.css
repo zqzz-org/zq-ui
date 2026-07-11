@@ -152,12 +152,46 @@
 }
 
 /* ============================================================
- * Primary Outline：主色描边按钮
+ * Soft：浅主色填充按钮
+ *
+ * 柔和浅底，悬浮/点击时显示主色边界。
+ * ============================================================ */
+
+.zq-btn--soft.el-button {
+  background: var(--el-color-primary-light-8) !important;
+  border: 1px solid transparent !important;
+  color: var(--el-color-primary) !important;
+  transition:
+    background var(--zq-transition-fast, 0.15s ease),
+    border-color var(--zq-transition-fast, 0.15s ease),
+    color var(--zq-transition-fast, 0.15s ease);
+}
+
+.zq-btn--soft.el-button:hover {
+  background: var(--el-color-primary-light-9) !important;
+  border: 1px solid var(--el-color-primary) !important;
+  color: var(--el-color-primary) !important;
+}
+
+.zq-btn--soft.el-button:active {
+  background: var(--el-color-primary-light-7) !important;
+  border: 1px solid var(--el-color-primary) !important;
+  color: var(--el-color-primary) !important;
+}
+
+.zq-btn--soft.el-button.is-dashed,
+.zq-btn--soft.el-button.is-dashed:hover,
+.zq-btn--soft.el-button.is-dashed:active {
+  border-style: dashed !important;
+}
+
+/* ============================================================
+ * Crisp：主色描边按钮
  *
  * 固定组合样式，用于业务高频主色描边按钮。
  * ============================================================ */
 
-.zq-btn--primary-outline.el-button {
+.zq-btn--crisp.el-button {
   background: var(--el-color-white) !important;
   border: 1px solid var(--el-color-primary) !important;
   color: var(--el-color-primary) !important;
@@ -167,40 +201,40 @@
     color var(--zq-transition-fast, 0.15s ease);
 }
 
-.zq-btn--primary-outline.el-button:hover {
+.zq-btn--crisp.el-button:hover {
   background: var(--el-color-primary-light-9) !important;
   border: 1px solid var(--el-color-primary) !important;
   color: var(--el-color-primary) !important;
 }
 
-.zq-btn--primary-outline.el-button:active {
+.zq-btn--crisp.el-button:active {
   background: var(--el-color-primary-light-8) !important;
   border: 1px solid var(--el-color-primary) !important;
   color: var(--el-color-primary) !important;
 }
 
-.zq-btn--primary-outline.el-button.is-dashed,
-.zq-btn--primary-outline.el-button.is-dashed:hover,
-.zq-btn--primary-outline.el-button.is-dashed:active,
-.zq-btn--primary-outline.el-button.is-dashed.is-disabled,
-.zq-btn--primary-outline.el-button.is-dashed.is-disabled:hover,
-.zq-btn--primary-outline.el-button.is-dashed.is-disabled:focus-visible,
-.zq-btn--primary-outline.el-button.is-dashed.is-disabled:active {
+.zq-btn--crisp.el-button.is-dashed,
+.zq-btn--crisp.el-button.is-dashed:hover,
+.zq-btn--crisp.el-button.is-dashed:active,
+.zq-btn--crisp.el-button.is-dashed.is-disabled,
+.zq-btn--crisp.el-button.is-dashed.is-disabled:hover,
+.zq-btn--crisp.el-button.is-dashed.is-disabled:focus-visible,
+.zq-btn--crisp.el-button.is-dashed.is-disabled:active {
   border-style: dashed !important;
 }
 
-.zq-btn--primary-outline.el-button.is-link,
-.zq-btn--primary-outline.el-button.is-link:hover,
-.zq-btn--primary-outline.el-button.is-link:active {
+.zq-btn--crisp.el-button.is-link,
+.zq-btn--crisp.el-button.is-link:hover,
+.zq-btn--crisp.el-button.is-link:active {
   background: transparent !important;
   border-color: transparent !important;
   color: var(--el-color-primary) !important;
 }
 
-.zq-btn--primary-outline.el-button.is-link.is-disabled,
-.zq-btn--primary-outline.el-button.is-link.is-disabled:hover,
-.zq-btn--primary-outline.el-button.is-link.is-disabled:focus-visible,
-.zq-btn--primary-outline.el-button.is-link.is-disabled:active {
+.zq-btn--crisp.el-button.is-link.is-disabled,
+.zq-btn--crisp.el-button.is-link.is-disabled:hover,
+.zq-btn--crisp.el-button.is-link.is-disabled:focus-visible,
+.zq-btn--crisp.el-button.is-link.is-disabled:active {
   background: transparent !important;
   border-color: transparent !important;
   color: var(--el-text-color-secondary) !important;

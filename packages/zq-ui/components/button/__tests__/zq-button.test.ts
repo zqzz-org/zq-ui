@@ -26,23 +26,31 @@ describe('zq-button', () => {
     expect(wrapper.find('.el-button').classes()).toContain('zq-btn--gradient')
   })
 
-  it('variant="primary-outline" 时添加 zq-btn--primary-outline class', () => {
+  it('variant="crisp" 时添加 zq-btn--crisp class', () => {
     const wrapper = mount(ZqButton, {
-      props: { variant: 'primary-outline' },
+      props: { variant: 'crisp' },
     })
-    expect(wrapper.find('.el-button').classes()).toContain('zq-btn--primary-outline')
+    expect(wrapper.find('.el-button').classes()).toContain('zq-btn--crisp')
+  })
+
+  it('variant="soft" 时添加 zq-btn--soft class', () => {
+    const wrapper = mount(ZqButton, {
+      props: { variant: 'soft' },
+    })
+    expect(wrapper.find('.el-button').classes()).toContain('zq-btn--soft')
   })
 
   it('未传 variant 时不添加额外 class', () => {
     const wrapper = mount(ZqButton)
     const classes = wrapper.find('.el-button').classes()
     expect(classes).not.toContain('zq-btn--gradient')
-    expect(classes).not.toContain('zq-btn--primary-outline')
+    expect(classes).not.toContain('zq-btn--crisp')
+    expect(classes).not.toContain('zq-btn--soft')
   })
 
   it('variant 作为自定义属性不透传到底层按钮', () => {
     const wrapper = mount(ZqButton, {
-      props: { variant: 'primary-outline' },
+      props: { variant: 'soft' },
     })
     expect(wrapper.find('.el-button').attributes('variant')).toBeUndefined()
   })
@@ -125,21 +133,30 @@ describe('zq-button', () => {
     expect(classes).toContain('is-disabled')
   })
 
-  it('primary-outline variant 和 link 可同时生效', () => {
+  it('crisp variant 和 link 可同时生效', () => {
     const wrapper = mount(ZqButton, {
-      props: { variant: 'primary-outline', link: true },
+      props: { variant: 'crisp', link: true },
     })
     const classes = wrapper.find('.el-button').classes()
-    expect(classes).toContain('zq-btn--primary-outline')
+    expect(classes).toContain('zq-btn--crisp')
     expect(classes).toContain('is-link')
   })
 
-  it('primary-outline variant 和 dashed 可同时生效', () => {
+  it('crisp variant 和 dashed 可同时生效', () => {
     const wrapper = mount(ZqButton, {
-      props: { variant: 'primary-outline', dashed: true },
+      props: { variant: 'crisp', dashed: true },
     })
     const classes = wrapper.find('.el-button').classes()
-    expect(classes).toContain('zq-btn--primary-outline')
+    expect(classes).toContain('zq-btn--crisp')
+    expect(classes).toContain('is-dashed')
+  })
+
+  it('soft variant 和 dashed 可同时生效', () => {
+    const wrapper = mount(ZqButton, {
+      props: { variant: 'soft', dashed: true },
+    })
+    const classes = wrapper.find('.el-button').classes()
+    expect(classes).toContain('zq-btn--soft')
     expect(classes).toContain('is-dashed')
   })
 
@@ -322,7 +339,8 @@ describe('zq-button', () => {
     const wrapper = mount(ZqButton)
     const classes = wrapper.find('.el-button').classes()
     expect(classes).not.toContain('zq-btn--gradient')
-    expect(classes).not.toContain('zq-btn--primary-outline')
+    expect(classes).not.toContain('zq-btn--crisp')
+    expect(classes).not.toContain('zq-btn--soft')
     // Element Plus 默认 type 不加 type class
     expect(classes).not.toContain('el-button--primary')
     expect(classes).not.toContain('el-button--success')

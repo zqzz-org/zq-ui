@@ -25,7 +25,8 @@ function increaseThrottledClickCount() {
       <div class="demo-row">
         <zq-button type="primary">Primary</zq-button>
         <zq-button variant="gradient" type="primary">Gradient</zq-button>
-        <zq-button variant="primary-outline">Primary Outline</zq-button>
+        <zq-button variant="soft">Soft</zq-button>
+        <zq-button variant="crisp">Crisp</zq-button>
         <zq-button type="primary" disabled>Disabled</zq-button>
       </div>
     </div>
@@ -42,7 +43,8 @@ function increaseThrottledClickCount() {
     <div class="demo-block">
       <div class="demo-row">
         <zq-button variant="gradient" type="primary">Primary</zq-button>
-        <zq-button variant="primary-outline">Primary Outline</zq-button>
+        <zq-button variant="soft">Soft</zq-button>
+        <zq-button variant="crisp">Crisp</zq-button>
         <zq-button variant="gradient" type="danger" disabled>Disabled</zq-button>
       </div>
     </div>
@@ -61,7 +63,7 @@ function increaseThrottledClickCount() {
         >
           防抖点击：{{ debouncedClickCount }}
         </zq-button>
-        <zq-button variant="primary-outline" :throttle="1000" @click="increaseThrottledClickCount">
+        <zq-button variant="crisp" :throttle="1000" @click="increaseThrottledClickCount">
           节流点击：{{ throttledClickCount }}
         </zq-button>
       </div>

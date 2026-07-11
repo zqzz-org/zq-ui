@@ -23,8 +23,7 @@ function themeClass(key: string): string {
   <section class="pg-content">
     <h2>主题 × 按钮矩阵</h2>
     <p class="desc">
-      每个区域通过局部 <code>class="zq-theme-xxx"</code> 渲染对应主题下的
-      <code>type="primary"</code> 按钮，展示各主题主色在透传 EP 属性上的表现。
+      每个区域通过局部 <code>class="zq-theme-xxx"</code> 展示各主题主色在透传 EP 属性上的表现。
     </p>
 
     <div v-for="theme in themes" :key="theme.key" :class="['theme-matrix', themeClass(theme.key)]">
@@ -40,7 +39,8 @@ function themeClass(key: string): string {
             <th>状态</th>
             <th>Default</th>
             <th>Gradient</th>
-            <th>Primary Outline</th>
+            <th>Soft</th>
+            <th>Crisp</th>
           </tr>
         </thead>
         <tbody>
@@ -48,11 +48,13 @@ function themeClass(key: string): string {
             <td>基础变体</td>
             <td><zq-button type="primary">Default</zq-button></td>
             <td><zq-button variant="gradient" type="primary">Gradient</zq-button></td>
-            <td><zq-button variant="primary-outline">Outline</zq-button></td>
+            <td><zq-button variant="soft">Soft</zq-button></td>
+            <td><zq-button variant="crisp">Crisp</zq-button></td>
           </tr>
           <tr>
             <td>Plain</td>
             <td><zq-button type="primary" plain>Plain</zq-button></td>
+            <td>—</td>
             <td>—</td>
             <td>—</td>
           </tr>
@@ -60,31 +62,36 @@ function themeClass(key: string): string {
             <td>Round</td>
             <td><zq-button type="primary" round>Default</zq-button></td>
             <td><zq-button variant="gradient" type="primary" round>Gradient</zq-button></td>
-            <td><zq-button variant="primary-outline" round>Outline</zq-button></td>
+            <td><zq-button variant="soft" round>Soft</zq-button></td>
+            <td><zq-button variant="crisp" round>Crisp</zq-button></td>
           </tr>
           <tr>
             <td>Circle</td>
             <td><zq-button type="primary" :icon="Edit" circle /></td>
             <td><zq-button variant="gradient" type="primary" :icon="Edit" circle /></td>
-            <td><zq-button variant="primary-outline" :icon="Edit" circle /></td>
+            <td><zq-button variant="soft" :icon="Edit" circle /></td>
+            <td><zq-button variant="crisp" :icon="Edit" circle /></td>
           </tr>
           <tr>
             <td>Disabled</td>
             <td><zq-button type="primary" disabled>Default</zq-button></td>
             <td><zq-button variant="gradient" type="primary" disabled>Gradient</zq-button></td>
-            <td><zq-button variant="primary-outline" disabled>Outline</zq-button></td>
+            <td><zq-button variant="soft" disabled>Soft</zq-button></td>
+            <td><zq-button variant="crisp" disabled>Crisp</zq-button></td>
           </tr>
           <tr>
             <td>Link</td>
             <td><zq-button type="primary" link>Link</zq-button></td>
-            <td><zq-button type="primary" link disabled>Disabled</zq-button></td>
-            <td><zq-button variant="primary-outline" link>Outline</zq-button></td>
+            <td>—</td>
+            <td>—</td>
+            <td>—</td>
           </tr>
           <tr>
             <td>Dashed</td>
             <td><zq-button type="primary" dashed>Dashed</zq-button></td>
             <td>—</td>
-            <td><zq-button variant="primary-outline" dashed>Outline</zq-button></td>
+            <td><zq-button variant="soft" dashed>Soft</zq-button></td>
+            <td><zq-button variant="crisp" dashed>Crisp</zq-button></td>
           </tr>
         </tbody>
       </table>

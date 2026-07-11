@@ -43,15 +43,38 @@ function handleThrottleDemoClick() {
 
 </details>
 
-### 主色描边按钮
+### 命名变体
 
 <ClientOnly>
-  <div style="display:flex;flex-wrap:wrap;gap:10px;align-items:center;padding:16px 0;">
-    <zq-button variant="primary-outline">默认</zq-button>
-    <zq-button variant="primary-outline" round>Round</zq-button>
-    <zq-button variant="primary-outline" link>Link</zq-button>
-    <zq-button variant="primary-outline" dashed>Dashed</zq-button>
-    <zq-button variant="primary-outline" disabled>Disabled</zq-button>
+  <div style="display:flex;flex-direction:column;gap:16px;padding:16px 0;">
+    <div>
+      <p style="margin:0 0 8px;color:var(--vp-c-text-2);font-size:13px;">Default</p>
+      <div style="display:flex;flex-wrap:wrap;gap:10px;align-items:center;">
+        <zq-button type="primary">默认</zq-button>
+        <zq-button type="primary" round>Round</zq-button>
+        <zq-button type="primary" dashed>Dashed</zq-button>
+        <zq-button type="primary" disabled>Disabled</zq-button>
+        <zq-button type="primary" link>Link</zq-button>
+      </div>
+    </div>
+    <div>
+      <p style="margin:0 0 8px;color:var(--vp-c-text-2);font-size:13px;">soft</p>
+      <div style="display:flex;flex-wrap:wrap;gap:10px;align-items:center;">
+        <zq-button variant="soft">默认</zq-button>
+        <zq-button variant="soft" round>Round</zq-button>
+        <zq-button variant="soft" dashed>Dashed</zq-button>
+        <zq-button variant="soft" disabled>Disabled</zq-button>
+      </div>
+    </div>
+    <div>
+      <p style="margin:0 0 8px;color:var(--vp-c-text-2);font-size:13px;">crisp</p>
+      <div style="display:flex;flex-wrap:wrap;gap:10px;align-items:center;">
+        <zq-button variant="crisp">默认</zq-button>
+        <zq-button variant="crisp" round>Round</zq-button>
+        <zq-button variant="crisp" dashed>Dashed</zq-button>
+        <zq-button variant="crisp" disabled>Disabled</zq-button>
+      </div>
+    </div>
   </div>
 </ClientOnly>
 
@@ -59,11 +82,16 @@ function handleThrottleDemoClick() {
 <summary>查看代码</summary>
 
 ```vue
-<zq-button variant="primary-outline">默认</zq-button>
-<zq-button variant="primary-outline" round>Round</zq-button>
-<zq-button variant="primary-outline" link>Link</zq-button>
-<zq-button variant="primary-outline" dashed>Dashed</zq-button>
-<zq-button variant="primary-outline" disabled>Disabled</zq-button>
+<zq-button variant="soft">默认</zq-button>
+<zq-button variant="soft" round>Round</zq-button>
+<zq-button variant="soft" dashed>Dashed</zq-button>
+<zq-button variant="soft" disabled>Disabled</zq-button>
+
+<zq-button variant="crisp">默认</zq-button>
+<zq-button variant="crisp" round>Round</zq-button>
+<zq-button variant="crisp" link>Link</zq-button>
+<zq-button variant="crisp" dashed>Dashed</zq-button>
+<zq-button variant="crisp" disabled>Disabled</zq-button>
 ```
 
 </details>
@@ -75,7 +103,7 @@ function handleThrottleDemoClick() {
     <zq-button type="primary" :debounce="600" @click="handleDebounceDemoClick">
       600ms 防抖
     </zq-button>
-    <zq-button variant="primary-outline" :throttle="1000" @click="handleThrottleDemoClick">
+    <zq-button variant="crisp" :throttle="1000" @click="handleThrottleDemoClick">
       1000ms 节流
     </zq-button>
   </div>
@@ -100,7 +128,7 @@ function save() {
 <template>
   <div style="display:flex;flex-wrap:wrap;gap:10px;align-items:center;">
     <zq-button type="primary" :debounce="600" @click="submit"> 600ms 防抖 </zq-button>
-    <zq-button variant="primary-outline" :throttle="1000" @click="save"> 1000ms 节流 </zq-button>
+    <zq-button variant="crisp" :throttle="1000" @click="save"> 1000ms 节流 </zq-button>
   </div>
 </template>
 ```
@@ -127,11 +155,11 @@ function save() {
       <td>
         <code>string</code>
         <ClientOnly>
-          <el-popover placement="top" :width="180" trigger="hover">
+          <el-popover placement="top" :width="220" trigger="hover">
             <template #reference>
               <span class="type-info">?</span>
             </template>
-            <code style="font-size:13px">'gradient' | 'primary-outline'</code>
+            <code style="font-size:13px">'gradient' | 'soft' | 'crisp'</code>
           </el-popover>
         </ClientOnly>
       </td>
