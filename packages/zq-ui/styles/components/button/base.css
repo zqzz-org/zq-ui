@@ -1,0 +1,37 @@
+/* ============================================================
+ * ZQ Button 共享基础样式
+ *
+ * 禁用态覆盖等全局规则，所有 variant 共享。
+ * ============================================================ */
+
+/* --- 默认/主色按钮禁用态：各主题默认跟随 Element Plus 中性色变量 --- */
+.el-button:not(
+  :where(.el-button--success, .el-button--warning, .el-button--danger, .el-button--info)
+) {
+  --el-button-disabled-bg-color: var(--el-border-color-light);
+  --el-button-disabled-border-color: var(--el-border-color-light);
+  --el-button-disabled-text-color: var(--el-text-color-secondary);
+}
+
+.el-button.is-disabled:not(
+    :where(.el-button--success, .el-button--warning, .el-button--danger, .el-button--info)
+  ):not(.is-link):not(.is-text),
+.el-button.is-disabled:not(
+    :where(.el-button--success, .el-button--warning, .el-button--danger, .el-button--info)
+  ):not(.is-link):not(.is-text):hover,
+.el-button.is-disabled:not(
+    :where(.el-button--success, .el-button--warning, .el-button--danger, .el-button--info)
+  ):not(.is-link):not(.is-text):focus-visible,
+.el-button.is-disabled:not(
+    :where(.el-button--success, .el-button--warning, .el-button--danger, .el-button--info)
+  ):not(.is-link):not(.is-text):active {
+  background: var(--el-button-disabled-bg-color);
+  border: 1px solid var(--el-button-disabled-border-color);
+  color: var(--el-button-disabled-text-color);
+  cursor: not-allowed;
+  outline: none;
+}
+
+.el-button.is-disabled.is-dashed {
+  border-style: dashed;
+}

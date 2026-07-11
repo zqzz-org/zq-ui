@@ -1,0 +1,106 @@
+/* ============================================================
+ * Gradient：渐变背景按钮
+ *
+ * 共享属性（颜色、边框、过渡）统一声明；
+ * 各 type 只覆写 background
+ * ============================================================ */
+
+/* --- 所有 gradient 按钮的共享样式 --- */
+.zq-btn--gradient.el-button,
+.zq-btn--gradient.el-button--primary,
+.zq-btn--gradient.el-button--success,
+.zq-btn--gradient.el-button--warning,
+.zq-btn--gradient.el-button--danger,
+.zq-btn--gradient.el-button--info {
+  color: #ffffff;
+  border: none;
+  transition:
+    opacity var(--zq-transition-fast, 0.15s ease),
+    box-shadow var(--zq-transition-fast, 0.15s ease);
+}
+
+/* --- 各 type 背景色 --- */
+.zq-btn--gradient.el-button,
+.zq-btn--gradient.el-button--primary {
+  background: var(--zq-gradient-primary);
+}
+
+.zq-btn--gradient.el-button--success {
+  background: var(--zq-gradient-success);
+}
+
+.zq-btn--gradient.el-button--warning {
+  background: var(--zq-gradient-warning);
+}
+
+.zq-btn--gradient.el-button--danger {
+  background: var(--zq-gradient-danger);
+}
+
+.zq-btn--gradient.el-button--info {
+  background: var(--zq-gradient-info);
+}
+
+/* --- 交互状态（opacity 变化，与颜色无关，所有 type 共享） --- */
+.zq-btn--gradient.el-button:hover,
+.zq-btn--gradient.el-button--primary:hover,
+.zq-btn--gradient.el-button--success:hover,
+.zq-btn--gradient.el-button--warning:hover,
+.zq-btn--gradient.el-button--danger:hover,
+.zq-btn--gradient.el-button--info:hover {
+  opacity: 0.88;
+  box-shadow: var(--zq-shadow-soft, 0 2px 12px 0 rgba(0, 0, 0, 0.06));
+}
+
+.zq-btn--gradient.el-button:focus-visible,
+.zq-btn--gradient.el-button--primary:focus-visible,
+.zq-btn--gradient.el-button--success:focus-visible,
+.zq-btn--gradient.el-button--warning:focus-visible,
+.zq-btn--gradient.el-button--danger:focus-visible,
+.zq-btn--gradient.el-button--info:focus-visible {
+  outline: 2px solid var(--el-color-primary);
+  outline-offset: 2px;
+}
+
+.zq-btn--gradient.el-button:active,
+.zq-btn--gradient.el-button--primary:active,
+.zq-btn--gradient.el-button--success:active,
+.zq-btn--gradient.el-button--warning:active,
+.zq-btn--gradient.el-button--danger:active,
+.zq-btn--gradient.el-button--info:active {
+  opacity: 0.78;
+}
+
+/* --- 禁用态（主色走全局中性色，辅助色保留 EP type disabled 变量） --- */
+.zq-btn--gradient.el-button.is-disabled,
+.zq-btn--gradient.el-button.is-disabled:hover,
+.zq-btn--gradient.el-button.is-disabled:focus-visible,
+.zq-btn--gradient.el-button.is-disabled:active,
+.zq-btn--gradient.el-button--primary.is-disabled,
+.zq-btn--gradient.el-button--primary.is-disabled:hover,
+.zq-btn--gradient.el-button--primary.is-disabled:focus-visible,
+.zq-btn--gradient.el-button--primary.is-disabled:active,
+.zq-btn--gradient.el-button--success.is-disabled,
+.zq-btn--gradient.el-button--success.is-disabled:hover,
+.zq-btn--gradient.el-button--success.is-disabled:focus-visible,
+.zq-btn--gradient.el-button--success.is-disabled:active,
+.zq-btn--gradient.el-button--warning.is-disabled,
+.zq-btn--gradient.el-button--warning.is-disabled:hover,
+.zq-btn--gradient.el-button--warning.is-disabled:focus-visible,
+.zq-btn--gradient.el-button--warning.is-disabled:active,
+.zq-btn--gradient.el-button--danger.is-disabled,
+.zq-btn--gradient.el-button--danger.is-disabled:hover,
+.zq-btn--gradient.el-button--danger.is-disabled:focus-visible,
+.zq-btn--gradient.el-button--danger.is-disabled:active,
+.zq-btn--gradient.el-button--info.is-disabled,
+.zq-btn--gradient.el-button--info.is-disabled:hover,
+.zq-btn--gradient.el-button--info.is-disabled:focus-visible,
+.zq-btn--gradient.el-button--info.is-disabled:active {
+  background: var(--el-button-disabled-bg-color);
+  border: 1px solid var(--el-button-disabled-border-color);
+  color: var(--el-button-disabled-text-color);
+  opacity: 1;
+  cursor: not-allowed;
+  box-shadow: none;
+  outline: none;
+}

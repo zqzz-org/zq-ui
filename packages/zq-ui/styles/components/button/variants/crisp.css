@@ -1,0 +1,54 @@
+/* ============================================================
+ * Crisp：主色描边按钮
+ *
+ * 固定组合样式，用于业务高频主色描边按钮。
+ * ============================================================ */
+
+.zq-btn--crisp.el-button {
+  background: var(--el-color-white);
+  border: 1px solid var(--el-color-primary);
+  color: var(--el-color-primary);
+  transition:
+    background var(--zq-transition-fast, 0.15s ease),
+    border-color var(--zq-transition-fast, 0.15s ease),
+    color var(--zq-transition-fast, 0.15s ease);
+}
+
+.zq-btn--crisp.el-button:hover {
+  background: var(--el-color-primary-light-9);
+  border: 1px solid var(--el-color-primary);
+  color: var(--el-color-primary);
+}
+
+.zq-btn--crisp.el-button:active {
+  background: var(--el-color-primary-light-8);
+  border: 1px solid var(--el-color-primary);
+  color: var(--el-color-primary);
+}
+
+.zq-btn--crisp.el-button.is-dashed,
+.zq-btn--crisp.el-button.is-dashed:hover,
+.zq-btn--crisp.el-button.is-dashed:active,
+.zq-btn--crisp.el-button.is-dashed.is-disabled,
+.zq-btn--crisp.el-button.is-dashed.is-disabled:hover,
+.zq-btn--crisp.el-button.is-dashed.is-disabled:focus-visible,
+.zq-btn--crisp.el-button.is-dashed.is-disabled:active {
+  border-style: dashed;
+}
+
+.zq-btn--crisp.el-button.is-link,
+.zq-btn--crisp.el-button.is-link:hover,
+.zq-btn--crisp.el-button.is-link:active {
+  background: transparent;
+  border-color: transparent;
+  color: var(--el-color-primary);
+}
+
+.zq-btn--crisp.el-button.is-link.is-disabled,
+.zq-btn--crisp.el-button.is-link.is-disabled:hover,
+.zq-btn--crisp.el-button.is-link.is-disabled:focus-visible,
+.zq-btn--crisp.el-button.is-link.is-disabled:active {
+  background: transparent;
+  border-color: transparent;
+  color: var(--el-text-color-secondary);
+}

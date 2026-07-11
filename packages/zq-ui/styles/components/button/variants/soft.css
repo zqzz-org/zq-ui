@@ -1,0 +1,33 @@
+/* ============================================================
+ * Soft：浅主色填充按钮
+ *
+ * 柔和浅底，悬浮/点击时显示主色边界。
+ * ============================================================ */
+
+.zq-btn--soft.el-button {
+  background: var(--el-color-primary-light-8);
+  border: 1px solid transparent;
+  color: var(--el-color-primary);
+  transition:
+    background var(--zq-transition-fast, 0.15s ease),
+    border-color var(--zq-transition-fast, 0.15s ease),
+    color var(--zq-transition-fast, 0.15s ease);
+}
+
+.zq-btn--soft.el-button:hover {
+  background: var(--el-color-primary-light-9);
+  border: 1px solid var(--el-color-primary);
+  color: var(--el-color-primary);
+}
+
+.zq-btn--soft.el-button:active {
+  background: var(--el-color-primary-light-7);
+  border: 1px solid var(--el-color-primary);
+  color: var(--el-color-primary);
+}
+
+.zq-btn--soft.el-button.is-dashed,
+.zq-btn--soft.el-button.is-dashed:hover,
+.zq-btn--soft.el-button.is-dashed:active {
+  border-style: dashed;
+}

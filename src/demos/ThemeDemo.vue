@@ -52,6 +52,7 @@ const tradeRows: readonly TradeRow[] = [
             <zq-button type="primary">Primary</zq-button>
             <zq-button variant="gradient" type="primary">Gradient</zq-button>
             <zq-button variant="soft">Soft</zq-button>
+            <zq-button variant="ring">Ring</zq-button>
             <zq-button variant="crisp">Crisp</zq-button>
             <zq-badge :value="3">
               <zq-button>Badge</zq-button>

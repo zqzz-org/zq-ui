@@ -55,7 +55,7 @@ docs/                    ← VitePress 文档站
 
 自定义 props（通过 `interface ZqButtonProps extends Partial<ButtonProps>`）：
 
-- `variant?: 'gradient' | 'crisp' | 'soft'` — 对应 CSS class `zq-btn--{variant}`
+- `variant?: 'gradient' | 'crisp' | 'soft' | 'ring'` — 对应 CSS class `zq-btn--{variant}`
 
 ### Variant 命名规范
 
@@ -64,6 +64,7 @@ docs/                    ← VitePress 文档站
 - `gradient` — 渐变背景，白色文字，无边框
 - `crisp` — 白底主色描边，跟随主题主色
 - `soft` — 浅主色填充，悬浮 / 点击显示主色边框
+- `ring` — 继承 EP 默认实色填充，叠加白色描边
 
 新增风格时挑一个辨识度高的词作为新 variant，颜色交给 EP 的 `type`，不要把颜色写进 variant 名（避免 `danger-outlined` 这类组合爆炸）。同视觉家族需要多个细分时用 `家族-特征`（如未来 `outlined-dashed`），而非 `style1/style2` 编号。
 
@@ -80,7 +81,14 @@ styles/
 │   ├── xk.css                   ← 信息科技 #007F92
 │   ├── qedu.css                 ← 素养 #229065
 │   └── aistudy.css              ← 学习平台 #022B9A
-├── components/button/index.css  ← zq-btn--gradient / --crisp / --soft 样式
+├── components/button/
+│   ├── index.css                ← 聚合入口
+│   ├── base.css                 ← 共享禁用态
+│   └── variants/
+│       ├── gradient.css          ← zq-btn--gradient
+│       ├── crisp.css             ← zq-btn--crisp
+│       ├── soft.css              ← zq-btn--soft
+│       └── ring.css              ← zq-btn--ring
 └── index.ts                     ← 样式入口（按 tokens → components 顺序引入）
 ```
 
@@ -125,7 +133,8 @@ styles/
 - 包管理：**pnpm**（非 npm / yarn）
 - Vue：`^3.5.0`
 - Element Plus：`^2.13.7`
-- `variant` 包含 `gradient`、`crisp`、`soft`，EP 原生的 `dashed` 不做二次封装
-- Variant 颜色跟随 `type` 变化：variant 控制渲染方式（渐变 / 描边 / 浅色），type 控制颜色系别（primary/success/warning/danger/info）
+- `variant` 包含 `gradient`、`crisp`、`soft`、`ring`，EP 原生的 `dashed` 不做二次封装
+- Variant 颜色跟随 `type` 变化：variant 控制渲染方式（渐变 / 描边 / 浅色 / 白环），type 控制颜色系别（primary/success/warning/danger/info）
 - 每次修改代码后**必须**做 TS 类型校验（`vue-tsc --noEmit`）+ 跑测试（`vitest run`）
 - 禁止使用 `any`，尽量不写类型断言（`as`），优先靠泛型和类型推导
+- **新增 variant 或功能后必须同步更新**：`docs/components/button.md`（文档示例 + API 表格）、Playground demo（`src/demos/`）、主题矩阵（`ThemeButtonDemo.vue`）、测试用例

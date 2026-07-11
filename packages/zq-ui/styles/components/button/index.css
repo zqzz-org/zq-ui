@@ -2,7 +2,7 @@
  * ZQ Button 变体样式
  * 全局样式，引入 zq-ui/styles 后生效
  *
- * variant 控制"怎么画"（渐变 / 主色描边），type 控制"什么色"
+ * variant 控制"怎么画"（渐变 / 描边 / 浅色 / 白环），type 控制"什么色"
  * - .el-button          → 未传 type，默认走 primary 色系
  * - .el-button--primary → 蓝色系
  * - .el-button--success → 绿色系
@@ -14,228 +14,17 @@
  * - :hover          → 悬浮反馈
  * - :focus-visible  → 键盘导航轮廓
  * - :active         → 点击反馈
- * ============================================================ */
-
-/* --- 默认/主色按钮禁用态：各主题默认跟随 Element Plus 中性色变量 --- */
-.el-button:not(
-  :where(.el-button--success, .el-button--warning, .el-button--danger, .el-button--info)
-) {
-  --el-button-disabled-bg-color: var(--el-border-color-light);
-  --el-button-disabled-border-color: var(--el-border-color-light);
-  --el-button-disabled-text-color: var(--el-text-color-secondary);
-}
-
-.el-button.is-disabled:not(
-    :where(.el-button--success, .el-button--warning, .el-button--danger, .el-button--info)
-  ):not(.is-link):not(.is-text),
-.el-button.is-disabled:not(
-    :where(.el-button--success, .el-button--warning, .el-button--danger, .el-button--info)
-  ):not(.is-link):not(.is-text):hover,
-.el-button.is-disabled:not(
-    :where(.el-button--success, .el-button--warning, .el-button--danger, .el-button--info)
-  ):not(.is-link):not(.is-text):focus-visible,
-.el-button.is-disabled:not(
-    :where(.el-button--success, .el-button--warning, .el-button--danger, .el-button--info)
-  ):not(.is-link):not(.is-text):active {
-  background: var(--el-button-disabled-bg-color) !important;
-  border: 1px solid var(--el-button-disabled-border-color) !important;
-  color: var(--el-button-disabled-text-color) !important;
-  cursor: not-allowed;
-  outline: none;
-}
-
-.el-button.is-disabled.is-dashed {
-  border-style: dashed !important;
-}
-
-/* ============================================================
- * Gradient：渐变背景按钮
  *
- * 共享属性（颜色、边框、过渡）统一声明；
- * 各 type 只覆写 background
+ * 文件组织：
+ * - base.css            共享禁用态
+ * - variants/gradient.css  渐变背景
+ * - variants/crisp.css     主色描边
+ * - variants/soft.css      浅色填充
+ * - variants/ring.css      实色白环
  * ============================================================ */
 
-/* --- 所有 gradient 按钮的共享样式 --- */
-.zq-btn--gradient.el-button,
-.zq-btn--gradient.el-button--primary,
-.zq-btn--gradient.el-button--success,
-.zq-btn--gradient.el-button--warning,
-.zq-btn--gradient.el-button--danger,
-.zq-btn--gradient.el-button--info {
-  color: #ffffff !important;
-  border: none !important;
-  transition:
-    opacity var(--zq-transition-fast, 0.15s ease),
-    box-shadow var(--zq-transition-fast, 0.15s ease);
-}
-
-/* --- 各 type 背景色 --- */
-.zq-btn--gradient.el-button,
-.zq-btn--gradient.el-button--primary {
-  background: var(--zq-gradient-primary) !important;
-}
-.zq-btn--gradient.el-button--success {
-  background: var(--zq-gradient-success) !important;
-}
-.zq-btn--gradient.el-button--warning {
-  background: var(--zq-gradient-warning) !important;
-}
-.zq-btn--gradient.el-button--danger {
-  background: var(--zq-gradient-danger) !important;
-}
-.zq-btn--gradient.el-button--info {
-  background: var(--zq-gradient-info) !important;
-}
-
-/* --- 交互状态（opacity 变化，与颜色无关，所有 type 共享） --- */
-.zq-btn--gradient.el-button:hover,
-.zq-btn--gradient.el-button--primary:hover,
-.zq-btn--gradient.el-button--success:hover,
-.zq-btn--gradient.el-button--warning:hover,
-.zq-btn--gradient.el-button--danger:hover,
-.zq-btn--gradient.el-button--info:hover {
-  opacity: 0.88;
-  box-shadow: var(--zq-shadow-soft, 0 2px 12px 0 rgba(0, 0, 0, 0.06));
-}
-
-.zq-btn--gradient.el-button:focus-visible,
-.zq-btn--gradient.el-button--primary:focus-visible,
-.zq-btn--gradient.el-button--success:focus-visible,
-.zq-btn--gradient.el-button--warning:focus-visible,
-.zq-btn--gradient.el-button--danger:focus-visible,
-.zq-btn--gradient.el-button--info:focus-visible {
-  outline: 2px solid var(--el-color-primary);
-  outline-offset: 2px;
-}
-
-.zq-btn--gradient.el-button:active,
-.zq-btn--gradient.el-button--primary:active,
-.zq-btn--gradient.el-button--success:active,
-.zq-btn--gradient.el-button--warning:active,
-.zq-btn--gradient.el-button--danger:active,
-.zq-btn--gradient.el-button--info:active {
-  opacity: 0.78;
-}
-
-/* --- 禁用态（主色走全局中性色，辅助色保留 EP type disabled 变量） --- */
-.zq-btn--gradient.el-button.is-disabled,
-.zq-btn--gradient.el-button.is-disabled:hover,
-.zq-btn--gradient.el-button.is-disabled:focus-visible,
-.zq-btn--gradient.el-button.is-disabled:active,
-.zq-btn--gradient.el-button--primary.is-disabled,
-.zq-btn--gradient.el-button--primary.is-disabled:hover,
-.zq-btn--gradient.el-button--primary.is-disabled:focus-visible,
-.zq-btn--gradient.el-button--primary.is-disabled:active,
-.zq-btn--gradient.el-button--success.is-disabled,
-.zq-btn--gradient.el-button--success.is-disabled:hover,
-.zq-btn--gradient.el-button--success.is-disabled:focus-visible,
-.zq-btn--gradient.el-button--success.is-disabled:active,
-.zq-btn--gradient.el-button--warning.is-disabled,
-.zq-btn--gradient.el-button--warning.is-disabled:hover,
-.zq-btn--gradient.el-button--warning.is-disabled:focus-visible,
-.zq-btn--gradient.el-button--warning.is-disabled:active,
-.zq-btn--gradient.el-button--danger.is-disabled,
-.zq-btn--gradient.el-button--danger.is-disabled:hover,
-.zq-btn--gradient.el-button--danger.is-disabled:focus-visible,
-.zq-btn--gradient.el-button--danger.is-disabled:active,
-.zq-btn--gradient.el-button--info.is-disabled,
-.zq-btn--gradient.el-button--info.is-disabled:hover,
-.zq-btn--gradient.el-button--info.is-disabled:focus-visible,
-.zq-btn--gradient.el-button--info.is-disabled:active {
-  background: var(--el-button-disabled-bg-color) !important;
-  border: 1px solid var(--el-button-disabled-border-color) !important;
-  color: var(--el-button-disabled-text-color) !important;
-  opacity: 1;
-  cursor: not-allowed;
-  box-shadow: none;
-  outline: none;
-}
-
-/* ============================================================
- * Soft：浅主色填充按钮
- *
- * 柔和浅底，悬浮/点击时显示主色边界。
- * ============================================================ */
-
-.zq-btn--soft.el-button {
-  background: var(--el-color-primary-light-8) !important;
-  border: 1px solid transparent !important;
-  color: var(--el-color-primary) !important;
-  transition:
-    background var(--zq-transition-fast, 0.15s ease),
-    border-color var(--zq-transition-fast, 0.15s ease),
-    color var(--zq-transition-fast, 0.15s ease);
-}
-
-.zq-btn--soft.el-button:hover {
-  background: var(--el-color-primary-light-9) !important;
-  border: 1px solid var(--el-color-primary) !important;
-  color: var(--el-color-primary) !important;
-}
-
-.zq-btn--soft.el-button:active {
-  background: var(--el-color-primary-light-7) !important;
-  border: 1px solid var(--el-color-primary) !important;
-  color: var(--el-color-primary) !important;
-}
-
-.zq-btn--soft.el-button.is-dashed,
-.zq-btn--soft.el-button.is-dashed:hover,
-.zq-btn--soft.el-button.is-dashed:active {
-  border-style: dashed !important;
-}
-
-/* ============================================================
- * Crisp：主色描边按钮
- *
- * 固定组合样式，用于业务高频主色描边按钮。
- * ============================================================ */
-
-.zq-btn--crisp.el-button {
-  background: var(--el-color-white) !important;
-  border: 1px solid var(--el-color-primary) !important;
-  color: var(--el-color-primary) !important;
-  transition:
-    background var(--zq-transition-fast, 0.15s ease),
-    border-color var(--zq-transition-fast, 0.15s ease),
-    color var(--zq-transition-fast, 0.15s ease);
-}
-
-.zq-btn--crisp.el-button:hover {
-  background: var(--el-color-primary-light-9) !important;
-  border: 1px solid var(--el-color-primary) !important;
-  color: var(--el-color-primary) !important;
-}
-
-.zq-btn--crisp.el-button:active {
-  background: var(--el-color-primary-light-8) !important;
-  border: 1px solid var(--el-color-primary) !important;
-  color: var(--el-color-primary) !important;
-}
-
-.zq-btn--crisp.el-button.is-dashed,
-.zq-btn--crisp.el-button.is-dashed:hover,
-.zq-btn--crisp.el-button.is-dashed:active,
-.zq-btn--crisp.el-button.is-dashed.is-disabled,
-.zq-btn--crisp.el-button.is-dashed.is-disabled:hover,
-.zq-btn--crisp.el-button.is-dashed.is-disabled:focus-visible,
-.zq-btn--crisp.el-button.is-dashed.is-disabled:active {
-  border-style: dashed !important;
-}
-
-.zq-btn--crisp.el-button.is-link,
-.zq-btn--crisp.el-button.is-link:hover,
-.zq-btn--crisp.el-button.is-link:active {
-  background: transparent !important;
-  border-color: transparent !important;
-  color: var(--el-color-primary) !important;
-}
-
-.zq-btn--crisp.el-button.is-link.is-disabled,
-.zq-btn--crisp.el-button.is-link.is-disabled:hover,
-.zq-btn--crisp.el-button.is-link.is-disabled:focus-visible,
-.zq-btn--crisp.el-button.is-link.is-disabled:active {
-  background: transparent !important;
-  border-color: transparent !important;
-  color: var(--el-text-color-secondary) !important;
-}
+@import './base.css';
+@import './variants/gradient.css';
+@import './variants/crisp.css';
+@import './variants/soft.css';
+@import './variants/ring.css';

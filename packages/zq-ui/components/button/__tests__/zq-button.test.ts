@@ -40,12 +40,20 @@ describe('zq-button', () => {
     expect(wrapper.find('.el-button').classes()).toContain('zq-btn--soft')
   })
 
+  it('variant="ring" 时添加 zq-btn--ring class', () => {
+    const wrapper = mount(ZqButton, {
+      props: { variant: 'ring' },
+    })
+    expect(wrapper.find('.el-button').classes()).toContain('zq-btn--ring')
+  })
+
   it('未传 variant 时不添加额外 class', () => {
     const wrapper = mount(ZqButton)
     const classes = wrapper.find('.el-button').classes()
     expect(classes).not.toContain('zq-btn--gradient')
     expect(classes).not.toContain('zq-btn--crisp')
     expect(classes).not.toContain('zq-btn--soft')
+    expect(classes).not.toContain('zq-btn--ring')
   })
 
   it('variant 作为自定义属性不透传到底层按钮', () => {
@@ -157,6 +165,15 @@ describe('zq-button', () => {
     })
     const classes = wrapper.find('.el-button').classes()
     expect(classes).toContain('zq-btn--soft')
+    expect(classes).toContain('is-dashed')
+  })
+
+  it('ring variant 和 dashed 可同时生效', () => {
+    const wrapper = mount(ZqButton, {
+      props: { variant: 'ring', dashed: true },
+    })
+    const classes = wrapper.find('.el-button').classes()
+    expect(classes).toContain('zq-btn--ring')
     expect(classes).toContain('is-dashed')
   })
 
@@ -341,6 +358,7 @@ describe('zq-button', () => {
     expect(classes).not.toContain('zq-btn--gradient')
     expect(classes).not.toContain('zq-btn--crisp')
     expect(classes).not.toContain('zq-btn--soft')
+    expect(classes).not.toContain('zq-btn--ring')
     // Element Plus 默认 type 不加 type class
     expect(classes).not.toContain('el-button--primary')
     expect(classes).not.toContain('el-button--success')

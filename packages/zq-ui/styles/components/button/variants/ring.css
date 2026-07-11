@@ -1,0 +1,80 @@
+/* ============================================================
+ * Ring：实色白环按钮
+ *
+ * 继承 EP 默认实色填充，叠加白色描边。
+ * 通过重置 EP CSS 变量锁定 default/hover/active 三态的
+ * 背景 / 文字 / 边框，防止 dashed 等修饰符覆盖为 plain 风格。
+ * 禁用态使用 EP 原生样式，不做自定义。
+ * ============================================================ */
+
+/* --- 锁定实色填充 + 白边框（三态全覆盖） --- */
+.zq-btn--ring.el-button:not(.is-disabled),
+.zq-btn--ring.el-button--primary:not(.is-disabled) {
+  --el-button-bg-color: var(--el-color-primary);
+  --el-button-text-color: var(--el-color-white);
+  --el-button-border-color: var(--el-color-white);
+  --el-button-hover-bg-color: var(--el-color-primary-light-3);
+  --el-button-hover-text-color: var(--el-color-white);
+  --el-button-hover-border-color: var(--el-color-white);
+  --el-button-active-bg-color: var(--el-color-primary-dark-2);
+  --el-button-active-text-color: var(--el-color-white);
+  --el-button-active-border-color: var(--el-color-white);
+}
+
+.zq-btn--ring.el-button--success:not(.is-disabled) {
+  --el-button-bg-color: var(--el-color-success);
+  --el-button-text-color: var(--el-color-white);
+  --el-button-border-color: var(--el-color-white);
+  --el-button-hover-bg-color: var(--el-color-success-light-3);
+  --el-button-hover-text-color: var(--el-color-white);
+  --el-button-hover-border-color: var(--el-color-white);
+  --el-button-active-bg-color: var(--el-color-success-dark-2);
+  --el-button-active-text-color: var(--el-color-white);
+  --el-button-active-border-color: var(--el-color-white);
+}
+
+.zq-btn--ring.el-button--warning:not(.is-disabled) {
+  --el-button-bg-color: var(--el-color-warning);
+  --el-button-text-color: var(--el-color-white);
+  --el-button-border-color: var(--el-color-white);
+  --el-button-hover-bg-color: var(--el-color-warning-light-3);
+  --el-button-hover-text-color: var(--el-color-white);
+  --el-button-hover-border-color: var(--el-color-white);
+  --el-button-active-bg-color: var(--el-color-warning-dark-2);
+  --el-button-active-text-color: var(--el-color-white);
+  --el-button-active-border-color: var(--el-color-white);
+}
+
+.zq-btn--ring.el-button--danger:not(.is-disabled) {
+  --el-button-bg-color: var(--el-color-danger);
+  --el-button-text-color: var(--el-color-white);
+  --el-button-border-color: var(--el-color-white);
+  --el-button-hover-bg-color: var(--el-color-danger-light-3);
+  --el-button-hover-text-color: var(--el-color-white);
+  --el-button-hover-border-color: var(--el-color-white);
+  --el-button-active-bg-color: var(--el-color-danger-dark-2);
+  --el-button-active-text-color: var(--el-color-white);
+  --el-button-active-border-color: var(--el-color-white);
+}
+
+.zq-btn--ring.el-button--info:not(.is-disabled) {
+  --el-button-bg-color: var(--el-color-info);
+  --el-button-text-color: var(--el-color-white);
+  --el-button-border-color: var(--el-color-white);
+  --el-button-hover-bg-color: var(--el-color-info-light-3);
+  --el-button-hover-text-color: var(--el-color-white);
+  --el-button-hover-border-color: var(--el-color-white);
+  --el-button-active-bg-color: var(--el-color-info-dark-2);
+  --el-button-active-text-color: var(--el-color-white);
+  --el-button-active-border-color: var(--el-color-white);
+}
+
+/* --- dashed：仅切换边框线型 --- */
+.zq-btn--ring.el-button.is-dashed:not(.is-disabled),
+.zq-btn--ring.el-button--primary.is-dashed:not(.is-disabled),
+.zq-btn--ring.el-button--success.is-dashed:not(.is-disabled),
+.zq-btn--ring.el-button--warning.is-dashed:not(.is-disabled),
+.zq-btn--ring.el-button--danger.is-dashed:not(.is-disabled),
+.zq-btn--ring.el-button--info.is-dashed:not(.is-disabled) {
+  border-style: dashed;
+}
