@@ -96,6 +96,6 @@ Element Plus 变量仍然可以直接覆盖：
 | `styles/themes/*.css`                | 内置主题        |
 | `styles/components/button/index.css` | Button 组件样式 |
 
-`styles/vars.css` 和 `styles/button.css` 会继续保留为兼容入口。
+直接引入 `zq-ui/styles` 即可，入口文件会按顺序聚合基础 token 和组件样式。
 
 > 自定义变量的引入顺序需要在 `zq-ui/styles` 之后。

@@ -49,13 +49,23 @@ docs/                    ← VitePress 文档站
 
 1. **Slot 转发** — `v-for` 遍历 `useSlots()`，动态 `#[name]` 转发所有插槽
 2. **Attrs 转发** — `forwardedBindings` 计算属性：
-   - 从 `props` 中拆出自定义属性（`variant`、`debounce`），其余 EP 属性原样透传
-   - 从 `useAttrs()` 中拆出 `onClick`，按需包一层防抖逻辑后放回
+   - 从 `props` 中拆出自定义属性（`variant`、`debounce`、`throttle`），其余 EP 属性原样透传
+   - 从 `useAttrs()` 中拆出 `onClick`，按需包一层防抖 / 节流逻辑后放回
    - 其他事件（`onDblclick`、`onMouseenter` 等）和 HTML 属性直接透传
 
 自定义 props（通过 `interface ZqButtonProps extends Partial<ButtonProps>`）：
 
-- `variant?: 'gradient' | 'soft'` — 对应 CSS class `zq-btn--{variant}`
+- `variant?: 'gradient' | 'crisp' | 'soft'` — 对应 CSS class `zq-btn--{variant}`
+
+### Variant 命名规范
+
+采取**预设式命名**：每个 variant 值是一个短、唯一、好记的预设名，只描述视觉模式、不描述颜色（颜色归 theme/type）。
+
+- `gradient` — 渐变背景，白色文字，无边框
+- `crisp` — 白底主色描边，跟随主题主色
+- `soft` — 浅主色填充，悬浮 / 点击显示主色边框
+
+新增风格时挑一个辨识度高的词作为新 variant，颜色交给 EP 的 `type`，不要把颜色写进 variant 名（避免 `danger-outlined` 这类组合爆炸）。同视觉家族需要多个细分时用 `家族-特征`（如未来 `outlined-dashed`），而非 `style1/style2` 编号。
 
 ### 主题体系
 
@@ -70,9 +80,7 @@ styles/
 │   ├── xk.css                   ← 信息科技 #007F92
 │   ├── qedu.css                 ← 素养 #229065
 │   └── aistudy.css              ← 学习平台 #022B9A
-├── components/button/index.css  ← zq-btn--gradient / --soft 样式
-├── vars.css                     ← @import './tokens/base.css'（遗留兼容）
-├── button.css                   ← @import './components/button/index.css'（遗留兼容）
+├── components/button/index.css  ← zq-btn--gradient / --crisp / --soft 样式
 └── index.ts                     ← 样式入口（按 tokens → components 顺序引入）
 ```
 
@@ -117,7 +125,7 @@ styles/
 - 包管理：**pnpm**（非 npm / yarn）
 - Vue：`^3.5.0`
 - Element Plus：`^2.13.7`
-- `variant` 只有 `gradient` 和 `soft`，EP 原生的 `dashed` 不做二次封装
-- Variant 颜色跟随 `type` 变化：variant 控制渲染方式（渐变/浅色），type 控制颜色系别（primary/success/warning/danger/info）
+- `variant` 包含 `gradient`、`crisp`、`soft`，EP 原生的 `dashed` 不做二次封装
+- Variant 颜色跟随 `type` 变化：variant 控制渲染方式（渐变 / 描边 / 浅色），type 控制颜色系别（primary/success/warning/danger/info）
 - 每次修改代码后**必须**做 TS 类型校验（`vue-tsc --noEmit`）+ 跑测试（`vitest run`）
 - 禁止使用 `any`，尽量不写类型断言（`as`），优先靠泛型和类型推导
