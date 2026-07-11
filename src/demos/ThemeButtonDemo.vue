@@ -50,7 +50,7 @@ function themeClass(key: string): string {
           <tr>
             <td>基础变体</td>
             <td><zq-button type="primary">Default</zq-button></td>
-            <td><zq-button variant="gradient" type="primary">Gradient</zq-button></td>
+            <td><zq-button type="primary">Gradient</zq-button></td>
             <td><zq-button variant="soft">Soft</zq-button></td>
             <td><zq-button variant="crisp">Crisp</zq-button></td>
             <td><zq-button variant="ring">Ring</zq-button></td>

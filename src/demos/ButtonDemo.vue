@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { shallowRef } from 'vue'
+import { Edit } from '@element-plus/icons-vue'
 
 const normalClickCount = shallowRef(0)
 const debouncedClickCount = shallowRef(0)
@@ -52,6 +53,24 @@ function increaseThrottledClickCount() {
         <zq-button variant="reveal">Reveal</zq-button>
         <zq-button variant="crisp">Crisp</zq-button>
         <zq-button variant="gradient" type="danger" disabled>Disabled</zq-button>
+      </div>
+    </div>
+
+    <h2 style="margin-top: 32px">自定义尺寸</h2>
+    <p class="demo-label">block-*（固定宽度）</p>
+    <div class="demo-block">
+      <div class="demo-row">
+        <zq-button variant="gradient" size="block-hefty" :icon="Edit">block-hefty</zq-button>
+        <zq-button variant="crisp" size="block-stout">block-stout</zq-button>
+        <zq-button variant="soft" size="block-lean" :icon="Edit">block-lean</zq-button>
+      </div>
+    </div>
+    <p class="demo-label">inline-*（自适应宽度）</p>
+    <div class="demo-block">
+      <div class="demo-row">
+        <zq-button variant="soft" size="inline-roomy" :icon="Edit">inline-roomy</zq-button>
+        <zq-button variant="ghost" size="inline-comfy">inline-comfy</zq-button>
+        <zq-button variant="reveal" size="inline-trim" :icon="Edit">inline-trim</zq-button>
       </div>
     </div>
 

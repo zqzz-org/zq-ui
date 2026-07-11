@@ -26,6 +26,7 @@
  * ============================================================ */
 
 @import './base.css';
+@import './sizes.css';
 @import './variants/gradient.css';
 @import './variants/crisp.css';
 @import './variants/soft.css';

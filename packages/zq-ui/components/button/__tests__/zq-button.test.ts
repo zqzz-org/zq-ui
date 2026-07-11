@@ -95,6 +95,20 @@ describe('zq-button', () => {
     expect(wrapper.find('.el-button').classes()).toContain('el-button--large')
   })
 
+  it('自定义 size="block-hefty" 添加 zq-btn--size-block-hefty class', () => {
+    const wrapper = mount(ZqButton, {
+      props: { size: 'block-hefty' },
+    })
+    expect(wrapper.find('.el-button').classes()).toContain('zq-btn--size-block-hefty')
+  })
+
+  it('自定义 size 不透传给底层 el-button', () => {
+    const wrapper = mount(ZqButton, {
+      props: { size: 'inline-trim' },
+    })
+    expect(wrapper.find('.el-button').attributes('size')).toBeUndefined()
+  })
+
   it('透传 disabled 属性', () => {
     const wrapper = mount(ZqButton, {
       props: { disabled: true },

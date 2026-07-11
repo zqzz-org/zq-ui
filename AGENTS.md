@@ -56,6 +56,7 @@ docs/                    ← VitePress 文档站
 自定义 props（通过 `interface ZqButtonProps extends Partial<ButtonProps>`）：
 
 - `variant?: 'gradient' | 'crisp' | 'soft' | 'ring' | 'ghost' | 'reveal'` — 对应 CSS class `zq-btn--{variant}`
+- `size?: 'large' | 'default' | 'small' | block-* | inline-*` — EP 原生值透传，自定义值生成 `zq-btn--size-{value}` class，block-* 固定宽度、inline-* 自适应
 
 ### Variant 命名规范
 
@@ -86,6 +87,7 @@ styles/
 ├── components/button/
 │   ├── index.css                ← 聚合入口
 │   ├── base.css                 ← 共享禁用态
+│   ├── sizes.css                ← 自定义尺寸
 │   └── variants/
 │       ├── gradient.css          ← zq-btn--gradient
 │       ├── crisp.css             ← zq-btn--crisp

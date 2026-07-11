@@ -2,6 +2,7 @@
 
 <script setup lang="ts">
 import { ElMessage } from 'element-plus'
+import { Edit } from '@element-plus/icons-vue'
 
 function handleDebounceDemoClick() {
   ElMessage.success('防抖点击触发')
@@ -138,6 +139,75 @@ function handleThrottleDemoClick() {
 
 </details>
 
+### 尺寸
+
+`size` 属性在 EP 原生值（`large` / `default` / `small`）之外扩展了两类自定义尺寸：
+
+- **block-\*** — 固定宽度，适合表单提交、对话框底部按钮
+- **inline-\*** — 自适应宽度，适合工具栏、表格操作列
+
+<ClientOnly>
+  <div style="display:flex;flex-direction:column;gap:16px;padding:16px 0;">
+    <div>
+      <p style="margin:0 0 8px;color:var(--vp-c-text-2);font-size:13px;">block-hefty（240×56 / 20px）</p>
+      <div style="display:flex;flex-wrap:wrap;gap:10px;align-items:center;">
+        <zq-button variant="gradient" size="block-hefty" :icon="Edit">确认支付</zq-button>
+        <zq-button variant="crisp" size="block-hefty">取消</zq-button>
+      </div>
+    </div>
+    <div>
+      <p style="margin:0 0 8px;color:var(--vp-c-text-2);font-size:13px;">block-stout（240×56 / 18px）</p>
+      <div style="display:flex;flex-wrap:wrap;gap:10px;align-items:center;">
+        <zq-button variant="gradient" size="block-stout" :icon="Edit">确认支付</zq-button>
+        <zq-button variant="crisp" size="block-stout">取消</zq-button>
+      </div>
+    </div>
+    <div>
+      <p style="margin:0 0 8px;color:var(--vp-c-text-2);font-size:13px;">block-lean（248×40 / 16px）</p>
+      <div style="display:flex;flex-wrap:wrap;gap:10px;align-items:center;">
+        <zq-button variant="gradient" size="block-lean" :icon="Edit">确认支付</zq-button>
+        <zq-button variant="crisp" size="block-lean">取消</zq-button>
+      </div>
+    </div>
+    <div>
+      <p style="margin:0 0 8px;color:var(--vp-c-text-2);font-size:13px;">inline-roomy（H40 / 18px）</p>
+      <div style="display:flex;flex-wrap:wrap;gap:10px;align-items:center;">
+        <zq-button variant="soft" size="inline-roomy" :icon="Edit">编辑</zq-button>
+        <zq-button variant="ghost" size="inline-roomy">查看</zq-button>
+      </div>
+    </div>
+    <div>
+      <p style="margin:0 0 8px;color:var(--vp-c-text-2);font-size:13px;">inline-comfy（H36 / 18px）</p>
+      <div style="display:flex;flex-wrap:wrap;gap:10px;align-items:center;">
+        <zq-button variant="soft" size="inline-comfy" :icon="Edit">编辑</zq-button>
+        <zq-button variant="ghost" size="inline-comfy">查看</zq-button>
+      </div>
+    </div>
+    <div>
+      <p style="margin:0 0 8px;color:var(--vp-c-text-2);font-size:13px;">inline-trim（H32 / 16px）</p>
+      <div style="display:flex;flex-wrap:wrap;gap:10px;align-items:center;">
+        <zq-button variant="soft" size="inline-trim" :icon="Edit">编辑</zq-button>
+        <zq-button variant="ghost" size="inline-trim">查看</zq-button>
+      </div>
+    </div>
+  </div>
+</ClientOnly>
+
+<details>
+<summary>查看代码</summary>
+
+```vue
+<zq-button variant="gradient" size="block-hefty">确认支付</zq-button>
+<zq-button variant="crisp" size="block-stout">取消</zq-button>
+<zq-button variant="gradient" size="block-lean">确认支付</zq-button>
+
+<zq-button variant="soft" size="inline-roomy">编辑</zq-button>
+<zq-button variant="ghost" size="inline-comfy">查看</zq-button>
+<zq-button variant="reveal" size="inline-trim">删除</zq-button>
+```
+
+</details>
+
 ### 防抖与节流
 
 <ClientOnly>
@@ -191,6 +261,12 @@ function save() {
     </tr>
   </thead>
   <tbody>
+    <tr>
+      <td>size</td>
+      <td>按钮尺寸，EP 原生 <code>large</code> / <code>default</code> / <code>small</code> + 自定义 <code>block-hefty</code> / <code>block-stout</code> / <code>block-lean</code> / <code>inline-roomy</code> / <code>inline-comfy</code> / <code>inline-trim</code></td>
+      <td><code>string</code></td>
+      <td>—</td>
+    </tr>
     <tr>
       <td>variant</td>
       <td>按钮样式变体</td>

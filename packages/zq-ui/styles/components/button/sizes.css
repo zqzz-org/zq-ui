@@ -1,0 +1,63 @@
+/* ============================================================
+ * ZQ Button 自定义尺寸
+ *
+ * block-*  固定宽度，用于表单提交、对话框底部
+ * inline-* 自适应宽度，用于工具栏、表格操作列
+ * ============================================================ */
+
+/* --- block-hefty：240×56 / 20px --- */
+.zq-btn--size-block-hefty:not(.is-circle) {
+  width: 240px;
+  height: 56px;
+  font-size: 20px;
+}
+.zq-btn--size-block-hefty.is-circle {
+  width: 56px;
+  height: 56px;
+}
+
+/* --- block-stout：240×56 / 18px --- */
+.zq-btn--size-block-stout:not(.is-circle) {
+  width: 240px;
+  height: 56px;
+  font-size: 18px;
+}
+.zq-btn--size-block-stout.is-circle {
+  width: 56px;
+  height: 56px;
+}
+
+/* --- block-lean：248×40 / 16px --- */
+.zq-btn--size-block-lean:not(.is-circle) {
+  width: 248px;
+  height: 40px;
+  font-size: 16px;
+}
+.zq-btn--size-block-lean.is-circle {
+  width: 40px;
+  height: 40px;
+}
+
+/* --- inline-roomy：H40 / 18px / 自适应宽 --- */
+.zq-btn--size-inline-roomy {
+  height: 40px;
+  font-size: 18px;
+  padding-left: 16px;
+  padding-right: 16px;
+}
+
+/* --- inline-comfy：H36 / 18px / 自适应宽 --- */
+.zq-btn--size-inline-comfy {
+  height: 36px;
+  font-size: 18px;
+  padding-left: 16px;
+  padding-right: 16px;
+}
+
+/* --- inline-trim：H32 / 16px / 自适应宽 --- */
+.zq-btn--size-inline-trim {
+  height: 32px;
+  font-size: 16px;
+  padding-left: 16px;
+  padding-right: 16px;
+}
