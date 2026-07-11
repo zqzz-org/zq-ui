@@ -36,8 +36,9 @@ interface ZqButtonProps extends Omit<Partial<ButtonProps>, 'size'> {
    * - `ring`：继承 EP 默认实色填充，叠加白色描边
    * - `ghost`：透明底 + 主色文字 + 主色描边，悬浮/点击显形
    * - `reveal`：白底灰框，悬浮/点击时主色浮现
+   * - `bare`：极简文字，无背景无边框，hover/active 变色
    */
-  variant?: 'gradient' | 'crisp' | 'soft' | 'ring' | 'ghost' | 'reveal'
+  variant?: 'gradient' | 'crisp' | 'soft' | 'ring' | 'ghost' | 'reveal' | 'bare'
   /**
    * 按钮尺寸，EP 原生值与自定义值共存
    * - EP 原生：`large` / `default` / `small`（原样透传）

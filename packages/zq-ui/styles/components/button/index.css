@@ -23,6 +23,7 @@
  * - variants/ring.css      实色白环
  * - variants/ghost.css     透明幽灵
  * - variants/reveal.css    浮现按钮
+ * - variants/bare.css      极简文字
  * ============================================================ */
 
 @import './base.css';
@@ -33,3 +34,4 @@
 @import './variants/ring.css';
 @import './variants/ghost.css';
 @import './variants/reveal.css';
+@import './variants/bare.css';

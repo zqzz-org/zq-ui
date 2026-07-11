@@ -61,6 +61,13 @@ describe('zq-button', () => {
     expect(wrapper.find('.el-button').classes()).toContain('zq-btn--reveal')
   })
 
+  it('variant="bare" 时添加 zq-btn--bare class', () => {
+    const wrapper = mount(ZqButton, {
+      props: { variant: 'bare' },
+    })
+    expect(wrapper.find('.el-button').classes()).toContain('zq-btn--bare')
+  })
+
   it('未传 variant 时不添加额外 class', () => {
     const wrapper = mount(ZqButton)
     const classes = wrapper.find('.el-button').classes()
@@ -70,6 +77,7 @@ describe('zq-button', () => {
     expect(classes).not.toContain('zq-btn--ring')
     expect(classes).not.toContain('zq-btn--ghost')
     expect(classes).not.toContain('zq-btn--reveal')
+    expect(classes).not.toContain('zq-btn--bare')
   })
 
   it('variant 作为自定义属性不透传到底层按钮', () => {
@@ -391,6 +399,7 @@ describe('zq-button', () => {
     expect(classes).not.toContain('zq-btn--ring')
     expect(classes).not.toContain('zq-btn--ghost')
     expect(classes).not.toContain('zq-btn--reveal')
+    expect(classes).not.toContain('zq-btn--bare')
     // Element Plus 默认 type 不加 type class
     expect(classes).not.toContain('el-button--primary')
     expect(classes).not.toContain('el-button--success')

@@ -1,0 +1,79 @@
+/* ============================================================
+ * Bare：极简文字按钮
+ *
+ * 无背景无边框，纯文字/icon 交互变色。
+ * ============================================================ */
+
+.zq-btn--bare.el-button:not(.is-disabled),
+.zq-btn--bare.el-button--primary:not(.is-disabled) {
+  background: transparent;
+  border: none;
+  color: var(--el-text-color-primary);
+  transition: color var(--zq-transition-fast, 0.15s ease);
+}
+
+.zq-btn--bare.el-button:not(.is-disabled):hover,
+.zq-btn--bare.el-button--primary:not(.is-disabled):hover {
+  background: transparent;
+  border: none;
+  color: var(--el-color-primary);
+}
+
+.zq-btn--bare.el-button:not(.is-disabled):active,
+.zq-btn--bare.el-button--primary:not(.is-disabled):active {
+  background: transparent;
+  border: none;
+  color: var(--el-color-primary-dark-2);
+}
+
+/* --- success --- */
+.zq-btn--bare.el-button--success:not(.is-disabled) {
+  background: transparent;
+  border: none;
+  color: var(--el-color-success);
+}
+.zq-btn--bare.el-button--success:not(.is-disabled):hover {
+  color: var(--el-color-success);
+}
+.zq-btn--bare.el-button--success:not(.is-disabled):active {
+  color: var(--el-color-success-dark-2);
+}
+
+/* --- warning --- */
+.zq-btn--bare.el-button--warning:not(.is-disabled) {
+  background: transparent;
+  border: none;
+  color: var(--el-color-warning);
+}
+.zq-btn--bare.el-button--warning:not(.is-disabled):hover {
+  color: var(--el-color-warning);
+}
+.zq-btn--bare.el-button--warning:not(.is-disabled):active {
+  color: var(--el-color-warning-dark-2);
+}
+
+/* --- danger --- */
+.zq-btn--bare.el-button--danger:not(.is-disabled) {
+  background: transparent;
+  border: none;
+  color: var(--el-color-danger);
+}
+.zq-btn--bare.el-button--danger:not(.is-disabled):hover {
+  color: var(--el-color-danger);
+}
+.zq-btn--bare.el-button--danger:not(.is-disabled):active {
+  color: var(--el-color-danger-dark-2);
+}
+
+/* --- info --- */
+.zq-btn--bare.el-button--info:not(.is-disabled) {
+  background: transparent;
+  border: none;
+  color: var(--el-color-info);
+}
+.zq-btn--bare.el-button--info:not(.is-disabled):hover {
+  color: var(--el-color-info);
+}
+.zq-btn--bare.el-button--info:not(.is-disabled):active {
+  color: var(--el-color-info-dark-2);
+}

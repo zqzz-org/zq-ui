@@ -55,7 +55,7 @@ docs/                    ← VitePress 文档站
 
 自定义 props（通过 `interface ZqButtonProps extends Partial<ButtonProps>`）：
 
-- `variant?: 'gradient' | 'crisp' | 'soft' | 'ring' | 'ghost' | 'reveal'` — 对应 CSS class `zq-btn--{variant}`
+- `variant?: 'gradient' | 'crisp' | 'soft' | 'ring' | 'ghost' | 'reveal' | 'bare'` — 对应 CSS class `zq-btn--{variant}`
 - `size?: 'large' | 'default' | 'small' | block-* | inline-*` — EP 原生值透传，自定义值生成 `zq-btn--size-{value}` class，block-* 固定宽度、inline-* 自适应
 
 ### Variant 命名规范
@@ -68,6 +68,7 @@ docs/                    ← VitePress 文档站
 - `ring` — 继承 EP 默认实色填充，叠加白色描边
 - `ghost` — 透明底 + 主色文字 + 主色描边，悬浮/点击显形
 - `reveal` — 白底灰框，悬浮/点击时主色浮现
+- `bare` — 极简文字，无背景无边框，hover/active 变色
 
 新增风格时挑一个辨识度高的词作为新 variant，颜色交给 EP 的 `type`，不要把颜色写进 variant 名（避免 `danger-outlined` 这类组合爆炸）。同视觉家族需要多个细分时用 `家族-特征`（如未来 `outlined-dashed`），而非 `style1/style2` 编号。
 
@@ -94,7 +95,8 @@ styles/
 │       ├── soft.css              ← zq-btn--soft
 │       ├── ring.css              ← zq-btn--ring
 │       ├── ghost.css             ← zq-btn--ghost
-│       └── reveal.css            ← zq-btn--reveal
+│       ├── reveal.css            ← zq-btn--reveal
+│       └── bare.css              ← zq-btn--bare
 └── index.ts                     ← 样式入口（按 tokens → components 顺序引入）
 ```
 
@@ -139,8 +141,8 @@ styles/
 - 包管理：**pnpm**（非 npm / yarn）
 - Vue：`^3.5.0`
 - Element Plus：`^2.13.7`
-- `variant` 包含 `gradient`、`crisp`、`soft`、`ring`、`ghost`、`reveal`，EP 原生的 `dashed` 不做二次封装
-- Variant 颜色跟随 `type` 变化：variant 控制渲染方式（渐变 / 描边 / 浅色 / 白环 / 透明 / 浮现），type 控制颜色系别（primary/success/warning/danger/info）
+- `variant` 包含 `gradient`、`crisp`、`soft`、`ring`、`ghost`、`reveal`、`bare`，EP 原生的 `dashed` 不做二次封装
+- Variant 颜色跟随 `type` 变化：variant 控制渲染方式（渐变 / 描边 / 浅色 / 白环 / 透明 / 浮现 / 极简文字），type 控制颜色系别（primary/success/warning/danger/info）
 - 每次修改代码后**必须**做 TS 类型校验（`vue-tsc --noEmit`）+ 跑测试（`vitest run`）
 - 禁止使用 `any`，尽量不写类型断言（`as`），优先靠泛型和类型推导
 - **新增 variant 或功能后必须同步更新**：`docs/components/button.md`（文档示例 + API 表格）、Playground demo（`src/demos/`）、主题矩阵（`ThemeButtonDemo.vue`）、测试用例

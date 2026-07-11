@@ -103,6 +103,16 @@ function handleThrottleDemoClick() {
         <zq-button variant="reveal" disabled>Disabled</zq-button>
       </div>
     </div>
+    <div>
+      <p style="margin:0 0 8px;color:var(--vp-c-text-2);font-size:13px;">bare</p>
+      <div style="display:flex;flex-wrap:wrap;gap:10px;align-items:center;">
+        <zq-button variant="bare">默认</zq-button>
+        <zq-button variant="bare" type="success">Success</zq-button>
+        <zq-button variant="bare" type="warning">Warning</zq-button>
+        <zq-button variant="bare" type="danger">Danger</zq-button>
+        <zq-button variant="bare" disabled>Disabled</zq-button>
+      </div>
+    </div>
   </div>
 </ClientOnly>
 
@@ -135,6 +145,12 @@ function handleThrottleDemoClick() {
 <zq-button variant="reveal" round>Round</zq-button>
 <zq-button variant="reveal" dashed>Dashed</zq-button>
 <zq-button variant="reveal" disabled>Disabled</zq-button>
+
+<zq-button variant="bare">默认</zq-button>
+<zq-button variant="bare" type="success">Success</zq-button>
+<zq-button variant="bare" type="warning">Warning</zq-button>
+<zq-button variant="bare" type="danger">Danger</zq-button>
+<zq-button variant="bare" disabled>Disabled</zq-button>
 ```
 
 </details>
@@ -277,7 +293,7 @@ function save() {
             <template #reference>
               <span class="type-info">?</span>
             </template>
-            <code style="font-size:13px">'gradient' | 'soft' | 'crisp' | 'ring' | 'ghost' | 'reveal'</code>
+            <code style="font-size:13px">'gradient' | 'soft' | 'crisp' | 'ring' | 'ghost' | 'reveal' | 'bare'</code>
           </el-popover>
         </ClientOnly>
       </td>

@@ -44,6 +44,7 @@ function themeClass(key: string): string {
             <th>Ring</th>
             <th>Ghost</th>
             <th>Reveal</th>
+            <th>Bare</th>
           </tr>
         </thead>
         <tbody>
@@ -56,10 +57,12 @@ function themeClass(key: string): string {
             <td><zq-button variant="ring">Ring</zq-button></td>
             <td><zq-button variant="ghost">Ghost</zq-button></td>
             <td><zq-button variant="reveal">Reveal</zq-button></td>
+            <td><zq-button variant="bare">Bare</zq-button></td>
           </tr>
           <tr>
             <td>Plain</td>
             <td><zq-button type="primary" plain>Plain</zq-button></td>
+            <td>—</td>
             <td>—</td>
             <td>—</td>
             <td>—</td>
@@ -76,6 +79,7 @@ function themeClass(key: string): string {
             <td><zq-button variant="ring" round>Ring</zq-button></td>
             <td><zq-button variant="ghost" round>Ghost</zq-button></td>
             <td><zq-button variant="reveal" round>Reveal</zq-button></td>
+            <td><zq-button variant="bare" round>Bare</zq-button></td>
           </tr>
           <tr>
             <td>Circle</td>
@@ -86,6 +90,7 @@ function themeClass(key: string): string {
             <td><zq-button variant="ring" :icon="Edit" circle /></td>
             <td><zq-button variant="ghost" :icon="Edit" circle /></td>
             <td><zq-button variant="reveal" :icon="Edit" circle /></td>
+            <td><zq-button variant="bare" :icon="Edit" circle /></td>
           </tr>
           <tr>
             <td>Disabled</td>
@@ -96,10 +101,12 @@ function themeClass(key: string): string {
             <td><zq-button variant="ring" disabled>Ring</zq-button></td>
             <td><zq-button variant="ghost" disabled>Ghost</zq-button></td>
             <td><zq-button variant="reveal" disabled>Reveal</zq-button></td>
+            <td><zq-button variant="bare" disabled>Bare</zq-button></td>
           </tr>
           <tr>
             <td>Link</td>
             <td><zq-button type="primary" link>Link</zq-button></td>
+            <td>—</td>
             <td>—</td>
             <td>—</td>
             <td>—</td>
@@ -116,6 +123,7 @@ function themeClass(key: string): string {
             <td><zq-button variant="ring" dashed>Ring</zq-button></td>
             <td><zq-button variant="ghost" dashed>Ghost</zq-button></td>
             <td><zq-button variant="reveal" dashed>Reveal</zq-button></td>
+            <td>—</td>
           </tr>
           <tr>
             <td>success</td>
@@ -126,6 +134,7 @@ function themeClass(key: string): string {
             <td><zq-button variant="ring" type="success">Ring</zq-button></td>
             <td><zq-button variant="ghost" type="success">Ghost</zq-button></td>
             <td><zq-button variant="reveal" type="success">Reveal</zq-button></td>
+            <td><zq-button variant="bare" type="success">Bare</zq-button></td>
           </tr>
           <tr>
             <td>warning</td>
@@ -136,6 +145,7 @@ function themeClass(key: string): string {
             <td><zq-button variant="ring" type="warning">Ring</zq-button></td>
             <td><zq-button variant="ghost" type="warning">Ghost</zq-button></td>
             <td><zq-button variant="reveal" type="warning">Reveal</zq-button></td>
+            <td><zq-button variant="bare" type="warning">Bare</zq-button></td>
           </tr>
           <tr>
             <td>danger</td>
@@ -146,6 +156,7 @@ function themeClass(key: string): string {
             <td><zq-button variant="ring" type="danger">Ring</zq-button></td>
             <td><zq-button variant="ghost" type="danger">Ghost</zq-button></td>
             <td><zq-button variant="reveal" type="danger">Reveal</zq-button></td>
+            <td><zq-button variant="bare" type="danger">Bare</zq-button></td>
           </tr>
           <tr>
             <td>info</td>
@@ -156,6 +167,7 @@ function themeClass(key: string): string {
             <td><zq-button variant="ring" type="info">Ring</zq-button></td>
             <td><zq-button variant="ghost" type="info">Ghost</zq-button></td>
             <td><zq-button variant="reveal" type="info">Reveal</zq-button></td>
+            <td><zq-button variant="bare" type="info">Bare</zq-button></td>
           </tr>
         </tbody>
       </table>
@@ -179,6 +191,7 @@ function themeClass(key: string): string {
             <th>Ring</th>
             <th>Ghost</th>
             <th>Reveal</th>
+            <th>Bare</th>
           </tr>
         </thead>
         <tbody>
@@ -191,10 +204,12 @@ function themeClass(key: string): string {
             <td><zq-button variant="ring">Ring</zq-button></td>
             <td><zq-button variant="ghost">Ghost</zq-button></td>
             <td><zq-button variant="reveal">Reveal</zq-button></td>
+            <td><zq-button variant="bare">Bare</zq-button></td>
           </tr>
           <tr>
             <td>Plain</td>
             <td><zq-button type="primary" plain>Plain</zq-button></td>
+            <td>—</td>
             <td>—</td>
             <td>—</td>
             <td>—</td>
@@ -211,6 +226,7 @@ function themeClass(key: string): string {
             <td><zq-button variant="ring" round>Ring</zq-button></td>
             <td><zq-button variant="ghost" round>Ghost</zq-button></td>
             <td><zq-button variant="reveal" round>Reveal</zq-button></td>
+            <td><zq-button variant="bare" round>Bare</zq-button></td>
           </tr>
           <tr>
             <td>Circle</td>
@@ -221,6 +237,7 @@ function themeClass(key: string): string {
             <td><zq-button variant="ring" :icon="Edit" circle /></td>
             <td><zq-button variant="ghost" :icon="Edit" circle /></td>
             <td><zq-button variant="reveal" :icon="Edit" circle /></td>
+            <td><zq-button variant="bare" :icon="Edit" circle /></td>
           </tr>
           <tr>
             <td>Disabled</td>
@@ -231,10 +248,12 @@ function themeClass(key: string): string {
             <td><zq-button variant="ring" disabled>Ring</zq-button></td>
             <td><zq-button variant="ghost" disabled>Ghost</zq-button></td>
             <td><zq-button variant="reveal" disabled>Reveal</zq-button></td>
+            <td><zq-button variant="bare" disabled>Bare</zq-button></td>
           </tr>
           <tr>
             <td>Link</td>
             <td><zq-button type="primary" link>Link</zq-button></td>
+            <td>—</td>
             <td>—</td>
             <td>—</td>
             <td>—</td>
@@ -251,6 +270,7 @@ function themeClass(key: string): string {
             <td><zq-button variant="ring" dashed>Ring</zq-button></td>
             <td><zq-button variant="ghost" dashed>Ghost</zq-button></td>
             <td><zq-button variant="reveal" dashed>Reveal</zq-button></td>
+            <td>—</td>
           </tr>
         </tbody>
       </table>
