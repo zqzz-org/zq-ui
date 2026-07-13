@@ -4,7 +4,7 @@
  * - 其余组件 → 自动代理到 Element Plus，完整透传 attrs/slots
  */
 import type { App, Component, Plugin } from 'vue'
-import { defineComponent, h } from 'vue'
+import { defineComponent, h, inject } from 'vue'
 import {
   ElScrollbar,
   ElInput,
@@ -79,8 +79,15 @@ import {
 
 // 自定义封装组件（有额外 props / 逻辑）
 import ZqButton from './components/button/zq-button.vue'
+import ZqThemeProvider from './components/theme-provider/zq-theme-provider.vue'
 import { applyZqTheme, applyZqThemeByHost } from './theme'
 import type { ApplyZqThemeByHostOptions, ZqThemeName } from './theme'
+import {
+  POPPER_COMPONENTS,
+  ZQ_THEME_KEY,
+  resolveThemeClass,
+  withPopperTheme,
+} from './theme/context'
 
 export type ZqUiThemeOption = false | ZqThemeName | ApplyZqThemeByHostOptions
 
@@ -96,6 +103,7 @@ export interface ZqUiOptions {
 
 const customComponents: Record<string, Component> = {
   ZqButton,
+  ZqThemeProvider,
 }
 
 // Element Plus 组件名 → 组件引用映射
@@ -181,18 +189,36 @@ function toPascal(name: string): string {
     .join('')
 }
 
-/** 生成透明代理组件，完整透传 attrs 和 slots 到对应的 el-xxx */
+/**
+ * 生成透明代理组件，完整透传 attrs 和 slots 到对应的 el-xxx。
+ *
+ * 对弹层类组件（POPPER_COMPONENTS）额外注入主题：inject 上层
+ * <zq-theme-provider> 提供的主题名，拼进 popper-class，让 teleport 到
+ * body 的弹层重新进入 `.zq-theme-*` 作用域、拿到正确的主色变量。
+ * 非弹层组件保持零开销的纯透传。
+ */
 function createProxy(elName: string, elComponent: Component) {
+  const isPopper = POPPER_COMPONENTS.has(elName)
+
   return defineComponent({
     name: `Zq${toPascal(elName)}`,
+    inheritAttrs: false,
     setup(_props, { slots, attrs }) {
-      return () => h(elComponent, attrs, slots)
+      if (!isPopper) {
+        return () => h(elComponent, attrs, slots)
+      }
+
+      const theme = inject(ZQ_THEME_KEY, undefined)
+      return () => {
+        const themeClass = resolveThemeClass(theme?.value)
+        return h(elComponent, withPopperTheme(attrs, themeClass), slots)
+      }
     },
   })
 }
 
 // 导出有自定义逻辑的组件
-export { ZqButton }
+export { ZqButton, ZqThemeProvider }
 export {
   applyZqTheme,
   applyZqThemeByHost,
@@ -208,6 +234,7 @@ export type {
   ZqThemeName,
   ZqThemeOption,
 } from './theme'
+export { POPPER_COMPONENTS, ZQ_THEME_KEY } from './theme/context'
 
 function applyInstallTheme(theme: ZqUiThemeOption = {}) {
   if (theme === false) return

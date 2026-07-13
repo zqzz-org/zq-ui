@@ -19,8 +19,8 @@
       "import": "./styles/themes/index.ts"
     },
     "./theme": {
-      "import": "./theme.ts",
-      "types": "./theme.ts"
+      "import": "./theme/index.ts",
+      "types": "./theme/index.ts"
     },
     "./styles/*": "./styles/*"
   },

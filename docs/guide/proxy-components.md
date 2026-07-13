@@ -53,3 +53,19 @@ ZQ-UI 对不需要自定义逻辑的 Element Plus 组件自动生成透明代理
 ::: tip 补充说明
 代理组件列表会随 Element Plus 的版本更新同步扩展。如果需要某个组件但尚未代理，可以在项目的 `app.config.globalProperties` 中临时注册，或提 issue 到仓库。
 :::
+
+## 弹层组件的主题注入
+
+代理组件除了纯透传，还对**弹层类组件**（Select、DatePicker、Cascader、TreeSelect、TimePicker、TimeSelect、Dropdown、Tooltip、Popover、ColorPicker）做了主题增强：它们会 `inject` 上层 `<zq-theme-provider>` 提供的主题名，自动拼进浮层的 `popper-class`，解决 teleport 到 `<body>` 后脱离局部主题作用域的问题。详见[主题 · 弹层组件的主题适配](./theme.md#弹层组件的主题适配)。
+
+## 从代理升级为显式封装
+
+当某个代理组件需要自定义 props / 逻辑（像 `zq-button` 那样）时，按以下三步从「自动代理」迁移为「显式 `.vue` 封装」：
+
+1. 在 `packages/zq-ui/components/{name}/` 下新建 `zq-{name}.vue`，照 `zq-button.vue` 的模式实现（`inheritAttrs: false` + `v-for` 转发插槽 + `forwardedBindings` 计算属性拆自定义 props / 透传其余 attrs）。
+2. 从 `index.ts` 的 `elComponentMap` 中**删除**对应的 `ElXxx` 条目（避免与显式组件重复注册同一个 `zq-xxx` 标签）。
+3. 把新组件加进 `index.ts` 的 `customComponents`，并在文件底部 `export`。
+
+::: warning 弹层组件迁移注意
+若迁移的是弹层类组件（`POPPER_COMPONENTS` 名单内，见 `theme/context.ts`），`createProxy` 里的主题注入逻辑**不会**再自动生效，需要在新组件里手动复刻：`inject(ZQ_THEME_KEY)` 取主题名，用 `withPopperTheme(attrs, resolveThemeClass(theme?.value))` 处理透传的 attrs，再绑定给内部的 `el-xxx`。
+:::

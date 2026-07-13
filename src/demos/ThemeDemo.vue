@@ -27,24 +27,20 @@ const tradeRows: readonly TradeRow[] = [
   { name: '债券组合', type: '中低风险', value: '86.20 万', status: '观察' },
   { name: '指数增强', type: '中风险', value: '42.18 万', status: '调仓' },
 ]
+
+const popperValue = shallowRef('cash')
+const popperDate = shallowRef('2026-07-06')
+const popperThemes = [
+  { name: 'aiedu', label: '通识平台' },
+  { name: 'xk', label: '信息科技' },
+  { name: 'qedu', label: '素养' },
+  { name: 'aistudy', label: '学习平台' },
+] as const
 </script>
 
 <template>
   <section class="pg-content">
-    <h2>通识平台主题</h2>
-    <p class="desc">
-      Playground 通过 <code>app.use(ZQUI, { theme: 'aiedu' })</code> 使用通识平台主题。
-    </p>
-
-    <div class="theme-demo zq-theme-aiedu">
-      <div class="theme-demo__header">
-        <div>
-          <h3>AIEDU Scope</h3>
-          <p>局部主题容器内的主色变量为 <code>--el-color-primary</code>。</p>
-        </div>
-        <zq-tag type="primary" effect="dark">AIEDU</zq-tag>
-      </div>
-
+    <zq-theme-provider theme="aiedu" class="theme-demo">
       <div class="theme-demo__grid">
         <section class="theme-panel theme-panel--wide">
           <h3>按钮与标签</h3>
@@ -156,6 +152,31 @@ const tradeRows: readonly TradeRow[] = [
           </zq-timeline>
         </section>
       </div>
+    </zq-theme-provider>
+
+    <h2 class="multi-theme-title">同页多主题 · 弹层适配</h2>
+    <p class="multi-theme-desc">
+      用 <code>&lt;zq-theme-provider&gt;</code> 包裹即可局部切主题。下拉/日期等弹层会 teleport 到
+      body，Provider 自动把主题 class 注入到 <code>popper-class</code>，点开对比选中项颜色。
+    </p>
+    <div class="multi-theme-grid">
+      <zq-theme-provider
+        v-for="t in popperThemes"
+        :key="t.name"
+        :theme="t.name"
+        class="multi-theme-cell"
+      >
+        <div class="multi-theme-cell__head">
+          <strong>{{ t.label }}</strong>
+          <zq-tag type="primary" effect="dark" size="small">{{ t.name }}</zq-tag>
+        </div>
+        <zq-select v-model="popperValue" placeholder="选择组合">
+          <zq-option label="现金管理" value="cash" />
+          <zq-option label="债券组合" value="bond" />
+          <zq-option label="指数增强" value="index" />
+        </zq-select>
+        <zq-date-picker v-model="popperDate" type="date" value-format="YYYY-MM-DD" />
+      </zq-theme-provider>
     </div>
   </section>
 </template>
@@ -166,26 +187,6 @@ const tradeRows: readonly TradeRow[] = [
   background: var(--el-color-primary-light-9);
   border: 1px solid var(--el-color-primary-light-7);
   border-radius: 8px;
-}
-
-.theme-demo__header {
-  display: flex;
-  align-items: flex-start;
-  justify-content: space-between;
-  gap: 16px;
-  margin-bottom: 16px;
-}
-
-.theme-demo__header h3 {
-  margin: 0 0 4px;
-  color: var(--el-color-primary);
-  font-size: 18px;
-}
-
-.theme-demo__header p {
-  margin: 0;
-  color: var(--el-text-color-secondary);
-  font-size: 13px;
 }
 
 .theme-demo__grid {
@@ -237,6 +238,42 @@ const tradeRows: readonly TradeRow[] = [
   border-bottom-color: var(--el-border-color-light);
 }
 
+.multi-theme-title {
+  margin-top: 32px;
+}
+
+.multi-theme-desc {
+  margin: 0 0 16px;
+  color: var(--el-text-color-secondary);
+  font-size: 13px;
+}
+
+.multi-theme-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.multi-theme-cell {
+  display: grid;
+  gap: 10px;
+  padding: 16px;
+  background: var(--el-color-primary-light-9);
+  border: 1px solid var(--el-color-primary-light-7);
+  border-radius: 8px;
+}
+
+.multi-theme-cell__head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.multi-theme-cell__head strong {
+  color: var(--el-color-primary);
+  font-size: 14px;
+}
+
 @media (max-width: 900px) {
   .theme-demo__grid {
     grid-template-columns: 1fr;
@@ -244,6 +281,10 @@ const tradeRows: readonly TradeRow[] = [
 
   .theme-panel--wide {
     grid-column: auto;
+  }
+
+  .multi-theme-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
 </style>

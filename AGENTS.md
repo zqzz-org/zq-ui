@@ -43,6 +43,13 @@ docs/                    ← VitePress 文档站
 - `index.ts` 导出各个组件 + `install()` 方法支持 `app.use()`
 - 新增组件：在 `components/` 下加 `.vue` 文件，在 `index.ts` 的 `components` 对象里注册一行 + `export` 一行
 
+### 两条组件注册路径
+
+`index.ts` 的 `install` 有**两条互斥的注册路径**，同一个 `zq-xxx` 标签只会被其中一条注册：
+
+1. **显式封装**（`customComponents`）— 有自定义 props / 逻辑的组件（如 `ZqButton`、`ZqThemeProvider`），指向真实 `.vue` 文件
+2. **自动代理**（`elComponentMap` → `createProxy`）— 其余 EP 组件透明转发 attrs/slots，零维护但改不了行为
+
 ### 组件封装模式（以 `zq-button.vue` 为例）
 
 模板只包裹一个 `<el-button>`，做两件事：
@@ -52,6 +59,25 @@ docs/                    ← VitePress 文档站
    - 从 `props` 中拆出自定义属性（`variant`、`debounce`、`throttle`），其余 EP 属性原样透传
    - 从 `useAttrs()` 中拆出 `onClick`，按需包一层防抖 / 节流逻辑后放回
    - 其他事件（`onDblclick`、`onMouseenter` 等）和 HTML 属性直接透传
+
+### 代理 → 显式封装迁移（当某个代理组件需要自定义逻辑时）
+
+三步走：
+
+1. 在 `components/{name}/` 下新建 `zq-{name}.vue`，照 `zq-button.vue` 模式实现（`inheritAttrs: false` + slot 转发 + `forwardedBindings`）
+2. 从 `index.ts` 的 `elComponentMap` 中**删除**对应 `ElXxx` 条目（否则同一标签重复注册）
+3. 把新组件加进 `customComponents`，并在文件底部 `export`
+
+**弹层组件迁移特别注意**：若组件在 `POPPER_COMPONENTS` 名单内（见 `theme/context.ts`），`createProxy` 里的主题注入逻辑不再自动生效，需在新组件手动复刻：`inject(ZQ_THEME_KEY)` 取主题 → `withPopperTheme(attrs, resolveThemeClass(theme?.value))` 处理 attrs → 绑定给内部 `el-xxx`。
+
+### 弹层组件的主题适配（`zq-theme-provider` + `theme/context.ts`）
+
+EP 弹层类组件（Select / DatePicker / Cascader / TreeSelect / TimePicker / TimeSelect / Dropdown / Tooltip / Popover / ColorPicker）的浮层会 teleport 到 `<body>`：
+
+- **全局主题**（`applyZqTheme` 默认写 `<html>`）→ 浮层是 `<html>` 后代，自动继承主色变量，**零改动**
+- **局部主题**（手写 `.zq-theme-*` 于某容器）→ 浮层 teleport 后脱离作用域，主色变量回退。用 `<zq-theme-provider theme="xxx">` 包裹：既写作用域 class 又 `provide` 主题名，`createProxy` 对弹层组件 `inject` 后自动把主题 class 拼进 `popper-class`
+
+`theme/context.ts` 三要素：`ZQ_THEME_KEY`（provide/inject key）、`POPPER_COMPONENTS`（弹层白名单）、`withPopperTheme` / `resolveThemeClass`（class 合并工具）。新增弹层类代理组件时，把它的 kebab 名加进 `POPPER_COMPONENTS` 即可自动获得主题注入。
 
 自定义 props（通过 `interface ZqButtonProps extends Partial<ButtonProps>`）：
 
@@ -107,20 +133,24 @@ styles/
 - 选择器覆盖两种场景：`[data-zq-theme='xxx']`（全页属性）+ `.zq-theme-xxx`（局部 class 作用域）
 - 消费方必须把 `element-plus/dist/index.css` 放在 `zq-ui/styles` **之前**引入
 
-**TS 层（`theme.ts`）：**
+**TS 层（`theme/` 目录，与 `styles/` 平级）：**
 
-- `ZqThemeName` 联合类型：`'default' | 'aiedu' | 'xk' | 'qedu' | 'aistudy'`
-- `zqThemeOptions` — 内置主题展示配置（label + name）
-- `defaultZqThemeHostRules` — 默认域名匹配规则
-- `applyZqTheme(theme, target)` — 将主题写入元素的 `data-zq-theme` 属性
-- `applyZqThemeByHost(options)` — 按域名解析 + 写入
-- `resolveZqThemeByHost(options)` — 纯逻辑：根据 hostname 匹配规则返回主题名
+主题运行时逻辑与 CSS 分离——`styles/themes/*.css` 管**色值**，`theme/` 管**逻辑**：
+
+- `theme/index.ts`（导出为 `zq-ui/theme`）：
+  - `ZqThemeName` 联合类型：`'default' | 'aiedu' | 'xk' | 'qedu' | 'aistudy'`
+  - `zqThemeOptions` — 内置主题展示配置（label + name）
+  - `defaultZqThemeHostRules` — 默认域名匹配规则
+  - `applyZqTheme(theme, target)` — 将主题写入元素的 `data-zq-theme` 属性
+  - `applyZqThemeByHost(options)` — 按域名解析 + 写入
+  - `resolveZqThemeByHost(options)` — 纯逻辑：根据 hostname 匹配规则返回主题名
+- `theme/context.ts`：弹层组件主题注入（`ZQ_THEME_KEY` / `POPPER_COMPONENTS` / `withPopperTheme` / `resolveThemeClass`）
 
 **新增主题步骤：**
 
 1. 复制 `styles/themes/aiedu.css` → 新文件，改色值
 2. 在 `styles/themes/index.ts` 加一行 `import`
-3. 在 `theme.ts` 的 `ZqThemeName`、`zqThemeOptions`、`defaultZqThemeHostRules` 各加一条
+3. 在 `theme/index.ts` 的 `ZqThemeName`、`zqThemeOptions`、`defaultZqThemeHostRules` 各加一条
 4. 更新 `__tests__/theme.test.ts` 的期望数组
 
 ### Playground（`src/App.vue`）
