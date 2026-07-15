@@ -32,7 +32,8 @@ jobs:
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
-          node-version: 20
+          # pnpm@11.7.0 要求 Node >= 22.13；Node 20 已无 node:sqlite 且被 Actions 弃用
+          node-version: 22
           cache: pnpm
 
       - name: Install
