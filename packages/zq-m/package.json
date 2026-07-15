@@ -1,0 +1,40 @@
+{
+  "name": "zq-m",
+  "version": "0.0.1",
+  "description": "ZQ-M - 基于 Vant 的团队移动端/Pad 端自定义组件库",
+  "type": "module",
+  "main": "index.ts",
+  "module": "index.ts",
+  "types": "index.ts",
+  "exports": {
+    ".": {
+      "import": "./index.ts",
+      "require": "./index.ts",
+      "types": "./index.ts"
+    },
+    "./styles": {
+      "import": "./styles/index.ts"
+    },
+    "./styles/themes": {
+      "import": "./styles/themes/index.ts"
+    },
+    "./theme": {
+      "import": "./theme/index.ts",
+      "types": "./theme/index.ts"
+    },
+    "./styles/*": "./styles/*"
+  },
+  "peerDependencies": {
+    "vant": ">=4.0.0 <5",
+    "vue": "^3.5.0"
+  },
+  "keywords": [
+    "vue",
+    "vue3",
+    "vant",
+    "mobile",
+    "component-library",
+    "ui"
+  ],
+  "license": "MIT"
+}
