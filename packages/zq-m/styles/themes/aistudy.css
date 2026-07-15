@@ -1,0 +1,17 @@
+/* ============================================================
+ * ZQ-M 学习平台主题
+ * 主要覆盖 Vant primary 色系，与 zq-ui aistudy 色值对齐。
+ * ============================================================ */
+
+[data-zqm-theme='aistudy'],
+.zqm-theme-aistudy {
+  --van-primary-color: #022b9a;
+  --van-blue: #022b9a;
+
+  --zqm-color-primary: #022b9a;
+  --zqm-color-brand: #022b9a;
+  --zqm-color-brand-soft: #e5e9f4;
+  --zqm-color-brand-muted: #9aaad6;
+  --zqm-color-brand-strong: #05257d;
+  --zqm-gradient-primary: linear-gradient(45deg, #3455ae, #05257d);
+}

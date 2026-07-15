@@ -1,0 +1,17 @@
+/* ============================================================
+ * ZQ-M 信息科技主题
+ * 主要覆盖 Vant primary 色系，与 zq-ui xk 色值对齐。
+ * ============================================================ */
+
+[data-zqm-theme='xk'],
+.zqm-theme-xk {
+  --van-primary-color: #007f92;
+  --van-blue: #007f92;
+
+  --zqm-color-primary: #007f92;
+  --zqm-color-brand: #007f92;
+  --zqm-color-brand-soft: #e6f2f4;
+  --zqm-color-brand-muted: #99ccd4;
+  --zqm-color-brand-strong: #066e7d;
+  --zqm-gradient-primary: linear-gradient(45deg, #3398a8, #066e7d);
+}

@@ -28,13 +28,16 @@ pnpm typecheck && pnpm test:run && pnpm build && pnpm docs:build
 
 ZQ-UI 是基于 Element Plus（`^2.13.7`）二次封装的 Vue 3 组件库，在完全透传 EP 所有属性、事件、插槽的基础上扩展团队定制主题和交互能力。
 
-三层结构：
+结构：
 
 ```text
-packages/zq-ui/          ← 组件库（源码分发，无构建步骤）
-src/                     ← Vite Playground，开发时调试组件
+packages/zq-ui/          ← PC 组件库（Element Plus，标签 <zq-*>）
+packages/zq-m/           ← 移动端组件库（Vant，标签 <zqm-*>）
+src/                     ← Vite Playground（/pc 与 /m）
 docs/                    ← VitePress 文档站
 ```
+
+两个包**平行维护、主题各自一套**（`data-zq-theme` / `data-zqm-theme`），运行时互不 import。业务可同时安装两端，按页面/路由自行选用。后续若要抽公共主题常量，再议 `packages/zq-shared`，现阶段不强制。
 
 ### 组件库（`packages/zq-ui/`）
 
@@ -153,18 +156,19 @@ styles/
 3. 在 `theme/index.ts` 的 `ZqThemeName`、`zqThemeOptions`、`defaultZqThemeHostRules` 各加一条
 4. 更新 `__tests__/theme.test.ts` 的期望数组
 
-### Playground（`src/App.vue`）
+### Playground（`src/`，不发布）
 
-左右布局：左侧组件列表 + 右侧 `<component :is="activeDemo" />` 动态渲染。
+vue-router 分端：`/pc/:key`（Element Plus + zq-ui）、`/m/:key`（Vant + zq-m，手机框）。`src/App.vue` 仅 `<router-view />`。
 
-组件注册在 `src/config/playground.ts` 的 `components` 数组中，每个条目包含 `key` / `name` / `icon` / `tag` / `component`。新增 demo 只需：
+- PC 注册表：`src/config/playground-pc.ts` + demo 在 `src/demos/`
+- 移动注册表：`src/config/playground-mobile.ts` + demo 在 `src/demos/mobile/`
+- 布局：`src/layouts/PcLayout.vue` / `MobileLayout.vue`
 
-1. 在 `src/demos/` 下创建 `{Name}Demo.vue`
-2. 在 `playground.ts` 追加一条，无需修改 App.vue
+新增 PC demo：在 `src/demos/` 建文件并写入 `playground-pc.ts`。移动端同理。
 
 ### VitePress 文档
 
-自定义主题入口 `docs/.vitepress/theme/index.ts` 继承 DefaultTheme，通过 `enhanceApp` 注册 Element Plus 和 ZQ-UI，使 markdown 里可以直接写 `<zq-button>`（配合 `<ClientOnly>` 包裹）。宽屏全适配：`--vp-layout-max-width: 100%`，所有内容区 `max-width: none`。
+自定义主题入口 `docs/.vitepress/theme/index.ts` 同时注册 Element Plus + zq-ui 与 Vant + zq-m。文档 IA：`/guide/*`、`/pc/*`、`/mobile/*`。宽屏全适配：`--vp-layout-max-width: 100%`。
 
 ### 关键约束
 
@@ -175,4 +179,4 @@ styles/
 - Variant 颜色跟随 `type` 变化：variant 控制渲染方式（渐变 / 描边 / 浅色 / 白环 / 透明 / 浮现 / 极简文字），type 控制颜色系别（primary/success/warning/danger/info）
 - 每次修改代码后**必须**做 TS 类型校验（`vue-tsc --noEmit`）+ 跑测试（`vitest run`）
 - 禁止使用 `any`，尽量不写类型断言（`as`），优先靠泛型和类型推导
-- **新增 variant 或功能后必须同步更新**：`docs/components/button.md`（文档示例 + API 表格）、Playground demo（`src/demos/`）、主题矩阵（`ThemeButtonDemo.vue`）、测试用例
+- **新增 variant 或功能后必须同步更新**：`docs/pc/button.md`（或 `docs/mobile/*`）、Playground demo、主题矩阵、测试用例

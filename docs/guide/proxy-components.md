@@ -1,4 +1,4 @@
-# 代理组件列表
+# PC 代理组件列表（zq-ui）
 
 ZQ-UI 对不需要自定义逻辑的 Element Plus 组件自动生成透明代理——无需编写封装文件，注册后直接用 `zq-xxx` 标签即可，所有属性、事件、插槽完整透传到对应的 `el-xxx` 组件。
 
@@ -69,3 +69,7 @@ ZQ-UI 对不需要自定义逻辑的 Element Plus 组件自动生成透明代理
 ::: warning 弹层组件迁移注意
 若迁移的是弹层类组件（`POPPER_COMPONENTS` 名单内，见 `theme/context.ts`），`createProxy` 里的主题注入逻辑**不会**再自动生效，需要在新组件里手动复刻：`inject(ZQ_THEME_KEY)` 取主题名，用 `withPopperTheme(attrs, resolveThemeClass(theme?.value))` 处理透传的 attrs，再绑定给内部的 `el-xxx`。
 :::
+
+## 移动端
+
+Vant 代理标签为 `zqm-*`，见 [移动端代理组件](/mobile/proxy-components)。

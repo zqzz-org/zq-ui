@@ -1,0 +1,49 @@
+/* ============================================================
+ * ZQ-M 基础 token
+ * 放置不随主题切换变化的尺寸、圆角、阴影、间距、过渡与语义映射。
+ * 与 zq-ui 对齐语义变量名，前缀统一 --zqm-*，底层映射 Vant 变量。
+ * ============================================================ */
+
+:root {
+  /* 字号 */
+  --zqm-font-size-xs: 12px;
+  --zqm-font-size-sm: 13px;
+  --zqm-font-size-base: 14px;
+  --zqm-font-size-lg: 16px;
+  --zqm-font-size-xl: 20px;
+  --zqm-font-size-xxl: 24px;
+
+  /* 阴影 */
+  --zqm-shadow-soft: 0 2px 12px 0 rgba(0, 0, 0, 0.06);
+  --zqm-shadow-base: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
+  --zqm-shadow-strong: 0 4px 16px 0 rgba(0, 0, 0, 0.14);
+
+  /* 间距 */
+  --zqm-spacing-xs: 4px;
+  --zqm-spacing-sm: 8px;
+  --zqm-spacing-base: 12px;
+  --zqm-spacing-md: 16px;
+  --zqm-spacing-lg: 24px;
+  --zqm-spacing-xl: 32px;
+
+  /* 过渡 */
+  --zqm-transition-fast: 0.15s ease;
+  --zqm-transition-base: 0.3s ease;
+  --zqm-transition-slow: 0.5s ease;
+
+  /* 业务语义色：默认跟随 Vant 颜色变量 */
+  --zqm-color-primary: var(--van-primary-color);
+  --zqm-color-success: var(--van-success-color);
+  --zqm-color-warning: var(--van-warning-color);
+  --zqm-color-danger: var(--van-danger-color);
+  --zqm-color-info: var(--van-gray-6);
+  --zqm-color-brand: var(--van-primary-color);
+  --zqm-color-brand-soft: color-mix(in srgb, var(--van-primary-color) 12%, white);
+  --zqm-color-brand-muted: color-mix(in srgb, var(--van-primary-color) 30%, white);
+  --zqm-color-brand-strong: color-mix(in srgb, var(--van-primary-color) 85%, black);
+  --zqm-gradient-primary: linear-gradient(
+    135deg,
+    var(--van-primary-color),
+    color-mix(in srgb, var(--van-primary-color) 70%, white)
+  );
+}

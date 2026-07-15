@@ -1,0 +1,17 @@
+/* ============================================================
+ * ZQ-M 通识平台主题
+ * 主要覆盖 Vant primary 色系，与 zq-ui aiedu 色值对齐。
+ * ============================================================ */
+
+[data-zqm-theme='aiedu'],
+.zqm-theme-aiedu {
+  --van-primary-color: #50b5a6;
+  --van-blue: #50b5a6;
+
+  --zqm-color-primary: #50b5a6;
+  --zqm-color-brand: #50b5a6;
+  --zqm-color-brand-soft: #eef8f7;
+  --zqm-color-brand-muted: #b9e2dc;
+  --zqm-color-brand-strong: #239d8b;
+  --zqm-gradient-primary: linear-gradient(45deg, #73c4b8, #239d8b);
+}

@@ -8,6 +8,7 @@ export default defineConfig({
   resolve: {
     alias: {
       '@zq-ui': resolve(__dirname, 'packages/zq-ui'),
+      '@zq-m': resolve(__dirname, 'packages/zq-m'),
     },
   },
   server: {

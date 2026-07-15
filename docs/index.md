@@ -2,24 +2,27 @@
 layout: home
 
 hero:
-  name: 'ZQ UI'
-  text: 团队自定义组件库
-  tagline: 基于 Element Plus，开箱即用的 Vue 3 组件库
+  name: 'ZQ 组件库'
+  text: PC 与移动端统一品牌体验
+  tagline: zq-ui（Element Plus）· zq-m（Vant）· 源码分发 · 多主题
   actions:
     - theme: brand
       text: 快速开始
       link: /guide/getting-started
     - theme: alt
-      text: 查看组件
-      link: /components/button
+      text: PC 组件
+      link: /pc/button
+    - theme: alt
+      text: 移动端
+      link: /mobile/
 
 features:
-  - title: 主题定制
-    details: 通过 CSS 变量轻松覆盖品牌色、圆角、阴影等样式，与 Element Plus 主题体系无缝兼容。
-  - title: 扩展封装
-    details: 在 Element Plus 基础上扩展 variant、debounce、throttle 等实用能力，完全透传原生属性、事件与插槽。
-  - title: 灵活引入
-    details: 支持 app.use() 全局注册和按需导入两种方式，兼顾开发效率与打包体积。
-  - title: 文档驱动
-    details: 基于 VitePress 构建，左右布局、内置搜索、大纲导航，内容越多越清晰。
+  - title: 双端平行
+    details: packages/zq-ui 与 packages/zq-m 独立发包、独立主题（data-zq-theme / data-zqm-theme），业务可同项目双装，按端选用标签。
+  - title: 主题对齐
+    details: 内置 aiedu / xk / qedu / aistudy 等品牌主题名两端一致，色值对齐，运行时互不依赖，后续可按需抽公共层。
+  - title: 透明代理 + 定制封装
+    details: 无定制逻辑的组件自动代理透传；需要 variant / 防抖等能力时再显式封装（如 zq-button）。
+  - title: 文档独立部署
+    details: VitePress 静态站与 npm 包解耦，可单独部署到 https://ui.example.com（占位，部署后替换）。
 ---

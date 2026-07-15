@@ -134,3 +134,38 @@ Element Plus 变量仍然可以直接覆盖：
 直接引入 `zq-ui/styles` 即可，入口文件会按顺序聚合基础 token 和组件样式。
 
 > 自定义变量的引入顺序需要在 `zq-ui/styles` 之后。
+
+## 移动端主题（zq-m）
+
+移动端使用**独立**主题实现，与上文 PC 逻辑平行：
+
+|            | PC（zq-ui）           | 移动（zq-m）           |
+| ---------- | --------------------- | ---------------------- |
+| 属性       | `data-zq-theme`       | `data-zqm-theme`       |
+| 局部 class | `.zq-theme-*`         | `.zqm-theme-*`         |
+| Provider   | `<zq-theme-provider>` | `<zqm-theme-provider>` |
+| 主色变量   | `--el-color-primary`  | `--van-primary-color`  |
+| 业务语义   | `--zq-color-brand`    | `--zqm-color-brand`    |
+
+主题名相同：`default` | `aiedu` | `xk` | `qedu` | `aistudy`。色值对齐，**源码不互相 import**。
+
+```ts
+import { applyZqmTheme } from 'zq-m/theme'
+applyZqmTheme('aiedu')
+```
+
+```vue
+<zqm-theme-provider theme="aiedu">
+  <zqm-button type="primary">通识主色</zqm-button>
+</zqm-theme-provider>
+```
+
+引入顺序：
+
+```ts
+import 'vant/lib/index.css'
+import 'zq-m/styles'
+import 'zq-m/styles/themes'
+```
+
+移动端专用说明见 [移动端主题](/mobile/theme)。

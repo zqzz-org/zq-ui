@@ -14,7 +14,9 @@
     "baseUrl": ".",
     "paths": {
       "@zq-ui": ["./packages/zq-ui"],
-      "@zq-ui/*": ["./packages/zq-ui/*"]
+      "@zq-ui/*": ["./packages/zq-ui/*"],
+      "@zq-m": ["./packages/zq-m"],
+      "@zq-m/*": ["./packages/zq-m/*"]
     },
     "types": ["vite/client"]
   },

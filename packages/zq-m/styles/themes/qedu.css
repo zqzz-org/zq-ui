@@ -1,0 +1,17 @@
+/* ============================================================
+ * ZQ-M 素养主题
+ * 主要覆盖 Vant primary 色系，与 zq-ui qedu 色值对齐。
+ * ============================================================ */
+
+[data-zqm-theme='qedu'],
+.zqm-theme-qedu {
+  --van-primary-color: #229065;
+  --van-blue: #229065;
+
+  --zqm-color-primary: #229065;
+  --zqm-color-brand: #229065;
+  --zqm-color-brand-soft: #e9f4f0;
+  --zqm-color-brand-muted: #a7d3c2;
+  --zqm-color-brand-strong: #1b835a;
+  --zqm-gradient-primary: linear-gradient(45deg, #4ea684, #1b835a);
+}
