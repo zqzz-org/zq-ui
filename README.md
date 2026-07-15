@@ -62,6 +62,11 @@ src/                # Playground
 docs/               # VitePress 文档
 ```
 
+## 本地质量检查
+
+使用 Husky：`pre-commit`（lint-staged）、`pre-push`（typecheck + test）。
+手动：`pnpm quality:check`。详见 [贡献指南](./docs/guide/contribution.md)。
+
 ## License
 
 MIT

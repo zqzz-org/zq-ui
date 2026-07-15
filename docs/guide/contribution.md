@@ -1,74 +1,125 @@
 # 贡献指南
 
-本文档面向希望参与 ZQ-UI 开发的贡献者，涵盖提交流程、质量门禁和开发环境配置。
+本文档面向希望参与本 monorepo（`zq-ui` + `zq-m`）开发的贡献者，涵盖提交流程、质量门禁和开发环境配置。
 
-## 提交前检查
+质量门禁只有两层：**本地 Husky** + **GitHub Actions CI**。已不再使用 Jenkins。
 
-项目使用 Husky 和 lint-staged 做本地提交前检查。
+## 质量门禁总览
 
-- `pre-commit`：执行 `pnpm lint-staged`，只检查本次暂存文件。
-- `pre-push`：执行 `pnpm typecheck` 和 `pnpm test:run`。
+| 层级              | 触发时机         | 内容                                                           | 能否绕过                          |
+| ----------------- | ---------------- | -------------------------------------------------------------- | --------------------------------- |
+| 本地 `pre-commit` | `git commit`     | `pnpm lint-staged`（ESLint + Prettier，仅暂存文件）            | `--no-verify`                     |
+| 本地 `pre-push`   | `git push`       | `pnpm typecheck` + `pnpm test:run`                             | `--no-verify`                     |
+| 远程 CI           | PR / push `main` | format + lint + typecheck + test + build + docs + pack dry-run | 分支保护开启后**不能**合入红灯 PR |
 
-本地 hook 可以提前暴露问题，但不能作为唯一质量门禁。开发者仍可通过 `--no-verify` 跳过，因此主分支质量必须由 CI 兜底。
+本地 hook 负责快速反馈；**合入 `main` 以 GitHub CI 为准**。
 
-## 本地验证流程
+## 本地提交前检查（Husky）
 
-常规代码改动至少运行：
+项目使用 Husky + lint-staged：
+
+- `pre-commit`：`pnpm lint-staged`
+- `pre-push`：`pnpm typecheck` && `pnpm test:run`
+
+克隆后执行一次 `pnpm install`（会跑 `prepare` → husky）。
+
+## 本地完整验证
+
+常规改动：
 
 ```bash
 pnpm typecheck
 pnpm test:run
 ```
 
-涉及 Playground、样式或文档时额外运行：
+涉及 Playground / 样式 / 文档时：
 
 ```bash
 pnpm build
 pnpm docs:build
 ```
 
-发布前运行完整检查：
+一键对齐 CI 的核心检查：
 
 ```bash
-pnpm lint:check
-pnpm format:check
-pnpm typecheck
-pnpm test:run
+pnpm quality:check
+# 等价于 format:check + lint:check + typecheck + test:run
+```
+
+发布前建议再跑：
+
+```bash
 pnpm build
 pnpm docs:build
-npm pack --dry-run
+pnpm pack:dry-run
+```
+
+## GitHub Actions CI
+
+配置文件：`.github/workflows/ci.yml`  
+Job 名称：**`quality`**（分支保护里要勾选这个检查）。
+
+触发：
+
+- 所有 **Pull Request**
+- 推送到 **`main`**
+
+步骤（顺序）：
+
+1. `pnpm install --frozen-lockfile`
+2. `pnpm format:check`
+3. `pnpm lint:check`
+4. `pnpm typecheck`
+5. `pnpm test:run`
+6. `pnpm build`（Playground）
+7. `pnpm docs:build`
+8. `pnpm pack:dry-run`（`zq-ui` 发包预检）
+
+CI 中设置 `HUSKY=0`，不在流水线里跑 git hook。
+
+## GitHub 仓库必配（网页操作）
+
+把代码推到 **一个** monorepo 仓库后，在 GitHub 上完成：
+
+### 1. 分支保护 / Ruleset（`main`）
+
+路径示例：`Settings` → `Rules` → `Rulesets`（或 Branch protection）
+
+对 `main` 建议：
+
+1. **Require a pull request before merging**（禁止直接 push main，推荐）
+2. **Require status checks to pass**
+   - 勾选 **`quality`**（来自 workflow job 名）
+   - 可选：Require branches to be up to date
+3. **Block force pushes**
+4. **Restrict deletions**
+5. 尽量 **Do not allow bypassing**（管理员也不随便绕过）
+
+配置完成后：**CI 红灯无法 Merge**，这才是硬门禁。
+
+### 2. 工作流权限
+
+`Settings` → `Actions` → `General`：允许运行 Actions（默认即可）。
+
+### 3. 可选
+
+- Required reviewers
+- CODEOWNERS
+- Dependabot
+- GitHub Pages 部署文档（`docs/.vitepress/dist`）
+
+## 推荐开发流程
+
+```text
+1. 从 main 拉功能分支
+2. 本地改代码 → commit（pre-commit）→ push（pre-push）
+3. 开 PR → 等 CI job「quality」变绿
+4. Review 通过后 Merge（分支保护保证红灯合不了）
 ```
 
 ## VSCode 配置
 
 项目提供 `.vscode/extensions.json` 与 `.vscode/settings.json`。
 
-推荐安装以下扩展：
-
-- Vue Official
-- ESLint
-- Prettier
-- EditorConfig
-- Vitest
-
-保存文件时会自动执行 Prettier 格式化，并触发 ESLint 自动修复。
-
-## Jenkins CI
-
-项目根目录提供 `Jenkinsfile`，用于服务端质量门禁。
-
-推荐配置：
-
-- 使用 Multibranch Pipeline 或普通 Pipeline 指向仓库根目录的 `Jenkinsfile`。
-- Jenkins Agent 需要安装 Node.js，并支持 Corepack。
-- PR / MR 与主分支构建都执行 Jenkinsfile。
-- Git 服务端保护主分支，禁止直接 push，必须通过 PR / MR 合并。
-- 合并前要求 Jenkins 构建通过。
-
-Jenkins 阶段：
-
-- **Install**：启用 Corepack，安装 pnpm 依赖。
-- **Quality**：并行执行格式检查、ESLint、类型检查。
-- **Test**：执行单元测试。
-- **Build**：并行构建 Playground 与文档。
-- **Package Dry Run**：执行包发布预检查。
+推荐扩展：Vue Official、ESLint、Prettier、EditorConfig、Vitest。  
+保存时自动 Prettier，并触发 ESLint 修复。

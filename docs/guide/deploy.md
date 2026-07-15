@@ -57,23 +57,6 @@ server {
 
 **不要**把 Playground 的 `dist/` 当作文档站部署。
 
-## CI 示意
-
-```yaml
-# 伪代码：main 推送后构建并发布文档
-on:
-  push:
-    branches: [main]
-jobs:
-  docs:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      - run: corepack enable && pnpm install
-      - run: pnpm docs:build
-      -  # upload docs/.vitepress/dist → CDN / Pages
-```
-
 ## 文档地址
 
 正式地址占位：**https://ui.example.com**
