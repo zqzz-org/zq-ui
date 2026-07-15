@@ -11,13 +11,13 @@
 
 ## 文档（给使用者）
 
-- **在线地址（占位，部署后替换）**：[https://ui.example.com](https://ui.example.com)
+- **在线文档**：[https://crazily6617.github.io/zq-ui](https://crazily6617.github.io/zq-ui)
 - 本地开发：`pnpm docs:dev`
 - 构建静态站：`pnpm docs:build` → 产物目录 **`docs/.vitepress/dist`**
 - 本地预览产物：`pnpm docs:preview`
 
-文档站与 npm 包**解耦**，可单独部署到 Nginx / OSS / Pages。  
-若挂在子路径，修改 `docs/.vitepress/config.ts` 的 `base`（如 `'/zq-ui/'`）后重新构建。详见文档站内 [文档部署](./docs/guide/deploy.md)。
+文档站与 npm 包**解耦**。默认通过 **GitHub Pages** 发布（`base: '/zq-ui/'`）。  
+详见 [文档部署](./docs/guide/deploy.md)。
 
 ## Playground（仅维护者）
 
