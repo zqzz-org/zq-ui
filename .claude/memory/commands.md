@@ -8,7 +8,7 @@ metadata:
 所有操作使用 **pnpm**（非 npm / yarn）。
 
 ```bash
-pnpm dev            # 启动 Playground 开发服务器（localhost:3000）
+pnpm dev            # 启动 Playground 开发服务器（localhost:4000）
 pnpm build          # 类型检查 + 构建 Playground
 pnpm docs:dev       # 启动 VitePress 文档开发服务器
 pnpm docs:build     # 构建 VitePress 文档

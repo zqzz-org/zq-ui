@@ -184,7 +184,6 @@ const popperThemes = [
 <style scoped>
 .theme-demo {
   padding: 20px;
-  background: var(--el-color-primary-light-9);
   border: 1px solid var(--el-color-primary-light-7);
   border-radius: 8px;
 }
