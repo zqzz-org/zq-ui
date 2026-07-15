@@ -24,5 +24,5 @@ features:
   - title: 透明代理 + 定制封装
     details: 无定制逻辑的组件自动代理透传；需要 variant / 防抖等能力时再显式封装（如 zq-button）。
   - title: 文档独立部署
-    details: VitePress 静态站与 npm 包解耦，可单独部署到 https://ui.example.com（占位，部署后替换）。
+    details: VitePress 静态站与 npm 包解耦，在线地址：https://crazily6617.github.io/zq-ui/ 。
 ---

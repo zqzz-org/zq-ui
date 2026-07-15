@@ -4,16 +4,18 @@ import { defineConfig } from 'vitepress'
  * 文档站点配置。
  *
  * base：
- * - 挂在域名根（https://ui.example.com/）→ '/'
- * - 挂在子路径（https://xxx.com/zq-ui/）→ '/zq-ui/'（须首尾斜杠）
+ * - GitHub Pages 项目站（https://crazily6617.github.io/zq-ui/）→ '/zq-ui/'
+ * - 自定义域名根路径 → '/'
+ * 须首尾斜杠。改 base 后需重新 docs:build。
  *
- * 正式文档地址占位：https://ui.example.com（部署后替换）
+ * 当前在线文档：https://crazily6617.github.io/zq-ui/
  */
 export default defineConfig({
   title: 'ZQ 组件库',
   description: 'PC（zq-ui）与移动端（zq-m）团队自定义组件库',
   lang: 'zh-CN',
-  base: '/',
+  // GitHub Pages 项目站路径；绑定自定义域名根时改回 '/'
+  base: '/zq-ui/',
 
   // 兼容旧路径 /components/* → /pc/*
   rewrites: {
@@ -124,7 +126,7 @@ export default defineConfig({
     },
 
     footer: {
-      message: 'Released under the MIT License. 文档站：https://ui.example.com',
+      message: 'Released under the MIT License. 文档站：https://crazily6617.github.io/zq-ui/',
       copyright: 'Copyright © 2024–2026 ZQ UI Team',
     },
   },

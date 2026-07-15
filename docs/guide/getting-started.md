@@ -9,7 +9,7 @@
 
 主题名（`aiedu` / `xk` / `qedu` / `aistudy`）两端对齐，**运行时互不依赖**。业务可只装一端，也可同项目双装，由路由/页面自行选择标签。
 
-在线文档（部署后替换）：**https://ui.example.com**
+在线文档：**https://crazily6617.github.io/zq-ui**
 
 ---
 
@@ -103,12 +103,12 @@ app.use(ZQM)
 
 ## 文档站点
 
-| 项       | 说明                                             |
-| -------- | ------------------------------------------------ |
-| 正式地址 | `https://ui.example.com`（**TODO：部署后替换**） |
-| 本地预览 | `pnpm docs:dev`                                  |
-| 构建产物 | `pnpm docs:build` → `docs/.vitepress/dist`       |
-| 与 npm   | **无关**，文档单独部署，不随组件包发布           |
+| 项       | 说明                                       |
+| -------- | ------------------------------------------ |
+| 正式地址 | `https://crazily6617.github.io/zq-ui`      |
+| 本地预览 | `pnpm docs:dev`                            |
+| 构建产物 | `pnpm docs:build` → `docs/.vitepress/dist` |
+| 与 npm   | **无关**，文档单独部署，不随组件包发布     |
 
 部署说明见 [文档部署](/guide/deploy)。
 
