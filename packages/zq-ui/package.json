@@ -1,15 +1,28 @@
 {
-  "name": "zq-ui",
-  "version": "0.0.1",
-  "description": "ZQ-UI - 基于 Element Plus 的团队自定义组件库",
+  "name": "@zqzz/zq-ui",
+  "version": "0.1.0",
+  "description": "基于 Element Plus 的 Vue 3 组件库（源码分发）",
   "type": "module",
   "main": "index.ts",
   "module": "index.ts",
   "types": "index.ts",
+  "files": [
+    "components",
+    "styles",
+    "theme",
+    "index.ts",
+    "README.md",
+    "!**/__tests__/**",
+    "!**/*.test.ts",
+    "!**/*.spec.ts"
+  ],
+  "sideEffects": [
+    "**/*.css",
+    "**/*.vue"
+  ],
   "exports": {
     ".": {
       "import": "./index.ts",
-      "require": "./index.ts",
       "types": "./index.ts"
     },
     "./styles": {
@@ -33,7 +46,21 @@
     "vue3",
     "element-plus",
     "component-library",
-    "ui"
+    "ui",
+    "zq-ui"
   ],
-  "license": "MIT"
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/zqzz-org/zq-ui.git",
+    "directory": "packages/zq-ui"
+  },
+  "homepage": "https://crazily6617.github.io/zq-ui/",
+  "bugs": {
+    "url": "https://github.com/zqzz-org/zq-ui/issues"
+  },
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org/"
+  }
 }

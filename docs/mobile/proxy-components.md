@@ -17,7 +17,7 @@
 
 ## 已代理（节选）
 
-安装 `zq-m` 后可用的标签包括（不完全列表）：
+安装 `@zqzz/zq-m` 后可用的标签包括（不完全列表）：
 
 `zqm-button` · `zqm-cell` · `zqm-cell-group` · `zqm-field` · `zqm-form` · `zqm-checkbox` · `zqm-radio` · `zqm-switch` · `zqm-slider` · `zqm-rate` · `zqm-stepper`（若后续加入 map）· `zqm-search` · `zqm-picker` · `zqm-date-picker` · `zqm-time-picker` · `zqm-calendar` · `zqm-cascader` · `zqm-popup` · `zqm-dialog` · `zqm-action-sheet` · `zqm-toast`（函数式能力仍以 Vant API 为准）· `zqm-nav-bar` · `zqm-tabbar` · `zqm-tabs` · `zqm-tab` · `zqm-list` · `zqm-pull-refresh` · `zqm-swipe` · `zqm-grid` · `zqm-image` · `zqm-uploader` · `zqm-tag` · `zqm-badge` · `zqm-empty` · `zqm-skeleton` · `zqm-loading` · `zqm-progress` · `zqm-divider` · `zqm-space` · `zqm-config-provider` · …
 

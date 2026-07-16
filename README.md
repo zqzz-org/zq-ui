@@ -1,11 +1,11 @@
 # ZQ UI Workspace
 
-基于 Vue 3 的 **monorepo**：PC 组件库 [`zq-ui`](./packages/zq-ui)（Element Plus）与移动端组件库 [`zq-m`](./packages/zq-m)（Vant）平行维护。
+基于 Vue 3 的 **monorepo**：PC 组件库 [`@zqzz/zq-ui`](./packages/zq-ui)（Element Plus）与移动端组件库 [`@zqzz/zq-m`](./packages/zq-m)（Vant）平行维护。
 
-| 包      | 标签      | 基础 UI      | 主题属性         |
-| ------- | --------- | ------------ | ---------------- |
-| `zq-ui` | `<zq-*>`  | Element Plus | `data-zq-theme`  |
-| `zq-m`  | `<zqm-*>` | Vant 4       | `data-zqm-theme` |
+| 包            | 标签      | 基础 UI      | 主题属性         |
+| ------------- | --------- | ------------ | ---------------- |
+| `@zqzz/zq-ui` | `<zq-*>`  | Element Plus | `data-zq-theme`  |
+| `@zqzz/zq-m`  | `<zqm-*>` | Vant 4       | `data-zqm-theme` |
 
 业务可只装一端，也可同项目双装；路由/页面如何拆分由业务侧决定。
 
@@ -27,7 +27,7 @@ pnpm dev          # http://localhost:4000
 # /m/*   移动端手机框调试
 ```
 
-Playground **不会**打进 `zq-ui` / `zq-m` 的 npm 包，也不作为对外文档站点。
+Playground **不会**打进 `@zqzz/zq-ui` / `@zqzz/zq-m` 的 npm 包，也不作为对外文档站点。
 
 ## 常用命令
 
@@ -45,10 +45,10 @@ pnpm format
 
 ```bash
 # PC
-pnpm add zq-ui element-plus@~2.13.7
+pnpm add @zqzz/zq-ui element-plus@~2.13.7
 
 # 移动
-pnpm add zq-m vant
+pnpm add @zqzz/zq-m vant
 ```
 
 引入方式见文档 [快速开始](./docs/guide/getting-started.md)。

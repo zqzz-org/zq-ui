@@ -47,6 +47,7 @@ export default defineConfig({
             { text: 'PC 代理组件', link: '/guide/proxy-components' },
             { text: '主题定制', link: '/guide/theme' },
             { text: '文档部署', link: '/guide/deploy' },
+            { text: '发布到 npm', link: '/guide/publish' },
             { text: '更新日志', link: '/guide/changelog' },
           ],
         },

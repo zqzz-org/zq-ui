@@ -18,10 +18,13 @@
     "format:check": "prettier --check \"**/*.{ts,vue,css,md,json}\"",
     "prepare": "husky",
     "quality:check": "pnpm format:check && pnpm lint:check && pnpm typecheck && pnpm test:run",
-    "pack:dry-run": "npm pack --dry-run ./packages/zq-ui --cache ./.npm-cache",
+    "pack:dry-run": "npm pack --dry-run ./packages/zq-ui --cache ./.npm-cache && npm pack --dry-run ./packages/zq-m --cache ./.npm-cache",
     "test": "vitest",
     "test:run": "vitest run",
-    "typecheck": "vue-tsc --noEmit"
+    "typecheck": "vue-tsc --noEmit",
+    "publish:zq-ui": "pnpm --filter @zqzz/zq-ui publish --access public",
+    "publish:zq-m": "pnpm --filter @zqzz/zq-m publish --access public",
+    "publish:packages": "pnpm run publish:zq-ui && pnpm run publish:zq-m"
   },
   "dependencies": {
     "@element-plus/icons-vue": "^2.3.0",
