@@ -6,7 +6,7 @@
 ## 全局应用
 
 ```ts
-import { applyZqmTheme, applyZqmThemeByHost } from 'zq-m/theme'
+import { applyZqmTheme, applyZqmThemeByHost } from '@zqzz/zq-m/theme'
 
 // 强制主题
 applyZqmTheme('aiedu')
@@ -34,8 +34,8 @@ Provider 会同时：
 
 ```ts
 import 'vant/lib/index.css'
-import 'zq-m/styles'
-import 'zq-m/styles/themes'
+import '@zqzz/zq-m/styles'
+import '@zqzz/zq-m/styles/themes'
 ```
 
 更完整的双端主题说明见 [指南 · 主题定制](/guide/theme)。

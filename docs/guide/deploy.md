@@ -39,11 +39,11 @@ pnpm docs:preview
 
 ## 与组件发布的关系
 
-| 产物             | 命令                       | 是否给业务用户    |
-| ---------------- | -------------------------- | ----------------- |
-| 文档站           | `pnpm docs:build` → Pages  | 是（浏览器访问）  |
-| `zq-ui` / `zq-m` | 在 `packages/*` 下 publish | 是（npm install） |
-| Playground       | `pnpm build` → 根 `dist/`  | 否（仅开发调试）  |
+| 产物                         | 命令                       | 是否给业务用户    |
+| ---------------------------- | -------------------------- | ----------------- |
+| 文档站                       | `pnpm docs:build` → Pages  | 是（浏览器访问）  |
+| `@zqzz/zq-ui` / `@zqzz/zq-m` | 在 `packages/*` 下 publish | 是（npm install） |
+| Playground                   | `pnpm build` → 根 `dist/`  | 否（仅开发调试）  |
 
 **不要**把 Playground 的 `dist/` 当作文档站部署。
 

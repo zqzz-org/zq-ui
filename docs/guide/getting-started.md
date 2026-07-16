@@ -2,10 +2,10 @@
 
 本 monorepo 提供两套平行组件库：
 
-| 包                    | 端        | 基础 UI      | 标签前缀  |
-| --------------------- | --------- | ------------ | --------- |
-| [`zq-ui`](/pc/button) | PC / 后台 | Element Plus | `<zq-*>`  |
-| [`zq-m`](/mobile/)    | H5 / Pad  | Vant 4       | `<zqm-*>` |
+| 包                          | 端        | 基础 UI      | 标签前缀  |
+| --------------------------- | --------- | ------------ | --------- |
+| [`@zqzz/zq-ui`](/pc/button) | PC / 后台 | Element Plus | `<zq-*>`  |
+| [`@zqzz/zq-m`](/mobile/)    | H5 / Pad  | Vant 4       | `<zqm-*>` |
 
 主题名（`aiedu` / `xk` / `qedu` / `aistudy`）两端对齐，**运行时互不依赖**。业务可只装一端，也可同项目双装，由路由/页面自行选择标签。
 
@@ -18,7 +18,7 @@
 > **前置**：`vue` ^3.5.0，`element-plus` >=2.13.7 <2.14.0
 
 ```bash
-pnpm add zq-ui element-plus@~2.13.7
+pnpm add @zqzz/zq-ui element-plus@~2.13.7
 ```
 
 ```ts
@@ -27,9 +27,9 @@ import { createApp } from 'vue'
 import ElementPlus from 'element-plus'
 import 'element-plus/dist/index.css'
 
-import ZQUI from 'zq-ui'
-import 'zq-ui/styles'
-import 'zq-ui/styles/themes' // 需要内置主题切换时再引
+import ZQUI from '@zqzz/zq-ui'
+import '@zqzz/zq-ui/styles'
+import '@zqzz/zq-ui/styles/themes' // 需要内置主题切换时再引
 
 import App from './App.vue'
 
@@ -45,8 +45,8 @@ app.mount('#app')
 
 ```vue
 <script setup lang="ts">
-import { ZqButton } from 'zq-ui'
-import 'zq-ui/styles'
+import { ZqButton } from '@zqzz/zq-ui'
+import '@zqzz/zq-ui/styles'
 </script>
 
 <template>
@@ -61,7 +61,7 @@ import 'zq-ui/styles'
 > **前置**：`vue` ^3.5.0，`vant` ^4
 
 ```bash
-pnpm add zq-m vant
+pnpm add @zqzz/zq-m vant
 ```
 
 ```ts
@@ -70,9 +70,9 @@ import { createApp } from 'vue'
 import Vant from 'vant'
 import 'vant/lib/index.css'
 
-import ZQM from 'zq-m'
-import 'zq-m/styles'
-import 'zq-m/styles/themes'
+import ZQM from '@zqzz/zq-m'
+import '@zqzz/zq-m/styles'
+import '@zqzz/zq-m/styles/themes'
 
 import App from './App.vue'
 
@@ -88,7 +88,7 @@ app.mount('#app')
 
 ## 同一业务项目双装
 
-允许同时安装 `zq-ui` 与 `zq-m`（以及 Element Plus + Vant）：
+允许同时安装 `@zqzz/zq-ui` 与 `@zqzz/zq-m`（以及 Element Plus + Vant）：
 
 ```ts
 app.use(ElementPlus)

@@ -1,6 +1,6 @@
 # 贡献指南
 
-本文档面向希望参与本 monorepo（`zq-ui` + `zq-m`）开发的贡献者，涵盖提交流程、质量门禁和开发环境配置。
+本文档面向希望参与本 monorepo（`@zqzz/zq-ui` + `@zqzz/zq-m`）开发的贡献者，涵盖提交流程、质量门禁和开发环境配置。
 
 质量门禁只有两层：**本地 Husky** + **GitHub Actions CI**。已不再使用 Jenkins。
 
@@ -73,7 +73,7 @@ Job 名称：**`quality`**（分支保护里要勾选这个检查）。
 5. `pnpm test:run`
 6. `pnpm build`（Playground）
 7. `pnpm docs:build`
-8. `pnpm pack:dry-run`（`zq-ui` 发包预检）
+8. `pnpm pack:dry-run`（`@zqzz/zq-ui` 发包预检）
 
 CI 中设置 `HUSKY=0`，不在流水线里跑 git hook。
 

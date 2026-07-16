@@ -1,6 +1,6 @@
 # 移动端（zq-m）总览
 
-`zq-m` 是基于 [Vant 4](https://vant-ui.github.io/vant/) 的移动端 / Pad 组件库，标签前缀为 **`zqm-`**（如 `<zqm-button>`）。
+`@zqzz/zq-m` 是基于 [Vant 4](https://vant-ui.github.io/vant/) 的移动端 / Pad 组件库，标签前缀为 **`zqm-`**（如 `<zqm-button>`）。
 
 ## 与 zq-ui 的关系
 
@@ -10,23 +10,23 @@
 | 标签       | `<zq-*>`        | `<zqm-*>`        |
 | 主题属性   | `data-zq-theme` | `data-zqm-theme` |
 | 局部 class | `.zq-theme-*`   | `.zqm-theme-*`   |
-| npm 包     | `zq-ui`         | `zq-m`           |
+| npm 包     | `@zqzz/zq-ui`   | `@zqzz/zq-m`     |
 
 两套库**运行时互不 import**，主题色值对齐但各自维护。同一业务项目可以同时安装，由业务侧按路由/页面选择使用哪一套。
 
 ## 快速试用
 
 ```bash
-pnpm add zq-m vant
+pnpm add @zqzz/zq-m vant
 ```
 
 ```ts
 import { createApp } from 'vue'
 import Vant from 'vant'
 import 'vant/lib/index.css'
-import ZQM from 'zq-m'
-import 'zq-m/styles'
-import 'zq-m/styles/themes'
+import ZQM from '@zqzz/zq-m'
+import '@zqzz/zq-m/styles'
+import '@zqzz/zq-m/styles/themes'
 
 const app = createApp(App)
 app.use(Vant)

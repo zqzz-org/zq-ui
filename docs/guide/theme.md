@@ -1,12 +1,12 @@
 # 主题
 
-ZQ-UI 使用 CSS 变量实现主题定制。默认入口 `zq-ui/styles` 会引入基础 token 和组件样式，不覆盖 Element Plus 默认主题色。
+ZQ-UI 使用 CSS 变量实现主题定制。默认入口 `@zqzz/zq-ui/styles` 会引入基础 token 和组件样式，不覆盖 Element Plus 默认主题色。
 
 ## 默认引入
 
 ```ts
 import 'element-plus/dist/index.css'
-import 'zq-ui/styles'
+import '@zqzz/zq-ui/styles'
 ```
 
 ## 内置主题
@@ -14,7 +14,7 @@ import 'zq-ui/styles'
 需要运行时切换主题时，引入内置主题包：
 
 ```ts
-import 'zq-ui/styles/themes'
+import '@zqzz/zq-ui/styles/themes'
 ```
 
 `app.use(ZQUI)` 会默认按 UI 库内置域名规则自动应用主题。
@@ -131,9 +131,9 @@ Element Plus 变量仍然可以直接覆盖：
 | `styles/themes/*.css`                | 内置主题        |
 | `styles/components/button/index.css` | Button 组件样式 |
 
-直接引入 `zq-ui/styles` 即可，入口文件会按顺序聚合基础 token 和组件样式。
+直接引入 `@zqzz/zq-ui/styles` 即可，入口文件会按顺序聚合基础 token 和组件样式。
 
-> 自定义变量的引入顺序需要在 `zq-ui/styles` 之后。
+> 自定义变量的引入顺序需要在 `@zqzz/zq-ui/styles` 之后。
 
 ## 移动端主题（zq-m）
 
@@ -150,7 +150,7 @@ Element Plus 变量仍然可以直接覆盖：
 主题名相同：`default` | `aiedu` | `xk` | `qedu` | `aistudy`。色值对齐，**源码不互相 import**。
 
 ```ts
-import { applyZqmTheme } from 'zq-m/theme'
+import { applyZqmTheme } from '@zqzz/zq-m/theme'
 applyZqmTheme('aiedu')
 ```
 
@@ -164,8 +164,8 @@ applyZqmTheme('aiedu')
 
 ```ts
 import 'vant/lib/index.css'
-import 'zq-m/styles'
-import 'zq-m/styles/themes'
+import '@zqzz/zq-m/styles'
+import '@zqzz/zq-m/styles/themes'
 ```
 
 移动端专用说明见 [移动端主题](/mobile/theme)。

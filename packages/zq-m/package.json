@@ -1,15 +1,28 @@
 {
-  "name": "zq-m",
-  "version": "0.0.1",
-  "description": "ZQ-M - 基于 Vant 的团队移动端/Pad 端自定义组件库",
+  "name": "@zqzz/zq-m",
+  "version": "0.1.0",
+  "description": "基于 Vant 的 Vue 3 移动端/Pad 组件库（源码分发）",
   "type": "module",
   "main": "index.ts",
   "module": "index.ts",
   "types": "index.ts",
+  "files": [
+    "components",
+    "styles",
+    "theme",
+    "index.ts",
+    "README.md",
+    "!**/__tests__/**",
+    "!**/*.test.ts",
+    "!**/*.spec.ts"
+  ],
+  "sideEffects": [
+    "**/*.css",
+    "**/*.vue"
+  ],
   "exports": {
     ".": {
       "import": "./index.ts",
-      "require": "./index.ts",
       "types": "./index.ts"
     },
     "./styles": {
@@ -34,7 +47,21 @@
     "vant",
     "mobile",
     "component-library",
-    "ui"
+    "ui",
+    "zq-m"
   ],
-  "license": "MIT"
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/zqzz-org/zq-ui.git",
+    "directory": "packages/zq-m"
+  },
+  "homepage": "https://crazily6617.github.io/zq-ui/mobile/",
+  "bugs": {
+    "url": "https://github.com/zqzz-org/zq-ui/issues"
+  },
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org/"
+  }
 }
